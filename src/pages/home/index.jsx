@@ -34,7 +34,7 @@ const Home = () => {
   return (
     <>
       <main
-        className="relative min-h-[800px] overflow-hidden"
+        className="relative min-h-[750px] md:min-h-[800px] overflow-hidden"
         style={{
           backgroundImage: `url(${skyImage})`,
           backgroundSize: "cover",
@@ -66,14 +66,13 @@ const Home = () => {
         </div>
 
         {/* Hero content including header */}
-        <div className="relative mx-auto flex min-h-[1000px] max-w-6xl flex-col items-center px-4 pb-10 pt-6 md:pt-4 lg:pt-4">
+        <div className="relative mx-auto flex md:min-h-[1000px] max-w-6xl flex-col items-center px-4 pb-12 pt-4 md:pb-10 md:pt-4 lg:pt-4">
           <Header />
 
           {/* Hero body */}
-          <section className="mt-10 flex w-full flex-col items-center text-center">
+          <section className="mt-8 flex w-full flex-col items-center text-center md:mt-10">
             {/* Top-rated pill */}
-            <div className="inline-flex items-center gap-2 rounded-full bg-[#FFFFFF1A] px-6 py-2 text-xs tracking-wide text-[#1F2933] shadow-sm backdrop-blur">
-              <span className="h-2 w-2 rounded-full bg-[#039A02]" />
+            <div className="inline-flex max-w-xs items-center gap-2 rounded-full bg-[#FFFFFF1A] px-6 py-2 text-[10px] tracking-wide text-[#1F2933] shadow-sm backdrop-blur md:max-w-none md:text-xs">
               <span className='uppercase font-["Alexandria"]'>
                 Top-rated painters in{" "}
                 <span className="font-bold">Easley &amp; Greenville, </span>SC
@@ -81,17 +80,17 @@ const Home = () => {
             </div>
 
             {/* Main heading */}
-            <h1 className='mt-6 max-w-3xl text-center text-4xl font-extrabold leading-tight text-[#2D2928] md:text-5xl lg:text-6xl font-["Rubik_One"]'>
+            <h1 className='mt-5 max-w-md text-center text-3xl font-extrabold leading-tight text-[#2D2928] sm:max-w-3xl md:mt-6 md:text-4xl lg:text-5xl xl:text-6xl font-["Rubik_One"]'>
               PROFESSIONAL RESIDENTIAL &amp; COMMERCIAL PAINTING SERVICES YOU
               CAN TRUST.
             </h1>
 
             {/* CTA buttons */}
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+            <div className="mt-6 flex w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
               {/* Primary CTA: matches header pill style */}
               <button
                 type="button"
-                className="flex items-center gap-3 rounded-full bg-[#2D2928] px-7 py-3 text-sm font-semibold text-white shadow-lg cursor-pointer hover:bg-[#1F1B1A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02]"
+                className="flex items-center justify-center gap-3 rounded-full bg-[#2D2928] px-7 py-3 text-sm font-semibold text-white shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02] sm:w-auto"
               >
                 <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#039A02] text-white">
                   <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
@@ -104,7 +103,7 @@ const Home = () => {
               {/* Secondary CTA */}
               <button
                 type="button"
-                className="flex items-center gap-2 rounded-full bg-white px-8 py-3 text-sm font-semibold text-[#111827] shadow-md cursor-pointer hover:bg-[#F3F4F6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02]"
+                className="flex items-center justify-center gap-2 rounded-full bg-white px-8 py-3 text-sm font-semibold text-[#111827] shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02] sm:w-auto"
               >
                 <span className='font-["Alexandria"]'>View Our Gallery</span>
               </button>
@@ -113,7 +112,7 @@ const Home = () => {
         </div>
 
         {/* Right-bottom transform card */}
-        <div className="pointer-events-auto absolute right-6 bottom-24 z-20 max-w-[250px] rounded-[26px] border border-white bg-[#FFFFFF1A] px-10 py-5 text-center text-sm text-white backdrop-blur-md shadow-[0_18px_60px_rgba(0,0,0,0.45)] md:right-12 md:bottom-28">
+        <div className="pointer-events-auto absolute bottom-6 left-1/2 z-20 w-[90%] max-w-[360px] -translate-x-1/2 rounded-[26px] border border-white bg-[#FFFFFF1A] px-6 py-4 text-center text-xs text-white backdrop-blur-md shadow-[0_18px_60px_rgba(0,0,0,0.45)] sm:px-8 sm:py-5 sm:text-sm md:bottom-28 md:left-auto md:right-12 md:w-auto md:max-w-[250px] md:translate-x-0">
           <p className='font-["Inter"] text-sm leading-relaxed'>
             Transform your property with{" "}
             <span className='font-["Alexandria"] font-semibold'>
@@ -145,7 +144,7 @@ const Home = () => {
         <div className="relative mx-auto max-w-6xl px-4 pt-4">
           <div className="grid gap-10 text-[#2D2928] md:grid-cols-3">
             <div>
-              <h2 className='text-4xl font-extrabold leading-tight text-[#2D2928] md:text-5xl lg:text-6xl font-["Rubik_One"]'>
+              <h2 className='text-3xl font-extrabold leading-tight text-[#2D2928] md:text-4xl lg:text-5xl xl:text-6xl font-["Rubik_One"]'>
                 BRINGING <span className="text-[#039A02]">COLOR</span> AND
                 QUALITY TO SOUTH CAROLINA LIVING.
               </h2>
@@ -167,7 +166,7 @@ const Home = () => {
           </div>
 
           {/* Feature cards */}
-          <div className="mt-10 grid gap-6 md:grid-cols-4">
+          <div className="mt-10 grid grid-cols-2 gap-6 md:grid-cols-4">
             {/* Free Estimates */}
             <div className="relative flex flex-col items-center justify-between rounded-[24px] border border-white/40 bg-[#FFFFFF1A] px-6 py-6 text-center shadow-sm backdrop-blur-md">
               {/* Envelope diagonals */}
@@ -249,7 +248,7 @@ const Home = () => {
       </section>
 
       {/* Third section: services grid */}
-      <section className="relative bg-[#E1F8F2] pb-24 pt-10">
+      <section className="relative bg-[#E1F8F2] pb-0 md:pb-24 pt-10">
         {/* Dark background strip spanning full width without cropping important details */}
         <div
           aria-hidden="true"
@@ -264,7 +263,7 @@ const Home = () => {
 
         <div className="relative ">
           {/* 3x2 card grid overlapping the strip */}
-          <div className="relative grid gap-10 md:grid-cols-3 -mt-10 mx-auto max-w-6xl px-4">
+          <div className="relative grid grid-cols-2 gap-4 md:gap-10 md:grid-cols-3 -mt-10 mx-auto max-w-6xl px-4">
             {/* Row 1 */}
             {[
               {
@@ -285,23 +284,23 @@ const Home = () => {
             ].map((card) => (
               <div
                 key={card.title}
-                className="relative h-[400px] overflow-hidden rounded-[25px] text-left text-white shadow-xl"
+                className="relative h-[280px] overflow-hidden rounded-[25px] text-left text-white shadow-xl md:h-[400px]"
                 style={{
                   backgroundImage: `url(${card.image})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
               >
-                <div className="absolute inset-x-3 bottom-3 rounded-[10px] bg-gradient-to-t from-black/85 via-black/75 to-black/60 px-6 py-6">
-                  <h3 className='mb-3 max-w-xs text-4xl font-extrabold leading-tight tracking-[0.03em] text-[#E9FFF7] font-["Rubik_One"]'>
+                <div className="absolute inset-x-3 bottom-3 rounded-[10px] bg-gradient-to-t from-black/85 via-black/75 to-black/60 px-3 py-4 md:px-6 md:py-6">
+                  <h3 className='mb-2 max-w-xs text-base md:font-extrabold leading-tight tracking-[0.03em] text-[#E9FFF7] md:mb-3 md:text-4xl font-["Rubik_One"]'>
                     {card.title}
                   </h3>
-                  <p className='text-sm leading-relaxed text-[#F9FAFB] font-["Inter"]'>
+                  <p className='text-xs md:leading-relaxed text-[#F9FAFB] md:text-sm font-["Inter"]'>
                     {card.body}
                   </p>
                   <button
                     type="button"
-                    className='mt-4 inline-flex cursor-pointer text-[12px] font-semibold text-white hover:text-[#A1F88B] font-["Inter"]'
+                    className='mt-2 inline-flex text-[10px] font-semibold text-white md:mt-4 md:text-[12px] font-["Inter"]'
                   >
                     Learn More &gt;
                   </button>
@@ -329,23 +328,23 @@ const Home = () => {
             ].map((card) => (
               <div
                 key={card.title}
-                className="relative h-[400px] overflow-hidden rounded-[25px] text-left text-white shadow-xl"
+                className="relative h-[280px] overflow-hidden rounded-[25px] text-left text-white shadow-xl md:h-[400px]"
                 style={{
                   backgroundImage: `url(${card.image})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
               >
-                <div className="absolute inset-x-3 bottom-3 rounded-[10px] bg-gradient-to-t from-black/85 via-black/75 to-black/60 px-6 py-6">
-                  <h3 className='mb-3 max-w-xs text-4xl font-extrabold leading-tight tracking-[0.03em] text-[#E9FFF7] font-["Rubik_One"]'>
+                <div className="absolute inset-x-3 bottom-3 rounded-[10px] bg-gradient-to-t from-black/85 via-black/75 to-black/60 px-3 py-4 md:px-6 md:py-6">
+                  <h3 className='mb-2 max-w-xs text-base md:font-extrabold leading-tight tracking-[0.03em] text-[#E9FFF7] md:mb-3 md:text-4xl font-["Rubik_One"]'>
                     {card.title}
                   </h3>
-                  <p className='text-sm leading-relaxed text-[#F9FAFB] font-["Inter"]'>
+                  <p className='text-xs md:leading-relaxed text-[#F9FAFB] md:text-sm font-["Inter"]'>
                     {card.body}
                   </p>
                   <button
                     type="button"
-                    className='mt-4 inline-flex cursor-pointer text-[12px] font-semibold text-white hover:text-[#A1F88B] font-["Inter"]'
+                    className='mt-2 inline-flex text-[10px] font-semibold text-white md:mt-4 md:text-[12px] font-["Inter"]'
                   >
                     Learn More &gt;
                   </button>
@@ -357,7 +356,7 @@ const Home = () => {
       </section>
 
       {/* Fourth section: Why neighbors choose */}
-      <section className="relative bg-[#E1F8F2] py-16 ">
+      <section className="relative bg-[#E1F8F2] pt-10pt-16 pb-16 ">
         <div className="flex flex-col justify-between md:flex-row mx-auto max-w-6xl  ">
           {/* Left image with rounded right corners */}
           <div className="hidden h-full w-full overflow-hidden rounded-r-[60px] md:block md:h-[420px] md:w-[34%] absolute -left-[0px] ">
@@ -370,8 +369,8 @@ const Home = () => {
           <div className="w-[30%]"></div>
 
           {/* Right content */}
-          <div className="w-full px-4 py-8 md:w-[66%] md:px-12">
-            <h2 className='mb-8 max-w-xl text-4xl font-extrabold leading-tight text-[#2D2928] md:text-5xl lg:text-6xl font-["Rubik_One"]'>
+          <div className="w-full px-20 py-8 md:w-[66%] md:px-12">
+            <h2 className='mb-8 max-w-xl text-3xl font-extrabold leading-tight text-[#2D2928] md:text-4xl lg:text-5xl xl:text-6xl font-["Rubik_One"]'>
               WHY NEIGHBORS CHOOSE THE DADDY&apos;S PAINTING LLC
             </h2>
 
@@ -482,7 +481,7 @@ const Home = () => {
           {/* Hero body */}
           <section className="mt-10 flex w-full flex-col items-center text-center">
             {/* Main heading */}
-            <h1 className='mt-6 max-w-xl text-center text-4xl font-extrabold leading-tight text-[#2D2928] md:text-5xl lg:text-6xl font-["Rubik_One"]'>
+            <h1 className='mt-6 max-w-xl text-center text-3xl font-extrabold leading-tight text-[#2D2928] md:text-4xl lg:text-5xl xl:text-6xl font-["Rubik_One"]'>
               Proudly Serving Easley, SC & Surrounding Areas.
             </h1>
             <p className='text-sm text-[#2D2928] font-["Inter"] max-w-xl '>
@@ -495,7 +494,7 @@ const Home = () => {
             <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
               <button
                 type="button"
-                className="flex items-center gap-2 rounded-full bg-[#039A02] px-8 py-3 text-sm font-semibold text-[#111827] shadow-md cursor-pointer hover:bg-[#02A11F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02]"
+                className="flex items-center gap-2 rounded-full bg-[#039A02] px-8 py-3 text-sm font-semibold text-[#111827] shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02]"
               >
                 <span className='font-["Alexandria"] text-white'>
                   View Our Gallery
@@ -517,12 +516,12 @@ const Home = () => {
 
       {/* Eighth section: contact + estimate form */}
       <section className="relative bg-[#E1F8F2] pb-50 pt-10">
-        <div className="mx-auto flex max-w-6xl flex-col gap-30 px-4 lg:flex-row lg:items-start">
+        <div className="mx-auto flex max-w-6xl flex-col md:gap-30  gap-10 px-4 lg:flex-row lg:items-start">
           {/* Left column: logo, heading, contact details, reviews, call-to-action */}
           <div className="w-full lg:w-1/2">
-            <div className="space-y-6">
+            <div className="flex flex-col items-center space-y-6 text-center md:items-start md:text-left">
               {/* Logo */}
-              <div>
+              <div className="flex justify-center md:justify-start">
                 <img
                   src={contactLogoImage}
                   alt="The Daddy's Painting LLC logo"
@@ -532,7 +531,7 @@ const Home = () => {
 
               {/* Main heading + subheading */}
               <div className="space-y-3">
-                <h2 className='max-w-xl text-4xl font-extrabold leading-tight text-[#2D2928] md:text-5xl lg:text-6xl font-["Rubik_One"]'>
+                <h2 className='mx-auto max-w-xl text-3xl font-extrabold leading-tight text-[#2D2928] md:text-left md:text-4xl lg:text-5xl xl:text-6xl font-["Rubik_One"]'>
                   PROFESSIONAL RESIDENTIAL &amp; COMMERCIAL PAINTING SERVICES
                   YOU CAN TRUST.
                 </h2>
@@ -543,43 +542,35 @@ const Home = () => {
               </div>
 
               {/* Contact rows */}
-              <div className="space-y-3">
-                <div className="flex items-start gap-3">
+              <div className="flex flex-col items-center space-y-3 md:items-start">
+                <div className="flex items-center gap-3">
                   <span className="mt-1 flex h-8 w-8 items-center justify-center text-[#039A02]">
                     <Phone className="h-4 w-4" aria-hidden="true" />
                   </span>
-                  <div className='text-sm text-[#2D2928] font-["Inter"]'>
-                    <p className="font-semibold">(864) 451-2806</p>
-                    <p className="text-xs text-[#4B5563]">
-                      Call now to schedule
-                    </p>
-                  </div>
+
+                  <p className="font-semibold">(864) 451-2806</p>
                 </div>
 
-                <div className="flex items-start gap-3">
+                <div className="flex items-center gap-3">
                   <span className="mt-1 flex h-8 w-8 items-center justify-center text-[#039A02]">
                     <MapPin className="h-4 w-4" aria-hidden="true" />
                   </span>
-                  <div className='text-sm text-[#2D2928] font-["Inter"]'>
-                    <p className="font-semibold">
-                      Easley, SC &amp; Surrounding Areas
-                    </p>
-                    <p className="text-xs text-[#4B5563]">
-                      Serving Greenville, Spartanburg, Greer, Clemson &amp; more
-                    </p>
-                  </div>
+
+                  <p className="font-semibold">
+                    Easley, SC &amp; Surrounding Areas
+                  </p>
                 </div>
               </div>
 
               {/* Google reviews */}
-              <div className="mt-2 flex flex-wrap items-center gap-3">
+              <div className="mt-2 flex flex-wrap items-center justify-center gap-3 md:justify-start">
                 <img
                   src={googleImage}
                   alt="Google logo"
                   className="h-5 w-auto md:h-6"
                 />
-                <p className='text-xs text-[#2D2928] font-["Inter"]'>
-                  5.0 Verified Customer Reviews
+                <p className='text-xs text-[#2D2928] font-bold font-["Inter"]'>
+                  5.0 Verified Customer Reviews <span>|</span>
                 </p>
                 <div className="flex items-center gap-1 text-[#02A11F]">
                   {Array.from({ length: 5 }).map((_, index) => (
@@ -594,7 +585,7 @@ const Home = () => {
               </div>
 
               {/* Call now + social icons */}
-              <div className="mt-6 flex flex-wrap items-center gap-4">
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-4 md:justify-start">
                 <button
                   type="button"
                   className="flex items-center gap-3 rounded-[10px] bg-[#039A02] px-6 py-3 text-sm font-semibold text-white shadow-md cursor-pointer hover:bg-[#02A11F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02]"
@@ -629,7 +620,7 @@ const Home = () => {
 
           {/* Right column: estimate form card */}
           <div className="w-full lg:w-1/2">
-            <div className="relative rounded-[40px] bg-[#2D2928] px-7 py-8 shadow-[0_18px_60px_rgba(0,0,0,0.45)] md:px-10 md:py-10">
+            <div className="relative mx-auto max-w-md rounded-[40px] bg-[#2D2928] px-7 py-8 shadow-[0_18px_60px_rgba(0,0,0,0.45)] md:max-w-none md:px-10 md:py-10">
               <h3 className='mb-6 text-lg font-semibold leading-snug text-white md:text-xl font-["Inter"]'>
                 Contact The Daddy's Painting LLC today for a free, no-obligation
                 estimate.
@@ -665,7 +656,7 @@ const Home = () => {
 
               <button
                 type="button"
-                className="mt-6 flex w-full items-center justify-center gap-3 rounded-full bg-[#02A11F] px-6 py-3 text-sm font-semibold text-white shadow-md cursor-pointer hover:bg-[#02881A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#02A11F]"
+                className="mt-6 flex w-full items-center justify-center gap-3 rounded-full bg-[#02A11F] px-6 py-3 text-sm font-semibold shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 text-white focus-visible:ring-[#02A11F] "
               >
                 <span className='font-["Alexandria"]  text-white'>
                   Request Free Estimate
@@ -677,23 +668,20 @@ const Home = () => {
 
         {/* Talk to our AI bubble + icon */}
         <div className="pointer-events-auto absolute bottom-10 right-5">
-          <button
-            type="button"
-            className="relative cursor-pointer"
-            aria-label="Talk to our AI assistant"
-          >
+          <div className="relative">
             {/* Speech bubble */}
-            <div className="inline-flex items-center rounded-md w-fit bg-white px-3.5 py-1.5 text-[11px] font-extrabold text-base text-[#02A11F] shadow-md relative -left-20 -top-1 hover:bg-[#F3F4F6]">
+            <div className="inline-flex items-center rounded-md w-fit bg-white px-3.5 py-1.5 text-[11px] font-extrabold text-base text-[#02A11F] shadow-md relative -left-20 -top-1  ">
               Talk to our AI
             </div>
 
             {/* Green circular AI icon */}
+
             <img
               src={aiIcon}
               alt="AI assistant"
-              className="h-20 w-20 object-contain hover:brightness-110"
+              className="h-20 w-20 object-contain"
             />
-          </button>
+          </div>
         </div>
       </section>
     </>
