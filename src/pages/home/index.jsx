@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import {
   ArrowUpRight,
   Phone,
@@ -9,6 +10,7 @@ import {
   MessageCircle,
 } from "lucide-react";
 import Header from "../../components/Header";
+import { SERVICES } from "../../data/services";
 import skyVectorImage from "../../assets/vector.png";
 import skyImage from "../../assets/sky.png";
 import heroHouseImage from "../../assets/home.png";
@@ -35,6 +37,15 @@ import {
   cleanupScrollAnimations,
 } from "../../utils/scrollAnimations";
 
+const SERVICE_IMAGES = {
+  interior: interiorServiceImage,
+  exterior: exteriorServiceImage,
+  cabinet: cabinetServiceImage,
+  deck: deckServiceImage,
+  powerWash: powerWashServiceImage,
+  drywall: drywallServiceImage,
+};
+
 const Home = () => {
   // Hero section refs
   const heroPillRef = useRef(null);
@@ -52,7 +63,8 @@ const Home = () => {
     useRef(null),
   ];
 
-  // Service cards refs
+  // Third section: service cards refs (for scroll animations only)
+  const servicesGridRef = useRef(null);
   const serviceCardsRefs = [
     useRef(null),
     useRef(null),
@@ -61,7 +73,6 @@ const Home = () => {
     useRef(null),
     useRef(null),
   ];
-  const servicesGridRef = useRef(null);
 
   // Fourth section refs
   const fourthHeadingRef = useRef(null);
@@ -75,7 +86,7 @@ const Home = () => {
   const eighthFormRef = useRef(null);
 
   useEffect(() => {
-    // Wait for DOM to be fully rendered
+    // Wait for DOM (including service cards grid) to be fully rendered so all refs are set
     const timer = setTimeout(() => {
       const refs = {
         heroPillRef,
@@ -85,23 +96,24 @@ const Home = () => {
         secondHeadingRef,
         secondTextRefs,
         featureCardsRefs,
-      serviceCardsRefs,
-      servicesGridRef,
-      fourthHeadingRef,
-      benefitCardsRefs,
-      sixthHeadingRef,
-      eighthLeftRef,
-      eighthFormRef,
-    };
+        servicesGridRef,
+        serviceCardsRefs,
+        fourthHeadingRef,
+        benefitCardsRefs,
+        sixthHeadingRef,
+        eighthLeftRef,
+        eighthFormRef,
+      };
 
-    initScrollAnimations(refs);
-    }, 100);
+      initScrollAnimations(refs);
+    }, 200);
 
     return () => {
       clearTimeout(timer);
       cleanupScrollAnimations();
     };
   }, []);
+
   return (
     <>
       <main
@@ -146,7 +158,7 @@ const Home = () => {
             {/* Top-rated pill */}
             <div
               ref={heroPillRef}
-              className="inline-flex max-w-xs items-center gap-2 rounded-full bg-[#FFFFFF1A] px-6 py-2 text-[10px] tracking-wide text-[#1F2933] shadow-sm backdrop-blur md:max-w-none md:text-xs"
+              className="inline-flex max-w-xs items-center gap-2 rounded-md bg-[#FFFFFF1A] px-6 py-2 text-[10px] tracking-wide text-[#1F2933] shadow-sm backdrop-blur md:max-w-none md:text-base"
             >
               <span className='uppercase font-["Alexandria"]'>
                 Top-rated painters in{" "}
@@ -157,7 +169,7 @@ const Home = () => {
             {/* Main heading */}
             <h1
               ref={heroHeadingRef}
-              className='mt-5 max-w-md text-center text-3xl font-extrabold leading-tight text-[#2D2928] sm:max-w-3xl md:mt-6 md:text-4xl lg:text-5xl xl:text-6xl font-["Rubik_One"]'
+              className='text-center font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[45px] font-["Rubik_One"] leading-tight'
             >
               PROFESSIONAL RESIDENTIAL &amp; COMMERCIAL PAINTING SERVICES YOU
               CAN TRUST.
@@ -230,7 +242,7 @@ const Home = () => {
             <div>
               <h2
                 ref={secondHeadingRef}
-                className='text-3xl font-extrabold leading-tight text-[#2D2928] md:text-4xl lg:text-5xl xl:text-6xl font-["Rubik_One"]'
+                className='font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[45px] font-["Rubik_One"] leading-tight'
               >
                 BRINGING <span className="text-[#039A02]">COLOR</span> AND
                 QUALITY TO SOUTH CAROLINA LIVING.
@@ -371,97 +383,42 @@ const Home = () => {
           <div
             ref={servicesGridRef}
             className="relative grid grid-cols-2 gap-4 md:gap-10 md:grid-cols-3 -mt-10 mx-auto max-w-6xl px-4"
-            style={{ perspective: "1000px" }}
           >
-            {/* Row 1 */}
-            {[
-              {
-                title: "INTERIOR PAINTING",
-                body: "From single rooms to whole-house repaints. We ensure smooth walls, crisp trim lines, and perfect ceilings for your home in Easley or Greenville.",
-                image: interiorServiceImage,
-              },
-              {
-                title: "EXTERIOR PAINTING",
-                body: "Boost your curb appeal and protect your property from the weather. We use high-quality, durable paints designed to last.",
-                image: exteriorServiceImage,
-              },
-              {
-                title: "CABINET PAINTING",
-                body: "Don't replace refinish. We transform outdated kitchen and bathroom cabinets with a factory-like, durable finish.",
-                image: cabinetServiceImage,
-              },
-            ].map((card, index) => (
-              <div
-                key={card.title}
-                ref={serviceCardsRefs[index]}
-                className="relative h-[280px] overflow-hidden rounded-[25px] text-left text-white shadow-xl md:h-[400px]"
-                style={{
-                  backgroundImage: `url(${card.image})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
-              >
-                <div className="absolute inset-x-3 bottom-3 rounded-[10px] bg-gradient-to-t from-black/85 via-black/75 to-black/60 px-3 py-4 md:px-6 md:py-6">
-                  <h3 className='mb-2 max-w-xs text-base md:font-extrabold leading-tight tracking-[0.03em] text-[#E9FFF7] md:mb-3 md:text-4xl font-["Rubik_One"]'>
-                    {card.title}
-                  </h3>
-                  <p className='text-xs md:leading-relaxed text-[#F9FAFB] md:text-sm font-["Inter"]'>
-                    {card.body}
-                  </p>
-                  <button
-                    type="button"
-                    className='mt-2 inline-flex text-[10px] font-semibold text-white md:mt-4 md:text-[12px] cursor-pointer hover:text-[#A1F88B] transition-colors font-["Inter"]'
+            {SERVICES.map((card, index) => {
+              const image =
+                SERVICE_IMAGES[card.imageKey] || interiorServiceImage;
+              return (
+                <div
+                  key={card.slug}
+                  ref={serviceCardsRefs[index]}
+                  className="relative h-[280px] overflow-hidden rounded-[25px] text-left text-white shadow-xl md:h-[400px]"
+                  style={{
+                    backgroundImage: `url(${image})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                >
+                  <div
+                    data-service-card-content
+                    className="absolute inset-x-3 bottom-3 rounded-[10px] bg-gradient-to-t from-black/85 via-black/75 to-black/60 px-3 py-4 md:px-6 md:py-6"
                   >
-                    Learn More &gt;
-                  </button>
+                    <h3 className='mb-2 max-w-xs text-base md:font-extrabold leading-tight tracking-[0.03em] text-[#E9FFF7] md:mb-3 md:text-4xl font-["inter"]'>
+                      {card.title}
+                    </h3>
+                    <p className='text-xs md:leading-relaxed text-[#F9FAFB] md:text-sm font-["Inter"]'>
+                      {card.body}
+                    </p>
+                    <Link
+                      to={`/services/${card.slug}`}
+                      className='mt-2 inline-flex text-[10px] font-semibold text-white md:mt-4 md:text-[12px] cursor-pointer hover:text-[#A1F88B] transition-colors font-["Inter"] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A1F88B] focus-visible:ring-offset-2'
+                      aria-label={`Learn more about ${card.title}`}
+                    >
+                      Learn More &gt;
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            ))}
-
-            {/* Row 2 */}
-            {[
-              {
-                title: "DECK & FENCE STAINING",
-                body: "Protect your outdoor wood structures. We specialize in staining, painting, and weatherproofing decks and fences.",
-                image: deckServiceImage,
-              },
-              {
-                title: "POWER WASHING",
-                body: "Essential preparation for painting or general cleaning. We remove dirt, mold, and grime from siding, driveways, and walkways.",
-                image: powerWashServiceImage,
-              },
-              {
-                title: "DRYWALL REPAIR",
-                body: "We patch holes, repair cracks, and match textures seamlessly before we paint, ensuring a flawless foundation.",
-                image: drywallServiceImage,
-              },
-            ].map((card, index) => (
-              <div
-                key={card.title}
-                ref={serviceCardsRefs[index + 3]}
-                className="relative h-[280px] overflow-hidden rounded-[25px] text-left text-white shadow-xl md:h-[400px]"
-                style={{
-                  backgroundImage: `url(${card.image})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
-              >
-                <div className="absolute inset-x-3 bottom-3 rounded-[10px] bg-gradient-to-t from-black/85 via-black/75 to-black/60 px-3 py-4 md:px-6 md:py-6">
-                  <h3 className='mb-2 max-w-xs text-base md:font-extrabold leading-tight tracking-[0.03em] text-[#E9FFF7] md:mb-3 md:text-4xl font-["Rubik_One"]'>
-                    {card.title}
-                  </h3>
-                  <p className='text-xs md:leading-relaxed text-[#F9FAFB] md:text-sm font-["Inter"]'>
-                    {card.body}
-                  </p>
-                  <button
-                    type="button"
-                    className='mt-2 inline-flex text-[10px] font-semibold text-white md:mt-4 md:text-[12px] cursor-pointer hover:text-[#A1F88B] transition-colors font-["Inter"]'
-                  >
-                    Learn More &gt;
-                  </button>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -474,7 +431,7 @@ const Home = () => {
             <img
               src={leftSectionImage}
               alt="Beautifully painted coastal home"
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover object-[90%]"
             />
           </div>
           <div className="w-[30%]"></div>
@@ -483,7 +440,7 @@ const Home = () => {
           <div className="w-full px-20 py-8 md:w-[66%] md:px-12">
             <h2
               ref={fourthHeadingRef}
-              className='mb-8 max-w-xl text-3xl font-extrabold leading-tight text-[#2D2928] md:text-4xl lg:text-5xl xl:text-6xl font-["Rubik_One"]'
+              className='mb-8 font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[45px] font-["Rubik_One"] leading-tight'
             >
               WHY NEIGHBORS CHOOSE THE DADDY&apos;S PAINTING LLC
             </h2>
@@ -492,14 +449,15 @@ const Home = () => {
               {/* Card 1 */}
               <div
                 ref={benefitCardsRefs[0]}
-                className="rounded-[26px] border border-[#02B446]  px-5 py-6 shadow-sm"
+                className="rounded-[26px]  border-2 h-fit border-[#02B446]  px-5 py-6 shadow-sm"
               >
                 <div className="mb-4 flex items-center gap-3">
                   <span className="flex h-6 w-6 items-center justify-center">
                     <img src={tickIcon} alt="Check mark" className="h-5 w-5" />
                   </span>
-                  <h3 className='text-base uppercase tracking-[0.08em] text-[#2D2928] font-["Rubik_One"]'>
-                    6+ <span>YEARS OF EXCELLENCE</span>
+                  <h3 className='text-base uppercase tracking-[0.08em] text-[#2D2928]  font-["Inter"]'>
+                    6+{" "}
+                    <span className="font-extrabold">YEARS OF EXCELLENCE</span>
                   </h3>
                 </div>
                 <p className='text-xs leading-relaxed text-[#2D2928] font-["Inter"]'>
@@ -511,13 +469,13 @@ const Home = () => {
               {/* Card 2 */}
               <div
                 ref={benefitCardsRefs[1]}
-                className="rounded-[26px] border border-[#02B446]  px-5 py-6 shadow-sm"
+                className="rounded-[26px] border border-2 h-fit border-[#02B446] px-5 py-6 shadow-sm"
               >
                 <div className="mb-4 flex items-center gap-3">
                   <span className="flex h-6 w-6 items-center justify-center">
                     <img src={tickIcon} alt="Check mark" className="h-5 w-5" />
                   </span>
-                  <h3 className='text-base  uppercase tracking-[0.08em] text-[#2D2928] font-["Rubik_One"]'>
+                  <h3 className='text-base  uppercase tracking-[0.08em] text-[#2D2928] font-["Inter"] font-extrabold'>
                     TRANSPARENT PRICING
                   </h3>
                 </div>
@@ -530,13 +488,13 @@ const Home = () => {
               {/* Card 3 */}
               <div
                 ref={benefitCardsRefs[2]}
-                className="rounded-[26px] border border-[#02B446]  px-5 py-6 shadow-sm"
+                className="rounded-[26px] border border-2 h-fit border-[#02B446]  px-5 py-6 shadow-sm"
               >
                 <div className="mb-4 flex items-center gap-3">
                   <span className="flex h-6 w-6 items-center justify-center">
                     <img src={tickIcon} alt="Check mark" className="h-5 w-5" />
                   </span>
-                  <h3 className='text-base   uppercase  text-[#2D2928] font-["Rubik_One"]'>
+                  <h3 className='text-base   uppercase  text-[#2D2928] font-["Inter"] font-extrabold'>
                     SERVING YOUR COMMUNITY
                   </h3>
                 </div>
@@ -606,7 +564,7 @@ const Home = () => {
             {/* Main heading */}
             <h1
               ref={sixthHeadingRef}
-              className='mt-6 max-w-xl text-center text-3xl font-extrabold leading-tight text-[#2D2928] md:text-4xl lg:text-5xl xl:text-6xl font-["Rubik_One"]'
+              className='mt-6 text-center font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[45px] font-["Rubik_One"] leading-tight'
             >
               Proudly Serving Easley, SC & Surrounding Areas.
             </h1>
@@ -657,7 +615,7 @@ const Home = () => {
 
               {/* Main heading + subheading */}
               <div className="space-y-3">
-                <h2 className='mx-auto max-w-xl text-3xl font-extrabold leading-tight text-[#2D2928] md:text-left md:text-4xl lg:text-5xl xl:text-6xl font-["Rubik_One"]'>
+                <h2 className='mx-auto font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-left md:text-[45px] font-["Rubik_One"] leading-tight'>
                   PROFESSIONAL RESIDENTIAL &amp; COMMERCIAL PAINTING SERVICES
                   YOU CAN TRUST.
                 </h2>
@@ -668,23 +626,21 @@ const Home = () => {
               </div>
 
               {/* Contact rows */}
-              <div className="flex flex-col items-center space-y-3 md:items-start">
+              <div className="flex flex-col items-center space-y-1 md:items-start">
                 <div className="flex items-center gap-3">
                   <span className="mt-1 flex h-8 w-8 items-center justify-center text-[#039A02]">
                     <Phone className="h-4 w-4" aria-hidden="true" />
                   </span>
 
-                  <p className="font-semibold">(864) 451-2806</p>
+                  <p className="">(864) 451-2806</p>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-1">
                   <span className="mt-1 flex h-8 w-8 items-center justify-center text-[#039A02]">
                     <MapPin className="h-4 w-4" aria-hidden="true" />
                   </span>
 
-                  <p className="font-semibold">
-                    Easley, SC &amp; Surrounding Areas
-                  </p>
+                  <p className="">Easley, SC &amp; Surrounding Areas</p>
                 </div>
               </div>
 
@@ -748,7 +704,7 @@ const Home = () => {
           <div className="w-full lg:w-1/2">
             <div
               ref={eighthFormRef}
-              className="relative mx-auto max-w-md rounded-[40px] bg-[#2D2928] px-7 py-8 shadow-[0_18px_60px_rgba(0,0,0,0.45)] md:max-w-none md:px-10 md:py-10"
+              className="relative mx-auto max-w-md rounded-[40px] bg-[#2D2928] px-7 py-8 shadow-[0_18px_60px_rgba(0,0,0,0.45)] md:max-w-none md:px-10 md:py-10 md:mt-20 "
             >
               <h3 className='mb-6 text-lg font-semibold leading-snug text-white md:text-xl font-["Inter"]'>
                 Contact The Daddy's Painting LLC today for a free, no-obligation
@@ -779,7 +735,7 @@ const Home = () => {
                         />
                       )}
                     </div>
-                  )
+                  ),
                 )}
               </form>
 

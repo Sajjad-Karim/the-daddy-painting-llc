@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import { Menu, Phone, ArrowUpRight, X } from "lucide-react";
 import { gsap } from "gsap";
 import logoImage from "../assets/logo.png";
@@ -321,13 +322,17 @@ const Header = () => {
         {/* Mobile header */}
         <div className="flex items-center justify-between md:hidden">
           {/* Logo */}
-          <div className="flex items-center">
+          <Link
+            to="/"
+            className="flex items-center cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02] rounded"
+            aria-label="Go to home page"
+          >
             <img
               src={logoImage}
               alt="The Daddy's Painting LLC logo"
               className="h-10 w-auto"
             />
-          </div>
+          </Link>
 
           {/* Call now pill */}
           <button
@@ -378,13 +383,17 @@ const Header = () => {
           {/* Right group: logo + call now + CTA */}
           <div className="flex items-center gap-10">
             {/* Logo (closer to Call Now than Menu) */}
-            <div className="flex items-center justify-center">
+            <Link
+              to="/"
+              className="flex items-center justify-center cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02] rounded"
+              aria-label="Go to home page"
+            >
               <img
                 src={logoImage}
                 alt="The Daddy's Painting LLC logo"
                 className="h-20 w-auto md:h-30"
               />
-            </div>
+            </Link>
 
             {/* Call Now + CTA */}
             <div className="flex items-center gap-6">
@@ -443,13 +452,20 @@ const Header = () => {
           >
             {/* Top: logo + close button */}
             <div className="flex items-start justify-between">
-              <div ref={logoRef}>
-                <img
-                  src={whiteLogoImage}
-                  alt="The Daddy's Painting LLC logo"
-                  className="h-16 w-auto md:h-20"
-                />
-              </div>
+              <Link
+                to="/"
+                onClick={handleCloseMenu}
+                className="cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white rounded inline-block"
+                aria-label="Go to home page"
+              >
+                <div ref={logoRef}>
+                  <img
+                    src={whiteLogoImage}
+                    alt="The Daddy's Painting LLC logo"
+                    className="h-16 w-auto md:h-20"
+                  />
+                </div>
+              </Link>
               <button
                 ref={closeButtonRef}
                 type="button"

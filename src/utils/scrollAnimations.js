@@ -19,9 +19,8 @@ export const initScrollAnimations = (refs) => {
     secondHeadingRef,
     secondTextRefs,
     featureCardsRefs,
-    thirdSectionRef,
-    serviceCardsRefs,
     servicesGridRef,
+    serviceCardsRefs,
     fourthSectionRef,
     fourthHeadingRef,
     benefitCardsRefs,
@@ -32,21 +31,21 @@ export const initScrollAnimations = (refs) => {
     eighthFormRef,
   } = refs;
 
-  // Hero section animations
+  // Hero section animations – stronger, more visible entrance
   if (heroPillRef?.current) {
     gsap.fromTo(
       heroPillRef.current,
       {
         opacity: 0,
-        y: -30,
-        scale: 0.9,
+        y: -80,
+        scale: 0.5,
       },
       {
         opacity: 1,
         y: 0,
         scale: 1,
-        duration: 0.8,
-        ease: "power3.out",
+        duration: 1.1,
+        ease: "back.out(1.4)",
         immediateRender: false,
         scrollTrigger: {
           trigger: heroPillRef.current,
@@ -62,14 +61,16 @@ export const initScrollAnimations = (refs) => {
       heroHeadingRef.current,
       {
         opacity: 0,
-        y: 50,
-        scale: 0.95,
+        y: 100,
+        scale: 0.7,
+        x: -20,
       },
       {
         opacity: 1,
         y: 0,
         scale: 1,
-        duration: 1,
+        x: 0,
+        duration: 1.2,
         ease: "power3.out",
         immediateRender: false,
         scrollTrigger: {
@@ -86,16 +87,16 @@ export const initScrollAnimations = (refs) => {
       heroButtonsRef.current.children,
       {
         opacity: 0,
-        y: 30,
-        scale: 0.9,
+        y: 60,
+        scale: 0.6,
       },
       {
         opacity: 1,
         y: 0,
         scale: 1,
-        duration: 0.6,
-        stagger: 0.15,
-        ease: "back.out(1.2)",
+        duration: 0.9,
+        stagger: 0.2,
+        ease: "back.out(1.5)",
         immediateRender: false,
         scrollTrigger: {
           trigger: heroButtonsRef.current,
@@ -111,16 +112,16 @@ export const initScrollAnimations = (refs) => {
       heroCardRef.current,
       {
         opacity: 0,
-        x: 100,
-        scale: 0.85,
-        rotation: 5,
+        x: 220,
+        scale: 0.65,
+        rotation: 15,
       },
       {
         opacity: 1,
         x: 0,
         scale: 1,
         rotation: 0,
-        duration: 0.8,
+        duration: 1.1,
         ease: "power3.out",
         immediateRender: false,
         scrollTrigger: {
@@ -218,96 +219,93 @@ export const initScrollAnimations = (refs) => {
     });
   }
 
-  // Service cards - advanced rotation + zoom + 3D flip animation
-  if (serviceCardsRefs?.length) {
-    // Set perspective on the grid container for 3D effects
-    if (servicesGridRef?.current) {
-      gsap.set(servicesGridRef.current, {
-        perspective: 1000,
-        transformStyle: "preserve-3d",
-      });
-    }
-
-    serviceCardsRefs.forEach((ref, index) => {
-      if (ref?.current) {
-        // Different rotation patterns for variety - creates a dynamic 3D flip effect
-        const rotationPatterns = [
-          { rotationX: -30, rotationY: -25, rotationZ: -8 }, // Card 0 - Interior
-          { rotationX: 5, rotationY: 30, rotationZ: 10 }, // Card 1 - Exterior
-          { rotationX: 30, rotationY: -20, rotationZ: -12 }, // Card 2 - Cabinet
-          { rotationX: -25, rotationY: 25, rotationZ: 15 }, // Card 3 - Deck
-          { rotationX: 25, rotationY: -30, rotationZ: -8 }, // Card 4 - Power Wash
-          { rotationX: -20, rotationY: 20, rotationZ: 12 }, // Card 5 - Drywall
-        ];
-
-        const pattern = rotationPatterns[index] || {
-          rotationX: index % 2 === 0 ? -25 : 25,
-          rotationY: index % 2 === 0 ? -20 : 20,
-          rotationZ: index % 2 === 0 ? -8 : 8,
-        };
-
-        // Initial entrance animation with 3D rotation
-        gsap.fromTo(
-          ref.current,
-          {
-            opacity: 0,
-            scale: 0.6,
-            y: 100,
-            rotationX: pattern.rotationX,
-            rotationY: pattern.rotationY,
-            rotationZ: pattern.rotationZ,
-            transformOrigin: "center center",
-            transformStyle: "preserve-3d",
+  // Third section: service cards – modern advanced (clip-path, blur-in, content reveal, scroll depth, 2D so link stays clickable)
+  const servicesGrid = servicesGridRef?.current;
+  if (servicesGrid) {
+    const cards = servicesGrid.querySelectorAll("[data-service-card]");
+    cards.forEach((card, index) => {
+      // 1) Clip-path wipe: card reveals from bottom-up
+      gsap.fromTo(
+        card,
+        { clipPath: "inset(100% 0% 0% 0%)" },
+        {
+          clipPath: "inset(0% 0% 0% 0%)",
+          duration: 0.9,
+          delay: index * 0.12,
+          ease: "power3.inOut",
+          immediateRender: false,
+          scrollTrigger: {
+            trigger: card,
+            start: "top 90%",
+            toggleActions: "play none none reverse",
           },
+        }
+      );
+
+      // 2) Blur-in + rise + scale: modern entrance
+      gsap.fromTo(
+        card,
+        {
+          opacity: 0,
+          y: 90,
+          scale: 0.88,
+          filter: "blur(14px)",
+        },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          filter: "blur(0px)",
+          duration: 1.1,
+          delay: index * 0.12,
+          ease: "power3.out",
+          overwrite: "auto",
+          immediateRender: false,
+          scrollTrigger: {
+            trigger: card,
+            start: "top 88%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+
+      // 3) Staggered content reveal: overlay slides up + fades in after card
+      const content = card.querySelector("[data-service-card-content]");
+      if (content) {
+        gsap.fromTo(
+          content,
+          { opacity: 0, y: 36 },
           {
             opacity: 1,
-            scale: 1,
             y: 0,
-            rotationX: 0,
-            rotationY: 0,
-            rotationZ: 0,
-            duration: 1.2,
-            delay: index * 0.18,
-            ease: "back.out(1.5)",
+            duration: 0.75,
+            delay: index * 0.12 + 0.4,
+            ease: "power3.out",
             immediateRender: false,
             scrollTrigger: {
-              trigger: ref.current,
-              start: "top 80%",
+              trigger: card,
+              start: "top 88%",
               toggleActions: "play none none reverse",
             },
           }
         );
-
-        // Continuous subtle 3D rotation on scroll for depth effect
-        gsap.to(ref.current, {
-          rotationY: index % 2 === 0 ? 3 : -3,
-          rotationX: index % 3 === 0 ? 2 : -2,
-          ease: "sine.inOut",
-          duration: 3,
-          repeat: -1,
-          yoyo: true,
-          scrollTrigger: {
-            trigger: ref.current,
-            start: "top 80%",
-            end: "bottom 20%",
-            scrub: 1.5,
-          },
-        });
-
-        // Add hover-like effect on scroll - subtle scale and rotation
-        gsap.to(ref.current, {
-          scale: 1.05,
-          rotationY: index % 2 === 0 ? 5 : -5,
-          ease: "power1.out",
-          scrollTrigger: {
-            trigger: ref.current,
-            start: "top 60%",
-            end: "top 40%",
-            scrub: true,
-          },
-        });
       }
+
+      // 4) Scroll-linked depth: lift + scale (2D scrub)
+      gsap.to(card, {
+        y: -12,
+        scale: 1.04,
+        ease: "none",
+        overwrite: "auto",
+        scrollTrigger: {
+          trigger: card,
+          start: "top 84%",
+          end: "top 38%",
+          scrub: 1.2,
+        },
+      });
     });
+    ScrollTrigger.refresh();
   }
 
   // Fourth section - slide from left
@@ -460,6 +458,251 @@ export const initScrollAnimations = (refs) => {
   }
 
   // Refresh ScrollTrigger to ensure all triggers are properly calculated
+  ScrollTrigger.refresh();
+};
+
+/**
+ * Detail page scroll animations: hero, cards (clip-path, blur-in, content reveal, scroll depth), contact section.
+ * Expects refs: heroPillRef, heroHeadingRef, heroButtonsRef, heroCardRef, detailThirdSectionRef, detailFourthCardsRef, detailStepCardsRef, eighthLeftRef, eighthFormRef.
+ */
+export const initDetailScrollAnimations = (refs) => {
+  const {
+    heroPillRef,
+    heroHeadingRef,
+    heroButtonsRef,
+    heroCardRef,
+    detailThirdSectionRef,
+    detailFourthCardsRef,
+    detailStepCardsRef,
+    eighthLeftRef,
+    eighthFormRef,
+  } = refs;
+
+  // Hero section – same as home (strong entrance)
+  if (heroPillRef?.current) {
+    gsap.fromTo(
+      heroPillRef.current,
+      { opacity: 0, y: -80, scale: 0.5 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 1.1,
+        ease: "back.out(1.4)",
+        immediateRender: false,
+        scrollTrigger: {
+          trigger: heroPillRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+      }
+    );
+  }
+  if (heroHeadingRef?.current) {
+    gsap.fromTo(
+      heroHeadingRef.current,
+      { opacity: 0, y: 100, scale: 0.7, x: -20 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        x: 0,
+        duration: 1.2,
+        ease: "power3.out",
+        immediateRender: false,
+        scrollTrigger: {
+          trigger: heroHeadingRef.current,
+          start: "top 75%",
+          toggleActions: "play none none reverse",
+        },
+      }
+    );
+  }
+  if (heroButtonsRef?.current && heroButtonsRef.current.children.length > 0) {
+    gsap.fromTo(
+      heroButtonsRef.current.children,
+      { opacity: 0, y: 60, scale: 0.6 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.9,
+        stagger: 0.2,
+        ease: "back.out(1.5)",
+        immediateRender: false,
+        scrollTrigger: {
+          trigger: heroButtonsRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+      }
+    );
+  }
+  if (heroCardRef?.current) {
+    gsap.fromTo(
+      heroCardRef.current,
+      { opacity: 0, x: 220, scale: 0.65, rotation: 15 },
+      {
+        opacity: 1,
+        x: 0,
+        scale: 1,
+        rotation: 0,
+        duration: 1.1,
+        ease: "power3.out",
+        immediateRender: false,
+        scrollTrigger: {
+          trigger: heroCardRef.current,
+          start: "top 70%",
+          toggleActions: "play none none reverse",
+        },
+      }
+    );
+  }
+
+  const applyCardAnimation = (card, index) => {
+    // 1) Clip-path wipe: card reveals from bottom-up
+    gsap.fromTo(
+      card,
+      { clipPath: "inset(100% 0% 0% 0%)" },
+      {
+        clipPath: "inset(0% 0% 0% 0%)",
+        duration: 0.9,
+        delay: index * 0.12,
+        ease: "power3.inOut",
+        immediateRender: false,
+        scrollTrigger: {
+          trigger: card,
+          start: "top 90%",
+          toggleActions: "play none none reverse",
+        },
+      }
+    );
+
+    // 2) Blur-in + rise + scale: advanced entrance
+    gsap.fromTo(
+      card,
+      {
+        opacity: 0,
+        y: 90,
+        scale: 0.88,
+        filter: "blur(14px)",
+      },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        filter: "blur(0px)",
+        duration: 1.1,
+        delay: index * 0.12,
+        ease: "power3.out",
+        overwrite: "auto",
+        immediateRender: false,
+        scrollTrigger: {
+          trigger: card,
+          start: "top 88%",
+          toggleActions: "play none none reverse",
+        },
+      }
+    );
+
+    // 3) Staggered content: inner content slides up + fades in
+    const content = card.querySelector("[data-detail-card-content], [data-detail-step-card-content]");
+    if (content) {
+      gsap.fromTo(
+        content,
+        { opacity: 0, y: 28 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          delay: index * 0.12 + 0.35,
+          ease: "power3.out",
+          immediateRender: false,
+          scrollTrigger: {
+            trigger: card,
+            start: "top 88%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+    }
+
+    // 4) Scroll-linked depth: lift + scale (scrub)
+    gsap.to(card, {
+      y: -12,
+      scale: 1.04,
+      ease: "none",
+      overwrite: "auto",
+      scrollTrigger: {
+        trigger: card,
+        start: "top 84%",
+        end: "top 38%",
+        scrub: 1.2,
+      },
+    });
+  };
+
+  if (detailThirdSectionRef?.current) {
+    const cards = detailThirdSectionRef.current.querySelectorAll(
+      "[data-detail-card]"
+    );
+    cards.forEach((card, index) => applyCardAnimation(card, index));
+  }
+
+  if (detailFourthCardsRef?.current) {
+    const cards =
+      detailFourthCardsRef.current.querySelectorAll("[data-detail-card]");
+    cards.forEach((card, index) => applyCardAnimation(card, index));
+  }
+
+  if (detailStepCardsRef?.current) {
+    const cards = detailStepCardsRef.current.querySelectorAll(
+      "[data-detail-step-card]"
+    );
+    cards.forEach((card, index) => applyCardAnimation(card, index));
+  }
+
+  // Eighth section (contact) – same as home (split animation)
+  if (eighthLeftRef?.current) {
+    gsap.fromTo(
+      eighthLeftRef.current,
+      { opacity: 0, x: -80, scale: 0.95 },
+      {
+        opacity: 1,
+        x: 0,
+        scale: 1,
+        duration: 0.9,
+        ease: "power3.out",
+        immediateRender: false,
+        scrollTrigger: {
+          trigger: eighthLeftRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+      }
+    );
+  }
+  if (eighthFormRef?.current) {
+    gsap.fromTo(
+      eighthFormRef.current,
+      { opacity: 0, x: 80, scale: 0.95, y: 30 },
+      {
+        opacity: 1,
+        x: 0,
+        scale: 1,
+        y: 0,
+        duration: 0.9,
+        ease: "power3.out",
+        immediateRender: false,
+        scrollTrigger: {
+          trigger: eighthFormRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+      }
+    );
+  }
+
   ScrollTrigger.refresh();
 };
 
