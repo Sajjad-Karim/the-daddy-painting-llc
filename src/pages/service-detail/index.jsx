@@ -48,7 +48,8 @@ const SERVICE_IMAGES = {
 };
 
 const DEFAULT_HERO_PILL = "#1 Interior Painting Specialists in South Carolina";
-const DEFAULT_HERO_TITLE = "Expert Interior Painting Services in Easley & Greenville, SC";
+const DEFAULT_HERO_TITLE =
+  "Expert Interior Painting Services in Easley & Greenville, SC";
 
 const ServiceDetail = () => {
   const { slug } = useParams();
@@ -102,11 +103,9 @@ const ServiceDetail = () => {
           <section className="mt-8 flex w-full flex-col items-center text-center md:mt-10">
             <div
               ref={heroPillRef}
-              className="inline-flex max-w-xs items-center gap-2 rounded-sm bg-[#FFFFFF1A] px-6 py-2 text-[10px] tracking-wide text-[#1F2933] shadow-sm backdrop-blur md:max-w-none md:text-base"
+              className="inline-flex max-w-xs items-center gap-2 rounded-sm bg-[#FFFFFF1A] px-6 mb-2 py-2 text-[10px] tracking-wide text-[#1F2933] shadow-sm backdrop-blur md:max-w-none md:text-base"
             >
-              <span className='uppercase font-["Alexandria"]'>
-                {heroPill}
-              </span>
+              <span className='uppercase font-["Alexandria"]'>{heroPill}</span>
             </div>
 
             <h1
@@ -316,11 +315,17 @@ const ServiceDetail = () => {
                 <div data-detail-card-content>
                   <div className="mb-4 flex items-center gap-3">
                     <span className="flex h-6 w-6 items-center justify-center">
-                      <img src={tickIcon} alt="Check mark" className="h-5 w-5" />
+                      <img
+                        src={tickIcon}
+                        alt="Check mark"
+                        className="h-5 w-5"
+                      />
                     </span>
                     <h3 className='text-base uppercase tracking-[0.08em] text-[#2D2928]  font-["Inter"]'>
                       6+{" "}
-                      <span className="font-extrabold">YEARS OF EXCELLENCE</span>
+                      <span className="font-extrabold">
+                        YEARS OF EXCELLENCE
+                      </span>
                     </h3>
                   </div>
                   <p className='text-xs leading-relaxed text-[#2D2928] font-["Inter"]'>
@@ -338,7 +343,11 @@ const ServiceDetail = () => {
                 <div data-detail-card-content>
                   <div className="mb-4 flex items-center gap-3">
                     <span className="flex h-6 w-6 items-center justify-center">
-                      <img src={tickIcon} alt="Check mark" className="h-5 w-5" />
+                      <img
+                        src={tickIcon}
+                        alt="Check mark"
+                        className="h-5 w-5"
+                      />
                     </span>
                     <h3 className='text-base  uppercase tracking-[0.08em] text-[#2D2928] font-["Inter"] font-extrabold'>
                       TRANSPARENT PRICING
@@ -359,7 +368,11 @@ const ServiceDetail = () => {
                 <div data-detail-card-content>
                   <div className="mb-4 flex items-center gap-3">
                     <span className="flex h-6 w-6 items-center justify-center">
-                      <img src={tickIcon} alt="Check mark" className="h-5 w-5" />
+                      <img
+                        src={tickIcon}
+                        alt="Check mark"
+                        className="h-5 w-5"
+                      />
                     </span>
                     <h3 className='text-base   uppercase  text-[#2D2928] font-["Inter"] font-extrabold'>
                       SERVING YOUR COMMUNITY
@@ -433,11 +446,11 @@ const ServiceDetail = () => {
                     <h3 className='mb-2 text-sm font-extrabold uppercase leading-tight text-white md:text-base font-["Rubik_One"]'>
                       DETAILED PREP
                     </h3>
-                  <p className='text-xs leading-relaxed text-white/95 md:text-sm font-["Inter"]'>
-                    We fill nail holes, repair drywall cracks, sand rough areas,
-                    and caulk gaps. A smooth surface is the secret to a perfect
-                    finish.
-                  </p>
+                    <p className='text-xs leading-relaxed text-white/95 md:text-sm font-["Inter"]'>
+                      We fill nail holes, repair drywall cracks, sand rough
+                      areas, and caulk gaps. A smooth surface is the secret to a
+                      perfect finish.
+                    </p>
                   </div>
                 </div>
 
@@ -451,8 +464,8 @@ const ServiceDetail = () => {
                     </h3>
                     <p className='text-xs leading-relaxed text-white/95 md:text-sm font-["Inter"]'>
                       Using professional rollers and sprayers, we apply
-                      high-quality paint for consistent color and texture, usually
-                      in two coats for durability.
+                      high-quality paint for consistent color and texture,
+                      usually in two coats for durability.
                     </p>
                   </div>
                 </div>

@@ -160,7 +160,7 @@ const Home = () => {
             {/* Top-rated pill */}
             <div
               ref={heroPillRef}
-              className="inline-flex max-w-xs items-center gap-2 rounded-md bg-[#FFFFFF1A] px-6 py-2 text-[10px] tracking-wide text-[#1F2933] shadow-sm backdrop-blur md:max-w-none md:text-base"
+              className="inline-flex max-w-xs items-center gap-2 rounded-md bg-[#FFFFFF1A] px-6 mb-2 py-2 text-[9px] tracking-wide text-[#1F2933] shadow-sm backdrop-blur md:max-w-none md:text-base"
             >
               <span className='uppercase font-["Alexandria"]'>
                 Top-rated painters in{" "}
