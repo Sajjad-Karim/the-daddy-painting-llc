@@ -219,94 +219,129 @@ export const initScrollAnimations = (refs) => {
     });
   }
 
-  // Third section: service cards – modern advanced (clip-path, blur-in, content reveal, scroll depth, 2D so link stays clickable)
-  const servicesGrid = servicesGridRef?.current;
-  if (servicesGrid) {
-    const cards = servicesGrid.querySelectorAll("[data-service-card]");
-    cards.forEach((card, index) => {
+  // Third section: service cards – use refs; fallback to DOM query if ref not yet attached
+  const serviceCards = servicesGridRef?.current
+    ? Array.from(servicesGridRef.current.querySelectorAll("[data-service-card]"))
+    : [];
+  const cardCount = Math.max(serviceCards.length, serviceCardsRefs?.length ?? 0);
+  if (cardCount > 0) {
+    for (let index = 0; index < cardCount; index++) {
+      const card =
+        serviceCardsRefs?.[index]?.current ?? serviceCards?.[index] ?? null;
+      if (!card) continue;
+
+      const fromX = index % 2 === 0 ? -28 : 28;
+      const cardEase =
+        index % 3 === 0 ? "power3.out" : index % 3 === 1 ? "back.out(1.15)" : "power2.out";
+      const triggerStart = "top 92%"; // when card top hits 92% from top of viewport
+
       // 1) Clip-path wipe: card reveals from bottom-up
       gsap.fromTo(
         card,
         { clipPath: "inset(100% 0% 0% 0%)" },
         {
           clipPath: "inset(0% 0% 0% 0%)",
-          duration: 0.9,
-          delay: index * 0.12,
+          duration: 0.95,
+          delay: index * 0.11,
           ease: "power3.inOut",
           immediateRender: false,
           scrollTrigger: {
             trigger: card,
-            start: "top 90%",
+            start: triggerStart,
             toggleActions: "play none none reverse",
           },
         }
       );
 
-      // 2) Blur-in + rise + scale: modern entrance
+      // 2) Blur-in + rise + scale + alternating horizontal: advanced entrance
       gsap.fromTo(
         card,
         {
           opacity: 0,
-          y: 90,
-          scale: 0.88,
-          filter: "blur(14px)",
+          y: 95,
+          x: fromX,
+          scale: 0.86,
+          filter: "blur(16px)",
         },
         {
           opacity: 1,
           y: 0,
+          x: 0,
           scale: 1,
           filter: "blur(0px)",
-          duration: 1.1,
-          delay: index * 0.12,
-          ease: "power3.out",
+          duration: 1.15,
+          delay: index * 0.11,
+          ease: cardEase,
           overwrite: "auto",
           immediateRender: false,
           scrollTrigger: {
             trigger: card,
-            start: "top 88%",
+            start: triggerStart,
             toggleActions: "play none none reverse",
           },
         }
       );
 
-      // 3) Staggered content reveal: overlay slides up + fades in after card
+      // 3) Staggered content reveal: overlay slides up + fades in
       const content = card.querySelector("[data-service-card-content]");
       if (content) {
         gsap.fromTo(
           content,
-          { opacity: 0, y: 36 },
+          { opacity: 0, y: 40 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.75,
-            delay: index * 0.12 + 0.4,
+            duration: 0.8,
+            delay: index * 0.11 + 0.45,
             ease: "power3.out",
             immediateRender: false,
             scrollTrigger: {
               trigger: card,
-              start: "top 88%",
+              start: triggerStart,
               toggleActions: "play none none reverse",
             },
           }
         );
+        const contentChildren = content.children;
+        if (contentChildren?.length) {
+          gsap.fromTo(
+            contentChildren,
+            { opacity: 0, y: 18 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.5,
+              stagger: 0.09,
+              delay: index * 0.11 + 0.65,
+              ease: "power2.out",
+              immediateRender: false,
+              scrollTrigger: {
+                trigger: card,
+                start: triggerStart,
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+        }
       }
 
       // 4) Scroll-linked depth: lift + scale (2D scrub)
       gsap.to(card, {
-        y: -12,
-        scale: 1.04,
+        y: -14,
+        scale: 1.05,
         ease: "none",
         overwrite: "auto",
         scrollTrigger: {
           trigger: card,
           start: "top 84%",
-          end: "top 38%",
-          scrub: 1.2,
+          end: "top 36%",
+          scrub: 1.3,
         },
       });
-    });
-    ScrollTrigger.refresh();
+    }
   }
+
+  ScrollTrigger.refresh();
 
   // Fourth section - slide from left
   if (fourthHeadingRef?.current) {

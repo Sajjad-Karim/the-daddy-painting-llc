@@ -86,7 +86,7 @@ const Home = () => {
   const eighthFormRef = useRef(null);
 
   useEffect(() => {
-    // Wait for DOM (including service cards grid) to be fully rendered so all refs are set
+    let refreshTimer;
     const timer = setTimeout(() => {
       const refs = {
         heroPillRef,
@@ -106,10 +106,12 @@ const Home = () => {
       };
 
       initScrollAnimations(refs);
-    }, 200);
+      refreshTimer = setTimeout(() => ScrollTrigger.refresh(), 250);
+    }, 500);
 
     return () => {
       clearTimeout(timer);
+      clearTimeout(refreshTimer);
       cleanupScrollAnimations();
     };
   }, []);
@@ -391,6 +393,7 @@ const Home = () => {
                 <div
                   key={card.slug}
                   ref={serviceCardsRefs[index]}
+                  data-service-card
                   className="relative h-[280px] overflow-hidden rounded-[25px] text-left text-white shadow-xl md:h-[400px]"
                   style={{
                     backgroundImage: `url(${image})`,

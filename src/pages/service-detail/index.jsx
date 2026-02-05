@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   ArrowUpRight,
   Phone,
@@ -9,7 +9,7 @@ import {
   Instagram,
 } from "lucide-react";
 import Header from "../../components/Header";
-import { SERVICES } from "../../data/services";
+import { getServiceBySlug } from "../../data/services";
 import detailHeroImage from "../../assets/detail-page/hero.png";
 import secondSectionImage from "../../assets/detail-page/secondSection.png";
 import detailThirdSectionBg from "../../assets/detail-page/thirdSection.png";
@@ -47,7 +47,15 @@ const SERVICE_IMAGES = {
   drywall: drywallServiceImage,
 };
 
+const DEFAULT_HERO_PILL = "#1 Interior Painting Specialists in South Carolina";
+const DEFAULT_HERO_TITLE = "Expert Interior Painting Services in Easley & Greenville, SC";
+
 const ServiceDetail = () => {
+  const { slug } = useParams();
+  const service = getServiceBySlug(slug);
+  const heroPill = service?.heroPill ?? DEFAULT_HERO_PILL;
+  const heroTitle = service?.heroTitle ?? DEFAULT_HERO_TITLE;
+
   const heroPillRef = useRef(null);
   const heroHeadingRef = useRef(null);
   const heroButtonsRef = useRef(null);
@@ -97,7 +105,7 @@ const ServiceDetail = () => {
               className="inline-flex max-w-xs items-center gap-2 rounded-sm bg-[#FFFFFF1A] px-6 py-2 text-[10px] tracking-wide text-[#1F2933] shadow-sm backdrop-blur md:max-w-none md:text-base"
             >
               <span className='uppercase font-["Alexandria"]'>
-                #1 Interior Painting Specialists in South Carolina
+                {heroPill}
               </span>
             </div>
 
@@ -105,7 +113,7 @@ const ServiceDetail = () => {
               ref={heroHeadingRef}
               className='text-center font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[45px] font-["Rubik_One"]'
             >
-              Expert Interior Painting Services in Easley & Greenville, SC
+              {heroTitle}
             </h1>
 
             <div
