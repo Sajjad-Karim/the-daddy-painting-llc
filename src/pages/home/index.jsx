@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import {
   ArrowUpRight,
   Phone,
@@ -29,8 +30,78 @@ import fifthSectionBg from "../../assets/fifthSection.png";
 import contactLogoImage from "../../assets/logo.png";
 import googleImage from "../../assets/google.png";
 import aiIcon from "../../assets/start.png";
+import {
+  initScrollAnimations,
+  cleanupScrollAnimations,
+} from "../../utils/scrollAnimations";
 
 const Home = () => {
+  // Hero section refs
+  const heroPillRef = useRef(null);
+  const heroHeadingRef = useRef(null);
+  const heroButtonsRef = useRef(null);
+  const heroCardRef = useRef(null);
+
+  // Second section refs
+  const secondHeadingRef = useRef(null);
+  const secondTextRefs = [useRef(null), useRef(null)];
+  const featureCardsRefs = [
+    useRef(null),
+    useRef(null),
+    useRef(null),
+    useRef(null),
+  ];
+
+  // Service cards refs
+  const serviceCardsRefs = [
+    useRef(null),
+    useRef(null),
+    useRef(null),
+    useRef(null),
+    useRef(null),
+    useRef(null),
+  ];
+  const servicesGridRef = useRef(null);
+
+  // Fourth section refs
+  const fourthHeadingRef = useRef(null);
+  const benefitCardsRefs = [useRef(null), useRef(null), useRef(null)];
+
+  // Sixth section refs
+  const sixthHeadingRef = useRef(null);
+
+  // Eighth section refs
+  const eighthLeftRef = useRef(null);
+  const eighthFormRef = useRef(null);
+
+  useEffect(() => {
+    // Wait for DOM to be fully rendered
+    const timer = setTimeout(() => {
+      const refs = {
+        heroPillRef,
+        heroHeadingRef,
+        heroButtonsRef,
+        heroCardRef,
+        secondHeadingRef,
+        secondTextRefs,
+        featureCardsRefs,
+      serviceCardsRefs,
+      servicesGridRef,
+      fourthHeadingRef,
+      benefitCardsRefs,
+      sixthHeadingRef,
+      eighthLeftRef,
+      eighthFormRef,
+    };
+
+    initScrollAnimations(refs);
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+      cleanupScrollAnimations();
+    };
+  }, []);
   return (
     <>
       <main
@@ -59,6 +130,7 @@ const Home = () => {
           className="pointer-events-none absolute inset-x-0 -bottom-0 z-0 flex justify-center"
         >
           <img
+            data-hero-house
             src={heroHouseImage}
             alt="Painted home exterior"
             className="h-auto w-full object-contain drop-shadow-2xl"
@@ -72,7 +144,10 @@ const Home = () => {
           {/* Hero body */}
           <section className="mt-8 flex w-full flex-col items-center text-center md:mt-10">
             {/* Top-rated pill */}
-            <div className="inline-flex max-w-xs items-center gap-2 rounded-full bg-[#FFFFFF1A] px-6 py-2 text-[10px] tracking-wide text-[#1F2933] shadow-sm backdrop-blur md:max-w-none md:text-xs">
+            <div
+              ref={heroPillRef}
+              className="inline-flex max-w-xs items-center gap-2 rounded-full bg-[#FFFFFF1A] px-6 py-2 text-[10px] tracking-wide text-[#1F2933] shadow-sm backdrop-blur md:max-w-none md:text-xs"
+            >
               <span className='uppercase font-["Alexandria"]'>
                 Top-rated painters in{" "}
                 <span className="font-bold">Easley &amp; Greenville, </span>SC
@@ -80,17 +155,23 @@ const Home = () => {
             </div>
 
             {/* Main heading */}
-            <h1 className='mt-5 max-w-md text-center text-3xl font-extrabold leading-tight text-[#2D2928] sm:max-w-3xl md:mt-6 md:text-4xl lg:text-5xl xl:text-6xl font-["Rubik_One"]'>
+            <h1
+              ref={heroHeadingRef}
+              className='mt-5 max-w-md text-center text-3xl font-extrabold leading-tight text-[#2D2928] sm:max-w-3xl md:mt-6 md:text-4xl lg:text-5xl xl:text-6xl font-["Rubik_One"]'
+            >
               PROFESSIONAL RESIDENTIAL &amp; COMMERCIAL PAINTING SERVICES YOU
               CAN TRUST.
             </h1>
 
             {/* CTA buttons */}
-            <div className="mt-6 flex w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+            <div
+              ref={heroButtonsRef}
+              className="mt-6 flex w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4"
+            >
               {/* Primary CTA: matches header pill style */}
               <button
                 type="button"
-                className="flex items-center justify-center gap-3 rounded-full bg-[#2D2928] px-7 py-3 text-sm font-semibold text-white shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02] sm:w-auto"
+                className="flex items-center justify-center gap-3 rounded-full bg-[#2D2928] px-7 py-3 text-sm font-semibold text-white shadow-lg cursor-pointer hover:bg-[#1F1B1A] hover:shadow-xl transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02] sm:w-auto"
               >
                 <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#039A02] text-white">
                   <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
@@ -103,7 +184,7 @@ const Home = () => {
               {/* Secondary CTA */}
               <button
                 type="button"
-                className="flex items-center justify-center gap-2 rounded-full bg-white px-8 py-3 text-sm font-semibold text-[#111827] shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02] sm:w-auto"
+                className="flex items-center justify-center gap-2 rounded-full bg-white px-8 py-3 text-sm font-semibold text-[#111827] shadow-md cursor-pointer hover:bg-[#F9FAFB] hover:shadow-lg transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02] sm:w-auto"
               >
                 <span className='font-["Alexandria"]'>View Our Gallery</span>
               </button>
@@ -112,7 +193,10 @@ const Home = () => {
         </div>
 
         {/* Right-bottom transform card */}
-        <div className="pointer-events-auto absolute bottom-6 left-1/2 z-20 w-[90%] max-w-[360px] -translate-x-1/2 rounded-[26px] border border-white bg-[#FFFFFF1A] px-6 py-4 text-center text-xs text-white backdrop-blur-md shadow-[0_18px_60px_rgba(0,0,0,0.45)] sm:px-8 sm:py-5 sm:text-sm md:bottom-28 md:left-auto md:right-12 md:w-auto md:max-w-[250px] md:translate-x-0">
+        <div
+          ref={heroCardRef}
+          className="pointer-events-auto absolute bottom-6 left-1/2 z-20 w-[90%] max-w-[360px] -translate-x-1/2 rounded-[26px] border border-white bg-[#FFFFFF1A] px-6 py-4 text-center text-xs text-white backdrop-blur-md shadow-[0_18px_60px_rgba(0,0,0,0.45)] sm:px-8 sm:py-5 sm:text-sm md:bottom-28 md:left-auto md:right-12 md:w-auto md:max-w-[250px] md:-translate-x-0"
+        >
           <p className='font-["Inter"] text-sm leading-relaxed'>
             Transform your property with{" "}
             <span className='font-["Alexandria"] font-semibold'>
@@ -144,13 +228,19 @@ const Home = () => {
         <div className="relative mx-auto max-w-6xl px-4 pt-4">
           <div className="grid gap-10 text-[#2D2928] md:grid-cols-3">
             <div>
-              <h2 className='text-3xl font-extrabold leading-tight text-[#2D2928] md:text-4xl lg:text-5xl xl:text-6xl font-["Rubik_One"]'>
+              <h2
+                ref={secondHeadingRef}
+                className='text-3xl font-extrabold leading-tight text-[#2D2928] md:text-4xl lg:text-5xl xl:text-6xl font-["Rubik_One"]'
+              >
                 BRINGING <span className="text-[#039A02]">COLOR</span> AND
                 QUALITY TO SOUTH CAROLINA LIVING.
               </h2>
             </div>
 
-            <p className='font-["Inter"] text-base md:text-lg leading-relaxed'>
+            <p
+              ref={secondTextRefs[0]}
+              className='font-["Inter"] text-base md:text-lg leading-relaxed'
+            >
               At The Daddy&apos;s Painting LLC, we believe a fresh coat of paint
               does more than just cover a wall—it revitalizes your entire space.
               Whether you need a full exterior makeover in Greer or a detailed
@@ -158,7 +248,10 @@ const Home = () => {
               every project with the utmost care.
             </p>
 
-            <p className='font-["Inter"] text-base md:text-lg leading-relaxed'>
+            <p
+              ref={secondTextRefs[1]}
+              className='font-["Inter"] text-base md:text-lg leading-relaxed'
+            >
               We are open Monday through Sunday, 8:00 AM to 7:00 PM, ensuring we
               work around your schedule to deliver reliable, on-time, and clean
               results.
@@ -168,7 +261,10 @@ const Home = () => {
           {/* Feature cards */}
           <div className="mt-10 grid grid-cols-2 gap-6 md:grid-cols-4">
             {/* Free Estimates */}
-            <div className="relative flex flex-col items-center justify-between rounded-[24px] border border-white/40 bg-[#FFFFFF1A] px-6 py-6 text-center shadow-sm backdrop-blur-md">
+            <div
+              ref={featureCardsRefs[0]}
+              className="relative flex flex-col items-center justify-between rounded-[24px] border border-white/40 bg-[#FFFFFF1A] px-6 py-6 text-center shadow-sm backdrop-blur-md"
+            >
               {/* Envelope diagonals */}
               <div
                 aria-hidden="true"
@@ -188,7 +284,10 @@ const Home = () => {
             </div>
 
             {/* 6+ Years Experience */}
-            <div className="relative flex flex-col items-center justify-between rounded-[24px] border border-white/40 bg-[#FFFFFF1A] px-6 py-6 text-center shadow-sm backdrop-blur-md">
+            <div
+              ref={featureCardsRefs[1]}
+              className="relative flex flex-col items-center justify-between rounded-[24px] border border-white/40 bg-[#FFFFFF1A] px-6 py-6 text-center shadow-sm backdrop-blur-md"
+            >
               <div
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-0 flex items-center justify-between px-6 opacity-40"
@@ -207,7 +306,10 @@ const Home = () => {
             </div>
 
             {/* Open 7 Days a Week */}
-            <div className="relative flex flex-col items-center justify-between rounded-[24px] border border-white/40 bg-[#FFFFFF1A] px-6 py-6 text-center shadow-sm backdrop-blur-md">
+            <div
+              ref={featureCardsRefs[2]}
+              className="relative flex flex-col items-center justify-between rounded-[24px] border border-white/40 bg-[#FFFFFF1A] px-6 py-6 text-center shadow-sm backdrop-blur-md"
+            >
               <div
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-0 flex items-center justify-between px-6 opacity-40"
@@ -226,7 +328,10 @@ const Home = () => {
             </div>
 
             {/* Residential & Commercial */}
-            <div className="relative flex flex-col items-center justify-between rounded-[24px] border border-white/40 bg-[#FFFFFF1A] px-6 py-6 text-center shadow-sm backdrop-blur-md">
+            <div
+              ref={featureCardsRefs[3]}
+              className="relative flex flex-col items-center justify-between rounded-[24px] border border-white/40 bg-[#FFFFFF1A] px-6 py-6 text-center shadow-sm backdrop-blur-md"
+            >
               <div
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-0 flex items-center justify-between px-6 opacity-40"
@@ -263,7 +368,11 @@ const Home = () => {
 
         <div className="relative ">
           {/* 3x2 card grid overlapping the strip */}
-          <div className="relative grid grid-cols-2 gap-4 md:gap-10 md:grid-cols-3 -mt-10 mx-auto max-w-6xl px-4">
+          <div
+            ref={servicesGridRef}
+            className="relative grid grid-cols-2 gap-4 md:gap-10 md:grid-cols-3 -mt-10 mx-auto max-w-6xl px-4"
+            style={{ perspective: "1000px" }}
+          >
             {/* Row 1 */}
             {[
               {
@@ -281,9 +390,10 @@ const Home = () => {
                 body: "Don't replace refinish. We transform outdated kitchen and bathroom cabinets with a factory-like, durable finish.",
                 image: cabinetServiceImage,
               },
-            ].map((card) => (
+            ].map((card, index) => (
               <div
                 key={card.title}
+                ref={serviceCardsRefs[index]}
                 className="relative h-[280px] overflow-hidden rounded-[25px] text-left text-white shadow-xl md:h-[400px]"
                 style={{
                   backgroundImage: `url(${card.image})`,
@@ -300,7 +410,7 @@ const Home = () => {
                   </p>
                   <button
                     type="button"
-                    className='mt-2 inline-flex text-[10px] font-semibold text-white md:mt-4 md:text-[12px] font-["Inter"]'
+                    className='mt-2 inline-flex text-[10px] font-semibold text-white md:mt-4 md:text-[12px] cursor-pointer hover:text-[#A1F88B] transition-colors font-["Inter"]'
                   >
                     Learn More &gt;
                   </button>
@@ -325,9 +435,10 @@ const Home = () => {
                 body: "We patch holes, repair cracks, and match textures seamlessly before we paint, ensuring a flawless foundation.",
                 image: drywallServiceImage,
               },
-            ].map((card) => (
+            ].map((card, index) => (
               <div
                 key={card.title}
+                ref={serviceCardsRefs[index + 3]}
                 className="relative h-[280px] overflow-hidden rounded-[25px] text-left text-white shadow-xl md:h-[400px]"
                 style={{
                   backgroundImage: `url(${card.image})`,
@@ -344,7 +455,7 @@ const Home = () => {
                   </p>
                   <button
                     type="button"
-                    className='mt-2 inline-flex text-[10px] font-semibold text-white md:mt-4 md:text-[12px] font-["Inter"]'
+                    className='mt-2 inline-flex text-[10px] font-semibold text-white md:mt-4 md:text-[12px] cursor-pointer hover:text-[#A1F88B] transition-colors font-["Inter"]'
                   >
                     Learn More &gt;
                   </button>
@@ -370,13 +481,19 @@ const Home = () => {
 
           {/* Right content */}
           <div className="w-full px-20 py-8 md:w-[66%] md:px-12">
-            <h2 className='mb-8 max-w-xl text-3xl font-extrabold leading-tight text-[#2D2928] md:text-4xl lg:text-5xl xl:text-6xl font-["Rubik_One"]'>
+            <h2
+              ref={fourthHeadingRef}
+              className='mb-8 max-w-xl text-3xl font-extrabold leading-tight text-[#2D2928] md:text-4xl lg:text-5xl xl:text-6xl font-["Rubik_One"]'
+            >
               WHY NEIGHBORS CHOOSE THE DADDY&apos;S PAINTING LLC
             </h2>
 
             <div className="grid gap-6 md:grid-cols-3">
               {/* Card 1 */}
-              <div className="rounded-[26px] border border-[#02B446]  px-5 py-6 shadow-sm">
+              <div
+                ref={benefitCardsRefs[0]}
+                className="rounded-[26px] border border-[#02B446]  px-5 py-6 shadow-sm"
+              >
                 <div className="mb-4 flex items-center gap-3">
                   <span className="flex h-6 w-6 items-center justify-center">
                     <img src={tickIcon} alt="Check mark" className="h-5 w-5" />
@@ -392,7 +509,10 @@ const Home = () => {
               </div>
 
               {/* Card 2 */}
-              <div className="rounded-[26px] border border-[#02B446]  px-5 py-6 shadow-sm">
+              <div
+                ref={benefitCardsRefs[1]}
+                className="rounded-[26px] border border-[#02B446]  px-5 py-6 shadow-sm"
+              >
                 <div className="mb-4 flex items-center gap-3">
                   <span className="flex h-6 w-6 items-center justify-center">
                     <img src={tickIcon} alt="Check mark" className="h-5 w-5" />
@@ -408,7 +528,10 @@ const Home = () => {
               </div>
 
               {/* Card 3 */}
-              <div className="rounded-[26px] border border-[#02B446]  px-5 py-6 shadow-sm">
+              <div
+                ref={benefitCardsRefs[2]}
+                className="rounded-[26px] border border-[#02B446]  px-5 py-6 shadow-sm"
+              >
                 <div className="mb-4 flex items-center gap-3">
                   <span className="flex h-6 w-6 items-center justify-center">
                     <img src={tickIcon} alt="Check mark" className="h-5 w-5" />
@@ -481,7 +604,10 @@ const Home = () => {
           {/* Hero body */}
           <section className="mt-10 flex w-full flex-col items-center text-center">
             {/* Main heading */}
-            <h1 className='mt-6 max-w-xl text-center text-3xl font-extrabold leading-tight text-[#2D2928] md:text-4xl lg:text-5xl xl:text-6xl font-["Rubik_One"]'>
+            <h1
+              ref={sixthHeadingRef}
+              className='mt-6 max-w-xl text-center text-3xl font-extrabold leading-tight text-[#2D2928] md:text-4xl lg:text-5xl xl:text-6xl font-["Rubik_One"]'
+            >
               Proudly Serving Easley, SC & Surrounding Areas.
             </h1>
             <p className='text-sm text-[#2D2928] font-["Inter"] max-w-xl '>
@@ -494,7 +620,7 @@ const Home = () => {
             <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
               <button
                 type="button"
-                className="flex items-center gap-2 rounded-full bg-[#039A02] px-8 py-3 text-sm font-semibold text-[#111827] shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02]"
+                className="flex items-center gap-2 rounded-full bg-[#039A02] px-8 py-3 text-sm font-semibold text-[#111827] shadow-md cursor-pointer hover:bg-[#02A11F] hover:shadow-lg transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02]"
               >
                 <span className='font-["Alexandria"] text-white'>
                   View Our Gallery
@@ -518,7 +644,7 @@ const Home = () => {
       <section className="relative bg-[#E1F8F2] pb-50 pt-10">
         <div className="mx-auto flex max-w-6xl flex-col md:gap-30  gap-10 px-4 lg:flex-row lg:items-start">
           {/* Left column: logo, heading, contact details, reviews, call-to-action */}
-          <div className="w-full lg:w-1/2">
+          <div ref={eighthLeftRef} className="w-full lg:w-1/2">
             <div className="flex flex-col items-center space-y-6 text-center md:items-start md:text-left">
               {/* Logo */}
               <div className="flex justify-center md:justify-start">
@@ -601,14 +727,14 @@ const Home = () => {
                 <div className="flex items-center gap-3">
                   <button
                     type="button"
-                    className="flex h-9 w-9 items-center justify-center rounded-full border-[#2D2928] border-1 text-[#2D2928] cursor-pointer hover:bg-[#111827]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02]"
+                    className="flex h-9 w-9 items-center justify-center rounded-full border-[#2D2928] border-1 text-[#2D2928] cursor-pointer hover:bg-[#039A02]/10 hover:border-[#039A02] hover:text-[#039A02] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02]"
                     aria-label="Visit our Facebook page"
                   >
                     <Facebook className="h-4 w-4" aria-hidden="true" />
                   </button>
                   <button
                     type="button"
-                    className="flex h-9 w-9 items-center justify-center rounded-full border-[#2D2928] border-1 text-[#2D2928] cursor-pointer hover:bg-[#111827]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02]"
+                    className="flex h-9 w-9 items-center justify-center rounded-full border-[#2D2928] border-1 text-[#2D2928] cursor-pointer hover:bg-[#039A02]/10 hover:border-[#039A02] hover:text-[#039A02] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02]"
                     aria-label="Visit our Instagram profile"
                   >
                     <Instagram className="h-4 w-4" aria-hidden="true" />
@@ -620,7 +746,10 @@ const Home = () => {
 
           {/* Right column: estimate form card */}
           <div className="w-full lg:w-1/2">
-            <div className="relative mx-auto max-w-md rounded-[40px] bg-[#2D2928] px-7 py-8 shadow-[0_18px_60px_rgba(0,0,0,0.45)] md:max-w-none md:px-10 md:py-10">
+            <div
+              ref={eighthFormRef}
+              className="relative mx-auto max-w-md rounded-[40px] bg-[#2D2928] px-7 py-8 shadow-[0_18px_60px_rgba(0,0,0,0.45)] md:max-w-none md:px-10 md:py-10"
+            >
               <h3 className='mb-6 text-lg font-semibold leading-snug text-white md:text-xl font-["Inter"]'>
                 Contact The Daddy's Painting LLC today for a free, no-obligation
                 estimate.
@@ -656,7 +785,7 @@ const Home = () => {
 
               <button
                 type="button"
-                className="mt-6 flex w-full items-center justify-center gap-3 rounded-full bg-[#02A11F] px-6 py-3 text-sm font-semibold shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 text-white focus-visible:ring-[#02A11F] "
+                className="mt-6 flex w-full items-center justify-center gap-3 rounded-full bg-[#02A11F] px-6 py-3 text-sm font-semibold shadow-md cursor-pointer hover:bg-[#039A02] hover:shadow-lg transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 text-white focus-visible:ring-[#02A11F] "
               >
                 <span className='font-["Alexandria"]  text-white'>
                   Request Free Estimate
