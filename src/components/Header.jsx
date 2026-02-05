@@ -110,7 +110,7 @@ const Header = () => {
             duration: 0.7,
             ease: "power2.inOut",
           },
-          "+=0.1"
+          "+=0.1",
         )
         // 3. Right panel: clip-path reveal from right (parallel)
         .to(
@@ -121,7 +121,7 @@ const Header = () => {
             duration: 0.7,
             ease: "power2.inOut",
           },
-          "-=0.7"
+          "-=0.7",
         )
         // 4. Logo: scale + rotate from center
         .to(
@@ -133,7 +133,7 @@ const Header = () => {
             duration: 0.6,
             ease: "back.out(1.5)",
           },
-          "-=0.4"
+          "-=0.4",
         )
         // 5. Close button: spin in from top-right
         .to(
@@ -147,7 +147,7 @@ const Header = () => {
             duration: 0.5,
             ease: "elastic.out(1, 0.4)",
           },
-          "-=0.5"
+          "-=0.5",
         )
         // 6. Menu items: each from alternating sides with stagger
         .to(
@@ -165,7 +165,7 @@ const Header = () => {
             },
             ease: "power3.out",
           },
-          "-=0.3"
+          "-=0.3",
         )
         // 7. Social icons: bounce up from bottom
         .to(
@@ -178,7 +178,7 @@ const Header = () => {
             duration: 0.5,
             ease: "bounce.out",
           },
-          "-=0.2"
+          "-=0.2",
         )
         // 8. Bottom section: flip up from bottom
         .to(
@@ -191,7 +191,7 @@ const Header = () => {
             duration: 0.6,
             ease: "power3.out",
           },
-          "-=0.3"
+          "-=0.3",
         );
 
       timelineRef.current = tl;
@@ -227,7 +227,7 @@ const Header = () => {
             duration: 0.3,
             ease: "power2.in",
           },
-          "-=0.25"
+          "-=0.25",
         )
         // Menu items: exit to alternating sides
         .to(
@@ -245,7 +245,7 @@ const Header = () => {
             },
             ease: "power2.in",
           },
-          "-=0.2"
+          "-=0.2",
         )
         // Close button: spin out to top-right
         .to(
@@ -259,7 +259,7 @@ const Header = () => {
             duration: 0.3,
             ease: "power2.in",
           },
-          "-=0.25"
+          "-=0.25",
         )
         // Logo: scale down and rotate
         .to(
@@ -271,7 +271,7 @@ const Header = () => {
             duration: 0.3,
             ease: "power2.in",
           },
-          "-=0.25"
+          "-=0.25",
         )
         // Panels: clip-path close
         .to(
@@ -282,7 +282,7 @@ const Header = () => {
             duration: 0.5,
             ease: "power2.in",
           },
-          "-=0.2"
+          "-=0.2",
         )
         .to(
           rightPanelRef.current,
@@ -292,7 +292,7 @@ const Header = () => {
             duration: 0.5,
             ease: "power2.in",
           },
-          "-=0.5"
+          "-=0.5",
         )
         // Overlay: fade out
         .to(
@@ -302,7 +302,7 @@ const Header = () => {
             duration: 0.25,
             ease: "power2.in",
           },
-          "-=0.3"
+          "-=0.3",
         );
 
       timelineRef.current = closeTl;
@@ -337,7 +337,7 @@ const Header = () => {
           {/* Call now pill */}
           <button
             type="button"
-            className="flex items-center gap-2 rounded-full bg-white px-3 py-2 text-[10px] font-semibold text-[#02A11F] shadow-md cursor-pointer hover:bg-[#F3F4F6] hover:shadow-lg transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#02A11F]"
+            className="flex items-center gap-2 rounded-full px-3 py-2 text-[10px] font-semibold text-[#02A11F] cursor-pointer hover:bg-[#F3F4F6] hover:shadow-lg transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#02A11F]"
           >
             <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#02A11F] text-white">
               <Phone className="h-3 w-3" aria-hidden="true" />
@@ -492,7 +492,7 @@ const Header = () => {
                     >
                       {menuLabel}
                     </button>
-                  )
+                  ),
                 )}
               </nav>
 
