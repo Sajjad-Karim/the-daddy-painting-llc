@@ -61,6 +61,11 @@ const ServiceDetail = () => {
   const heroHeadingRef = useRef(null);
   const heroButtonsRef = useRef(null);
   const heroCardRef = useRef(null);
+  const detailSecondHeadingRef = useRef(null);
+  const detailSecondText0Ref = useRef(null);
+  const detailSecondText1Ref = useRef(null);
+  const detailSecondImageRef = useRef(null);
+  const detailSecondTextRefs = [detailSecondText0Ref, detailSecondText1Ref];
   const detailThirdSectionRef = useRef(null);
   const detailFourthCardsRef = useRef(null);
   const detailStepCardsRef = useRef(null);
@@ -74,6 +79,9 @@ const ServiceDetail = () => {
         heroHeadingRef,
         heroButtonsRef,
         heroCardRef,
+        detailSecondHeadingRef,
+        detailSecondTextRefs,
+        detailSecondImageRef,
         detailThirdSectionRef,
         detailFourthCardsRef,
         detailStepCardsRef,
@@ -174,7 +182,10 @@ const ServiceDetail = () => {
           <div className="grid gap-10 text-[#2D2928] md:grid-cols-2 md:items-center md:gap-12">
             {/* Left column: title + paragraphs */}
             <div className="flex flex-col gap-6">
-              <h2 className='font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[45px] font-["Rubik_One"] uppercase leading-tight'>
+              <h2
+                ref={detailSecondHeadingRef}
+                className='font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[45px] font-["Rubik_One"] uppercase leading-tight'
+              >
                 WE TREAT YOUR
                 <br />
                 HOME LIKE OUR
@@ -182,14 +193,20 @@ const ServiceDetail = () => {
                 OWN
               </h2>
 
-              <p className='text-left font-["Inter"] text-sm leading-relaxed text-[#2D2928] md:text-base'>
+              <p
+                ref={detailSecondTextRefs[0]}
+                className='text-left font-["Inter"] text-sm leading-relaxed text-[#2D2928] md:text-base'
+              >
                 We understand that inviting painters into your home requires
                 trust. That is why our team prioritizes cleanliness and respect
                 above all else. From protecting your floors to moving furniture
                 with care, we treat every detail as if it were our own home.
               </p>
 
-              <p className='text-left font-["Inter"] text-sm leading-relaxed text-[#2D2928] md:text-base'>
+              <p
+                ref={detailSecondTextRefs[1]}
+                className='text-left font-["Inter"] text-sm leading-relaxed text-[#2D2928] md:text-base'
+              >
                 With over 6 years of experience serving families in Easley,
                 Powdersville, and Greenville, we have mastered the art of
                 preparation and application. We don&apos;t just paint walls; we
@@ -198,7 +215,7 @@ const ServiceDetail = () => {
             </div>
 
             {/* Right column: rounded image */}
-            <div className="flex justify-center md:justify-end">
+            <div className="flex justify-center md:justify-end" ref={detailSecondImageRef}>
               <img
                 src={secondSectionImage}
                 alt="Interior corner with painted wall, baseboard, and wood floor"

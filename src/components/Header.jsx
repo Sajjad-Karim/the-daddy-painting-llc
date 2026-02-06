@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 import { Menu, Phone, ArrowUpRight, X } from "lucide-react";
 import { gsap } from "gsap";
@@ -425,13 +426,14 @@ const Header = () => {
         </div>
       </div>
 
-      {(isMenuOpen || isAnimating) && (
-        <div
-          ref={menuOverlayRef}
-          className="fixed inset-0 z-50 flex bg-[#2D2928] md:bg-transparent overflow-y-auto"
-          role="dialog"
-          aria-modal="true"
-        >
+      {(isMenuOpen || isAnimating) &&
+        createPortal(
+          <div
+            ref={menuOverlayRef}
+            className="fixed inset-0 z-[9999] flex isolate bg-[#2D2928] md:bg-transparent overflow-y-auto"
+            role="dialog"
+            aria-modal="true"
+          >
           {/* Left image panel */}
           <div
             ref={leftImageRef}
@@ -480,20 +482,25 @@ const Header = () => {
             {/* Center: navigation links + social icons */}
             <div className="mt-8 flex flex-1 flex-col items-center justify-center gap-8 md:mt-10 md:gap-10">
               <nav className="flex flex-col items-center gap-3 text-center md:gap-4">
-                {["ABOUT US", "SERVICES", "WHY CHOOSE US", "GALLERY"].map(
-                  (menuLabel, index) => (
-                    <button
-                      key={menuLabel}
-                      ref={(el) => {
-                        if (el) menuItemsRef.current[index] = el;
-                      }}
-                      type="button"
-                      className='text-3xl font-extrabold uppercase tracking-[0.18em] text-white hover:text-[#A1F88B] cursor-pointer font-["Inter"] md:text-4xl'
-                    >
-                      {menuLabel}
-                    </button>
-                  ),
-                )}
+                {[
+                  { label: "ABOUT US", href: "/about" },
+                  { label: "SERVICES", href: "/services" },
+                  { label: "WHY CHOOSE US", href: "/why-choose-us" },
+                  { label: "GALLERY", href: "/gallery" },
+                ].map((item, index) => (
+                  <Link
+                    key={item.label}
+                    ref={(el) => {
+                      if (el) menuItemsRef.current[index] = el;
+                    }}
+                    to={item.href}
+                    onClick={handleCloseMenu}
+                    className='text-3xl font-extrabold uppercase tracking-[0.18em] text-white hover:text-[#A1F88B] cursor-pointer font-["Inter"] md:text-4xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A1F88B] focus-visible:ring-offset-2 rounded'
+                    aria-label={`Navigate to ${item.label}`}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
               </nav>
 
               <div ref={socialIconsRef} className="flex items-center gap-4">
@@ -552,8 +559,9 @@ const Header = () => {
               </button>
             </div>
           </div>
-        </div>
-      )}
+        </div>,
+          document.body
+        )}
     </header>
   );
 };

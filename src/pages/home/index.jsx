@@ -226,7 +226,7 @@ const Home = () => {
       </main>
 
       {/* Second section: intro copy + feature cards */}
-      <section className="relative bg-[#E1F8F2] pb-16 pt-16">
+      <section id="about" className="relative bg-[#E1F8F2] pb-16 pt-16">
         {/* Top wave border */}
         <div
           aria-hidden="true"
@@ -427,7 +427,10 @@ const Home = () => {
       </section>
 
       {/* Fourth section: Why neighbors choose */}
-      <section className="relative bg-[#E1F8F2] pt-10pt-16 pb-16 ">
+      <section
+        id="why-choose-us"
+        className="relative bg-[#E1F8F2] pt-10pt-16 pb-16 "
+      >
         <div className="flex flex-col justify-between md:flex-row mx-auto max-w-6xl  ">
           {/* Left image with rounded right corners */}
           <div className="hidden h-full w-full overflow-hidden rounded-r-[60px] md:block md:h-[420px] md:w-[34%] absolute -left-[0px] ">
@@ -533,8 +536,9 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Sixth section:  */}
+      {/* Sixth section: service area */}
       <section
+        id="gallery"
         className="relative  overflow-hidden"
         style={{
           backgroundImage: `url(${skyImage})`,

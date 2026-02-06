@@ -52,7 +52,7 @@ export const initScrollAnimations = (refs) => {
           start: "top 80%",
           toggleActions: "play none none reverse",
         },
-      }
+      },
     );
   }
 
@@ -78,7 +78,7 @@ export const initScrollAnimations = (refs) => {
           start: "top 75%",
           toggleActions: "play none none reverse",
         },
-      }
+      },
     );
   }
 
@@ -103,7 +103,7 @@ export const initScrollAnimations = (refs) => {
           start: "top 80%",
           toggleActions: "play none none reverse",
         },
-      }
+      },
     );
   }
 
@@ -129,7 +129,7 @@ export const initScrollAnimations = (refs) => {
           start: "top 70%",
           toggleActions: "play none none reverse",
         },
-      }
+      },
     );
   }
 
@@ -154,7 +154,7 @@ export const initScrollAnimations = (refs) => {
           start: "top 80%",
           toggleActions: "play none none reverse",
         },
-      }
+      },
     );
   }
 
@@ -181,7 +181,7 @@ export const initScrollAnimations = (refs) => {
               start: "top 85%",
               toggleActions: "play none none reverse",
             },
-          }
+          },
         );
       }
     });
@@ -213,7 +213,7 @@ export const initScrollAnimations = (refs) => {
               start: "top 85%",
               toggleActions: "play none none reverse",
             },
-          }
+          },
         );
       }
     });
@@ -221,9 +221,14 @@ export const initScrollAnimations = (refs) => {
 
   // Third section: service cards – use refs; fallback to DOM query if ref not yet attached
   const serviceCards = servicesGridRef?.current
-    ? Array.from(servicesGridRef.current.querySelectorAll("[data-service-card]"))
+    ? Array.from(
+        servicesGridRef.current.querySelectorAll("[data-service-card]"),
+      )
     : [];
-  const cardCount = Math.max(serviceCards.length, serviceCardsRefs?.length ?? 0);
+  const cardCount = Math.max(
+    serviceCards.length,
+    serviceCardsRefs?.length ?? 0,
+  );
   if (cardCount > 0) {
     for (let index = 0; index < cardCount; index++) {
       const card =
@@ -232,7 +237,11 @@ export const initScrollAnimations = (refs) => {
 
       const fromX = index % 2 === 0 ? -28 : 28;
       const cardEase =
-        index % 3 === 0 ? "power3.out" : index % 3 === 1 ? "back.out(1.15)" : "power2.out";
+        index % 3 === 0
+          ? "power3.out"
+          : index % 3 === 1
+            ? "back.out(1.15)"
+            : "power2.out";
       const triggerStart = "top 92%"; // when card top hits 92% from top of viewport
 
       // 1) Clip-path wipe: card reveals from bottom-up
@@ -250,7 +259,7 @@ export const initScrollAnimations = (refs) => {
             start: triggerStart,
             toggleActions: "play none none reverse",
           },
-        }
+        },
       );
 
       // 2) Blur-in + rise + scale + alternating horizontal: advanced entrance
@@ -279,7 +288,7 @@ export const initScrollAnimations = (refs) => {
             start: triggerStart,
             toggleActions: "play none none reverse",
           },
-        }
+        },
       );
 
       // 3) Staggered content reveal: overlay slides up + fades in
@@ -300,7 +309,7 @@ export const initScrollAnimations = (refs) => {
               start: triggerStart,
               toggleActions: "play none none reverse",
             },
-          }
+          },
         );
         const contentChildren = content.children;
         if (contentChildren?.length) {
@@ -320,7 +329,7 @@ export const initScrollAnimations = (refs) => {
                 start: triggerStart,
                 toggleActions: "play none none reverse",
               },
-            }
+            },
           );
         }
       }
@@ -364,7 +373,7 @@ export const initScrollAnimations = (refs) => {
           start: "top 80%",
           toggleActions: "play none none reverse",
         },
-      }
+      },
     );
   }
 
@@ -395,7 +404,7 @@ export const initScrollAnimations = (refs) => {
               start: "top 85%",
               toggleActions: "play none none reverse",
             },
-          }
+          },
         );
       }
     });
@@ -422,7 +431,7 @@ export const initScrollAnimations = (refs) => {
           start: "top 80%",
           toggleActions: "play none none reverse",
         },
-      }
+      },
     );
   }
 
@@ -447,7 +456,7 @@ export const initScrollAnimations = (refs) => {
           start: "top 80%",
           toggleActions: "play none none reverse",
         },
-      }
+      },
     );
   }
 
@@ -473,7 +482,7 @@ export const initScrollAnimations = (refs) => {
           start: "top 80%",
           toggleActions: "play none none reverse",
         },
-      }
+      },
     );
   }
 
@@ -498,7 +507,7 @@ export const initScrollAnimations = (refs) => {
 
 /**
  * Detail page scroll animations: hero, cards (clip-path, blur-in, content reveal, scroll depth), contact section.
- * Expects refs: heroPillRef, heroHeadingRef, heroButtonsRef, heroCardRef, detailThirdSectionRef, detailFourthCardsRef, detailStepCardsRef, eighthLeftRef, eighthFormRef.
+ * Expects refs: heroPillRef, heroHeadingRef, heroButtonsRef, heroCardRef, detailSecondHeadingRef, detailSecondTextRefs, detailSecondImageRef, detailThirdSectionRef, detailFourthCardsRef, detailStepCardsRef, eighthLeftRef, eighthFormRef.
  */
 export const initDetailScrollAnimations = (refs) => {
   const {
@@ -506,6 +515,9 @@ export const initDetailScrollAnimations = (refs) => {
     heroHeadingRef,
     heroButtonsRef,
     heroCardRef,
+    detailSecondHeadingRef,
+    detailSecondTextRefs,
+    detailSecondImageRef,
     detailThirdSectionRef,
     detailFourthCardsRef,
     detailStepCardsRef,
@@ -530,7 +542,7 @@ export const initDetailScrollAnimations = (refs) => {
           start: "top 80%",
           toggleActions: "play none none reverse",
         },
-      }
+      },
     );
   }
   if (heroHeadingRef?.current) {
@@ -550,7 +562,7 @@ export const initDetailScrollAnimations = (refs) => {
           start: "top 75%",
           toggleActions: "play none none reverse",
         },
-      }
+      },
     );
   }
   if (heroButtonsRef?.current && heroButtonsRef.current.children.length > 0) {
@@ -570,7 +582,7 @@ export const initDetailScrollAnimations = (refs) => {
           start: "top 80%",
           toggleActions: "play none none reverse",
         },
-      }
+      },
     );
   }
   if (heroCardRef?.current) {
@@ -590,7 +602,76 @@ export const initDetailScrollAnimations = (refs) => {
           start: "top 70%",
           toggleActions: "play none none reverse",
         },
-      }
+      },
+    );
+  }
+
+  // Second section: "We treat your home like our own" – heading, paragraphs stagger, image blur-in
+  const secondTrigger = detailSecondHeadingRef?.current;
+  const secondSectionTriggerStart = "top 82%";
+  if (secondTrigger) {
+    gsap.fromTo(
+      secondTrigger,
+      { opacity: 0, x: -70, scale: 0.92 },
+      {
+        opacity: 1,
+        x: 0,
+        scale: 1,
+        duration: 0.95,
+        ease: "power3.out",
+        immediateRender: false,
+        scrollTrigger: {
+          trigger: secondTrigger,
+          start: secondSectionTriggerStart,
+          toggleActions: "play none none reverse",
+        },
+      },
+    );
+  }
+  detailSecondTextRefs?.forEach((textRef, index) => {
+    if (!textRef?.current || !secondTrigger) return;
+    gsap.fromTo(
+      textRef.current,
+      { opacity: 0, y: 36 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.85,
+        delay: 0.18 + index * 0.14,
+        ease: "power3.out",
+        immediateRender: false,
+        scrollTrigger: {
+          trigger: secondTrigger,
+          start: secondSectionTriggerStart,
+          toggleActions: "play none none reverse",
+        },
+      },
+    );
+  });
+  if (detailSecondImageRef?.current && secondTrigger) {
+    gsap.fromTo(
+      detailSecondImageRef.current,
+      {
+        opacity: 0,
+        x: 90,
+        scale: 0.88,
+        filter: "blur(14px)",
+      },
+      {
+        opacity: 1,
+        x: 0,
+        scale: 1,
+        filter: "blur(0px)",
+        duration: 1.05,
+        delay: 0.35,
+        ease: "back.out(1.12)",
+        immediateRender: false,
+        scrollTrigger: {
+          trigger: secondTrigger,
+          start: secondSectionTriggerStart,
+          toggleActions: "play none none reverse",
+        },
+      },
     );
   }
 
@@ -610,7 +691,7 @@ export const initDetailScrollAnimations = (refs) => {
           start: "top 90%",
           toggleActions: "play none none reverse",
         },
-      }
+      },
     );
 
     // 2) Blur-in + rise + scale: advanced entrance
@@ -637,11 +718,13 @@ export const initDetailScrollAnimations = (refs) => {
           start: "top 88%",
           toggleActions: "play none none reverse",
         },
-      }
+      },
     );
 
     // 3) Staggered content: inner content slides up + fades in
-    const content = card.querySelector("[data-detail-card-content], [data-detail-step-card-content]");
+    const content = card.querySelector(
+      "[data-detail-card-content], [data-detail-step-card-content]",
+    );
     if (content) {
       gsap.fromTo(
         content,
@@ -658,7 +741,7 @@ export const initDetailScrollAnimations = (refs) => {
             start: "top 88%",
             toggleActions: "play none none reverse",
           },
-        }
+        },
       );
     }
 
@@ -678,9 +761,8 @@ export const initDetailScrollAnimations = (refs) => {
   };
 
   if (detailThirdSectionRef?.current) {
-    const cards = detailThirdSectionRef.current.querySelectorAll(
-      "[data-detail-card]"
-    );
+    const cards =
+      detailThirdSectionRef.current.querySelectorAll("[data-detail-card]");
     cards.forEach((card, index) => applyCardAnimation(card, index));
   }
 
@@ -692,12 +774,289 @@ export const initDetailScrollAnimations = (refs) => {
 
   if (detailStepCardsRef?.current) {
     const cards = detailStepCardsRef.current.querySelectorAll(
-      "[data-detail-step-card]"
+      "[data-detail-step-card]",
     );
     cards.forEach((card, index) => applyCardAnimation(card, index));
   }
 
   // Eighth section (contact) – same as home (split animation)
+  if (eighthLeftRef?.current) {
+    gsap.fromTo(
+      eighthLeftRef.current,
+      { opacity: 0, x: -80, scale: 0.95 },
+      {
+        opacity: 1,
+        x: 0,
+        scale: 1,
+        duration: 0.9,
+        ease: "power3.out",
+        immediateRender: false,
+        scrollTrigger: {
+          trigger: eighthLeftRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+      },
+    );
+  }
+  if (eighthFormRef?.current) {
+    gsap.fromTo(
+      eighthFormRef.current,
+      { opacity: 0, x: 80, scale: 0.95, y: 30 },
+      {
+        opacity: 1,
+        x: 0,
+        scale: 1,
+        y: 0,
+        duration: 0.9,
+        ease: "power3.out",
+        immediateRender: false,
+        scrollTrigger: {
+          trigger: eighthFormRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+      },
+    );
+  }
+
+  ScrollTrigger.refresh();
+};
+
+/**
+ * Services page scroll animations: service grid cards (rotation animations) + contact section.
+ * Expects refs: servicesCardsRootRef, eighthLeftRef, eighthFormRef
+ */
+export const initServicesScrollAnimations = (refs) => {
+  const { servicesCardsRootRef, eighthLeftRef, eighthFormRef } = refs;
+
+  const root = servicesCardsRootRef?.current;
+  if (!root) return;
+
+  const cards = root.querySelectorAll("[data-services-card]");
+  if (!cards?.length) return;
+
+  cards.forEach((card, index) => {
+    const imageWrap = card.querySelector("[data-services-card-image]");
+    const chip = card.querySelector("[data-services-card-chip]");
+    const content = card.querySelector("[data-services-card-content]");
+    const pills = content?.querySelectorAll("span");
+
+    // Alternating rotation directions for visual variety
+    const rotationDirection = index % 2 === 0 ? 1 : -1;
+    const initialRotation = rotationDirection * 18;
+    const start = "top 90%";
+
+    // Set initial state
+    gsap.set(card, {
+      opacity: 0,
+      rotation: initialRotation,
+      scale: 0.85,
+      y: 60,
+      transformOrigin: "center center",
+      force3D: true,
+    });
+
+    // Initial entrance: rotate in from tilted position
+    gsap.to(card, {
+      opacity: 1,
+      rotation: 0,
+      scale: 1,
+      y: 0,
+      duration: 1.1,
+      ease: "back.out(1.2)",
+      delay: index * 0.08,
+      immediateRender: false,
+      scrollTrigger: {
+        trigger: card,
+        start,
+        toggleActions: "play none none reverse",
+      },
+    });
+
+    // Image: rotate in with card
+    if (imageWrap) {
+      gsap.set(imageWrap, {
+        rotation: initialRotation * 0.6,
+        opacity: 0,
+        transformOrigin: "center center",
+        force3D: true,
+      });
+      gsap.to(imageWrap, {
+        rotation: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power3.out",
+        delay: index * 0.08 + 0.1,
+        immediateRender: false,
+        scrollTrigger: {
+          trigger: card,
+          start,
+          toggleActions: "play none none reverse",
+        },
+      });
+    }
+
+    // Chip: rotate in with bounce
+    if (chip) {
+      gsap.set(chip, {
+        rotation: rotationDirection * 25,
+        opacity: 0,
+        scale: 0.8,
+        transformOrigin: "center center",
+        force3D: true,
+      });
+      gsap.to(chip, {
+        rotation: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 0.8,
+        ease: "elastic.out(1, 0.5)",
+        delay: index * 0.08 + 0.25,
+        immediateRender: false,
+        scrollTrigger: {
+          trigger: card,
+          start,
+          toggleActions: "play none none reverse",
+        },
+      });
+    }
+
+    // Content: subtle rotation entrance
+    if (content) {
+      gsap.set(content, {
+        rotation: rotationDirection * 8,
+        opacity: 0,
+        y: 20,
+        transformOrigin: "center center",
+        force3D: true,
+      });
+      gsap.to(content, {
+        rotation: 0,
+        opacity: 1,
+        y: 0,
+        duration: 0.9,
+        ease: "power3.out",
+        delay: index * 0.08 + 0.3,
+        immediateRender: false,
+        scrollTrigger: {
+          trigger: card,
+          start,
+          toggleActions: "play none none reverse",
+        },
+      });
+    }
+
+    // Pills: stagger rotate in
+    if (pills?.length) {
+      gsap.set(pills, {
+        rotation: rotationDirection * 12,
+        opacity: 0,
+        scale: 0.85,
+        transformOrigin: "center center",
+        force3D: true,
+      });
+      gsap.to(pills, {
+        rotation: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 0.5,
+        stagger: 0.08,
+        ease: "back.out(1.3)",
+        delay: index * 0.08 + 0.45,
+        immediateRender: false,
+        scrollTrigger: {
+          trigger: card,
+          start,
+          toggleActions: "play none none reverse",
+        },
+      });
+    }
+
+    // Scroll-linked rotation: rotate as card moves through viewport
+    // Rotate from negative to positive as card enters and moves up
+    gsap.to(card, {
+      rotation: rotationDirection * 4,
+      ease: "none",
+      force3D: true,
+      scrollTrigger: {
+        trigger: card,
+        start: "top 85%",
+        end: "top 60%",
+        scrub: 1.2,
+      },
+    });
+
+    // Rotate back to center as card reaches middle
+    gsap.to(card, {
+      rotation: 0,
+      ease: "none",
+      force3D: true,
+      scrollTrigger: {
+        trigger: card,
+        start: "top 60%",
+        end: "top 40%",
+        scrub: 1.2,
+      },
+    });
+
+    // Rotate opposite direction as card exits
+    gsap.to(card, {
+      rotation: rotationDirection * -3,
+      ease: "none",
+      force3D: true,
+      scrollTrigger: {
+        trigger: card,
+        start: "top 40%",
+        end: "top 15%",
+        scrub: 1.2,
+      },
+    });
+
+    // Image: counter-rotate for parallax effect
+    if (imageWrap) {
+      gsap.to(imageWrap, {
+        rotation: rotationDirection * -1.5,
+        ease: "none",
+        scrollTrigger: {
+          trigger: card,
+          start: "top 80%",
+          end: "top 20%",
+          scrub: 1.5,
+        },
+      });
+    }
+
+    // Chip: subtle rotation
+    if (chip) {
+      gsap.to(chip, {
+        rotation: rotationDirection * -8,
+        ease: "none",
+        scrollTrigger: {
+          trigger: card,
+          start: "top 70%",
+          end: "top 30%",
+          scrub: 1.6,
+        },
+      });
+    }
+
+    // Scroll-linked depth with rotation
+    gsap.to(card, {
+      y: -10,
+      scale: 1.02,
+      ease: "none",
+      overwrite: "auto",
+      scrollTrigger: {
+        trigger: card,
+        start: "top 75%",
+        end: "top 35%",
+        scrub: 1.2,
+      },
+    });
+  });
+
+  // Contact section (eighth) – same as home/detail (split animation)
   if (eighthLeftRef?.current) {
     gsap.fromTo(
       eighthLeftRef.current,
@@ -737,6 +1096,83 @@ export const initDetailScrollAnimations = (refs) => {
       }
     );
   }
+
+  ScrollTrigger.refresh();
+};
+
+/**
+ * About page scroll animations: story section, commitment, values, feature cards, contact.
+ * Expects refs: aboutRootRef, aboutStoryRef, aboutStoryTextRefs, aboutStoryImageRef, aboutCommitmentRef, aboutCommitmentTextRefs, aboutValuesRef, aboutFeatureCardsRefs, eighthLeftRef, eighthFormRef.
+ */
+export const initAboutScrollAnimations = (refs) => {
+  const {
+    aboutRootRef,
+    // refs still passed, but we animate via data attributes now
+  } = refs;
+
+  const root = aboutRootRef?.current;
+  if (!root) return;
+
+  const animated = Array.from(root.querySelectorAll("[data-about-animate]"));
+  if (!animated.length) return;
+
+  animated.forEach((el, index) => {
+    const type = el.getAttribute("data-about-animate") || "fade-up";
+
+    const base = {
+      opacity: 0,
+      y: 18,
+      x: 0,
+      scale: 0.98,
+      rotation: 0,
+      filter: "blur(8px)",
+      transformOrigin: "center center",
+      force3D: true,
+    };
+
+    if (type === "fade-left") {
+      base.x = -40;
+      base.y = 0;
+    } else if (type === "fade-right") {
+      base.x = 40;
+      base.y = 0;
+    } else if (type === "fade-down") {
+      base.y = -28;
+    } else if (type === "zoom") {
+      base.y = 0;
+      base.scale = 0.85;
+      base.filter = "blur(10px)";
+    } else if (type === "rotate") {
+      base.y = 0;
+      base.rotation = index % 2 === 0 ? 16 : -16;
+      base.scale = 0.92;
+      base.filter = "blur(6px)";
+    } else if (type === "card") {
+      base.y = 28;
+      base.scale = 0.92;
+      base.rotation = index % 2 === 0 ? 6 : -6;
+      base.filter = "blur(10px)";
+    }
+
+    gsap.set(el, base);
+
+    gsap.to(el, {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      scale: 1,
+      rotation: 0,
+      filter: "blur(0px)",
+      duration: type === "card" ? 0.95 : 0.85,
+      ease: type === "rotate" ? "back.out(1.15)" : "power3.out",
+      immediateRender: false,
+      scrollTrigger: {
+        trigger: el,
+        start: "top 88%",
+        toggleActions: "play none none reverse",
+      },
+    });
+  });
 
   ScrollTrigger.refresh();
 };
