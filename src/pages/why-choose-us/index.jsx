@@ -26,6 +26,16 @@ import {
 const WhyChooseUs = () => {
   const rootRef = useRef(null);
 
+  const handleCallNow = () => {
+    window.location.href = "tel:+18644512806";
+  };
+
+  const handleRequestEstimateClick = () => {
+    window.alert(
+      "Thank you! Your free estimate request has been received. We'll contact you shortly.",
+    );
+  };
+
   useEffect(() => {
     let refreshTimer;
     const timer = setTimeout(() => {
@@ -48,7 +58,7 @@ const WhyChooseUs = () => {
     <div ref={rootRef}>
       {/* Hero section */}
       <main
-        className="relative min-h-[500px] overflow-hidden md:min-h-[550px]"
+        className="relative min-h-[300px] overflow-hidden md:min-h-[550px]"
         style={{
           backgroundImage: `url(${skyImage})`,
           backgroundSize: "cover",
@@ -377,6 +387,7 @@ const WhyChooseUs = () => {
               <button
                 type="button"
                 data-about-animate="zoom"
+                onClick={handleRequestEstimateClick}
                 className="inline-flex items-center gap-3 rounded-full bg-[#039A02] px-7 py-3 text-sm font-semibold text-white shadow-md cursor-pointer hover:bg-[#02A11F] hover:shadow-lg transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02]"
               >
                 <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-white">
@@ -388,6 +399,7 @@ const WhyChooseUs = () => {
               <button
                 type="button"
                 data-about-animate="fade-up"
+                onClick={handleCallNow}
                 className="flex items-center gap-3 rounded-[10px] bg-white px-6 py-3 text-xs font-semibold text-[#039A02] shadow-md cursor-pointer hover:bg-[#E9FFF7] hover:shadow-lg transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02]"
               >
                 <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#039A02] text-white">

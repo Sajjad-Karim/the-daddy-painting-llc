@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
+import ChatWidget from "../components/ChatWidget";
 
 const Layout = () => {
   const { pathname } = useLocation();
@@ -11,6 +12,7 @@ const Layout = () => {
   return (
     <div className="min-h-screen">
       <Outlet />
+      <ChatWidget />
     </div>
   );
 };

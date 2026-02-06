@@ -85,6 +85,22 @@ const Home = () => {
   const eighthLeftRef = useRef(null);
   const eighthFormRef = useRef(null);
 
+  const handleCallNow = () => {
+    window.location.href = "tel:+18644512806";
+  };
+
+  const handleRequestEstimateClick = () => {
+    window.alert(
+      "Thank you! Your free estimate request has been received. We'll contact you shortly.",
+    );
+  };
+
+  const handleOpenChat = () => {
+    if (window.__openChatWidget) {
+      window.__openChatWidget();
+    }
+  };
+
   useEffect(() => {
     let refreshTimer;
     const timer = setTimeout(() => {
@@ -119,7 +135,7 @@ const Home = () => {
   return (
     <>
       <main
-        className="relative min-h-[750px] md:min-h-[800px] overflow-hidden"
+        className="relative min-h-[600px] md:min-h-[800px] overflow-hidden"
         style={{
           backgroundImage: `url(${skyImage})`,
           backgroundSize: "cover",
@@ -141,7 +157,7 @@ const Home = () => {
         {/* House image anchored to bottom, full width */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 -bottom-0 z-0 flex justify-center"
+          className="pointer-events-none absolute inset-x-0 md:-bottom-0 bottom-[44px] z-0 flex justify-center"
         >
           <img
             data-hero-house
@@ -185,6 +201,7 @@ const Home = () => {
               {/* Primary CTA: matches header pill style */}
               <button
                 type="button"
+                onClick={handleRequestEstimateClick}
                 className="flex items-center justify-center gap-3 rounded-full bg-[#2D2928] px-7 py-3 text-sm font-semibold text-white shadow-lg cursor-pointer hover:bg-[#1F1B1A] hover:shadow-xl transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02] sm:w-auto"
               >
                 <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#039A02] text-white">
@@ -196,12 +213,13 @@ const Home = () => {
               </button>
 
               {/* Secondary CTA */}
-              <button
-                type="button"
+              <Link
+                to="/gallery"
                 className="flex items-center justify-center gap-2 rounded-full bg-white px-8 py-3 text-sm font-semibold text-[#111827] shadow-md cursor-pointer hover:bg-[#F9FAFB] hover:shadow-lg transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02] sm:w-auto"
+                aria-label="View our gallery"
               >
                 <span className='font-["Alexandria"]'>View Our Gallery</span>
-              </button>
+              </Link>
             </div>
           </section>
         </div>
@@ -677,6 +695,7 @@ const Home = () => {
               <div className="mt-6 flex flex-wrap items-center justify-center gap-4 md:justify-start">
                 <button
                   type="button"
+                onClick={handleCallNow}
                   className="flex items-center gap-3 rounded-[10px] bg-[#039A02] px-6 py-3 text-sm font-semibold text-white shadow-md cursor-pointer hover:bg-[#02A11F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02]"
                 >
                   <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-white">
@@ -748,6 +767,7 @@ const Home = () => {
 
               <button
                 type="button"
+                onClick={handleRequestEstimateClick}
                 className="mt-6 flex w-full items-center justify-center gap-3 rounded-full bg-[#02A11F] px-6 py-3 text-sm font-semibold shadow-md cursor-pointer hover:bg-[#039A02] hover:shadow-lg transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 text-white focus-visible:ring-[#02A11F] "
               >
                 <span className='font-["Alexandria"]  text-white'>
@@ -758,22 +778,28 @@ const Home = () => {
           </div>
         </div>
 
-        {/* Talk to our AI bubble + icon */}
+        {/* Talk to our AI bubble + icon (original home UI, now opens chat) */}
         <div className="pointer-events-auto absolute bottom-10 right-5">
-          <div className="relative">
-            {/* Speech bubble */}
-            <div className="inline-flex items-center rounded-md w-fit bg-white px-3.5 py-1.5 text-[11px] font-extrabold text-base text-[#02A11F] shadow-md relative -left-20 -top-1  ">
-              Talk to our AI
+          <button
+            type="button"
+            onClick={handleOpenChat}
+            className="relative cursor-pointer"
+            aria-label="Talk to our AI assistant"
+          >
+            <div className="relative">
+              {/* Speech bubble */}
+              <div className="inline-flex items-center rounded-md w-fit bg-white px-3.5 py-1.5 text-[11px] font-extrabold text-base text-[#02A11F] shadow-md relative -left-20 -top-1">
+                Talk to our AI
+              </div>
+
+              {/* Green circular AI icon */}
+              <img
+                src={aiIcon}
+                alt="AI assistant"
+                className="h-20 w-20 object-contain"
+              />
             </div>
-
-            {/* Green circular AI icon */}
-
-            <img
-              src={aiIcon}
-              alt="AI assistant"
-              className="h-20 w-20 object-contain"
-            />
-          </div>
+          </button>
         </div>
       </section>
     </>

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Menu, Phone, ArrowUpRight, X } from "lucide-react";
 import { gsap } from "gsap";
 import logoImage from "../assets/logo.png";
@@ -12,6 +12,7 @@ import instagramIcon from "../assets/insta.svg";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
+  const navigate = useNavigate();
   const menuOverlayRef = useRef(null);
   const leftImageRef = useRef(null);
   const rightPanelRef = useRef(null);
@@ -21,6 +22,17 @@ const Header = () => {
   const socialIconsRef = useRef(null);
   const bottomSectionRef = useRef(null);
   const timelineRef = useRef(null);
+
+  const handleCallNow = () => {
+    window.location.href = "tel:+18644512806";
+  };
+
+  const handleRequestEstimate = () => {
+    // Simple static toast/alert for now
+    window.alert(
+      "Thank you! Your free estimate request has been received. We'll contact you shortly.",
+    );
+  };
 
   const handleToggleMenu = () => {
     setIsMenuOpen((previousState) => !previousState);
@@ -338,7 +350,8 @@ const Header = () => {
           {/* Call now pill */}
           <button
             type="button"
-            className="flex items-center gap-2 rounded-full px-3 py-2 text-[10px] font-semibold text-[#02A11F] cursor-pointer hover:bg-[#F3F4F6] hover:shadow-lg transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#02A11F]"
+          onClick={handleCallNow}
+          className="flex items-center gap-2 rounded-full px-3 py-2 text-[10px] font-semibold text-[#02A11F] cursor-pointer hover:bg-[#F3F4F6] hover:shadow-lg transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#02A11F]"
           >
             <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#02A11F] text-white">
               <Phone className="h-3 w-3" aria-hidden="true" />
@@ -399,7 +412,11 @@ const Header = () => {
             {/* Call Now + CTA */}
             <div className="flex items-center gap-6">
               {/* Call Now inline group (no white background) */}
-              <div className="hidden items-center gap-3 text-sm md:flex">
+            <div
+              className="hidden items-center gap-3 text-sm md:flex cursor-pointer"
+              role="button"
+              onClick={handleCallNow}
+            >
                 <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#039A02] text-white">
                   <Phone className="h-3.5 w-3.5" aria-hidden="true" />
                 </span>
@@ -412,7 +429,8 @@ const Header = () => {
               {/* Get a Free Estimate pill */}
               <button
                 type="button"
-                className="flex items-center gap-3 rounded-full bg-[#2D2928] px-5 py-2 text-sm font-semibold text-white shadow-md cursor-pointer hover:bg-[#1F1B1A] hover:shadow-xl transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02]"
+              onClick={handleRequestEstimate}
+              className="flex items-center gap-3 rounded-full bg-[#2D2928] px-5 py-2 text-sm font-semibold text-white shadow-md cursor-pointer hover:bg-[#1F1B1A] hover:shadow-xl transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02]"
               >
                 <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#039A02] text-white">
                   <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />

@@ -4,6 +4,7 @@ import { X, ChevronLeft, ChevronRight, Image as ImageIcon } from "lucide-react";
 import Header from "../../components/Header";
 import skyVectorImage from "../../assets/vector.png";
 import skyImage from "../../assets/sky.png";
+import borderVectorImage from "../../assets/borderVector.png";
 import interiorImage from "../../assets/services/interior.png";
 import exteriorImage from "../../assets/services/exterior.png";
 import cabinetImage from "../../assets/services/cabnet.png";
@@ -151,7 +152,7 @@ const Gallery = () => {
     <div ref={rootRef}>
       {/* Hero */}
       <main
-        className="relative min-h-[500px] overflow-hidden md:min-h-[550px]"
+        className="relative min-h-[300px] overflow-hidden md:min-h-[550px]"
         style={{
           backgroundImage: `url(${skyImage})`,
           backgroundSize: "cover",
@@ -192,8 +193,20 @@ const Gallery = () => {
       </main>
 
       {/* Category filters */}
-      <section className="relative bg-[#E1F8F2] pb-6 pt-6">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-3 px-4">
+      <section className="relative bg-[#E1F8F2] pb-6 pt-16">
+        {/* Top wave border (same as other pages) */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 -top-[40px] z-0"
+        >
+          <img
+            src={borderVectorImage}
+            alt="Section top wave border"
+            className="h-80 w-full object-cover"
+          />
+        </div>
+
+        <div className="relative mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-3 px-4">
           {CATEGORIES.map((category) => {
             const isActive = activeCategory === category;
             return (
@@ -202,7 +215,7 @@ const Gallery = () => {
                 type="button"
                 data-about-animate="fade-up"
                 onClick={() => setActiveCategory(category)}
-                className={`inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 cursor-pointer ${
+                className={`inline-flex items-center gap-2 rounded-sm border px-4 py-1.5 text-xs font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 cursor-pointer ${
                   isActive
                     ? "border-[#039A02] bg-[#039A02] text-white shadow-md focus-visible:ring-[#039A02]"
                     : "border-[#D1D5DB] bg-white/80 text-[#111827] hover:bg-white focus-visible:ring-[#039A02]"
@@ -257,11 +270,11 @@ const Gallery = () => {
 
       {/* Lightbox */}
       {activeImage && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/85 p-4">
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 px-4 py-6">
           <button
             type="button"
             onClick={handleCloseLightbox}
-            className="absolute right-4 top-4 inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="absolute right-4 top-4 rounded-sm inline-flex h-9 w-9 items-center justify-center bg-white/10 text-white hover:bg-white/20 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
             aria-label="Close gallery preview"
           >
             <X className="h-5 w-5" aria-hidden="true" />
@@ -270,7 +283,7 @@ const Gallery = () => {
           <button
             type="button"
             onClick={handlePrev}
-            className="absolute left-4 top-1/2 inline-flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="absolute left-4 top-1/2 inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center bg-white/10 text-white hover:bg-white/20 cursor-pointer focus-visible:outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-white"
             aria-label="Previous image"
           >
             <ChevronLeft className="h-5 w-5" aria-hidden="true" />
@@ -279,7 +292,7 @@ const Gallery = () => {
           <button
             type="button"
             onClick={handleNext}
-            className="absolute right-4 top-1/2 inline-flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="absolute right-4 top-1/2 inline-flex h-10 w-10 -translate-y-1/2 rounded-sm items-center justify-center bg-white/10 text-white hover:bg-white/20 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
             aria-label="Next image"
           >
             <ChevronRight className="h-5 w-5" aria-hidden="true" />
@@ -287,17 +300,17 @@ const Gallery = () => {
 
           <div
             data-about-animate="zoom"
-            className="max-h-[90vh] w-full max-w-4xl overflow-hidden rounded-[32px] bg-[#111827] shadow-[0_24px_80px_rgba(0,0,0,0.8)]"
+            className="flex w-full max-w-5xl flex-col"
           >
-            <div className="relative aspect-[16/9] w-full bg-black">
+            <div className="relative w-full bg-black max-h-[80vh] flex items-center justify-center">
               <img
                 src={activeImage.src}
                 alt={activeImage.alt}
-                className="h-full w-full object-contain"
+                className="max-h-[80vh] w-full object-contain"
               />
             </div>
-            <div className="flex flex-col gap-2 px-6 py-4 text-white">
-              <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em]">
+            <div className="flex flex-col gap-2 bg-gradient-to-r from-[#111827] via-[#020617] to-[#111827] px-6 py-4 text-white border-t border-white/10">
+              <div className="inline-flex items-center gap-2 bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em]">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#A1F88B]" />
                 <span className='font-["Inter"]'>{activeImage.category}</span>
               </div>
