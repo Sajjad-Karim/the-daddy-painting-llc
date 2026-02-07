@@ -302,7 +302,7 @@ const WhyChooseUs = () => {
       </section>
 
       {/* WHY NEIGHBORS CHOOSE section – reused from home, with CTA */}
-      <section className="relative bg-[#E1F8F2] pb-10 pt-10 md:pb-16 md:pt-16">
+      <section className="relative bg-[#E1F8F2] pb-0 pt-0 md:pb-16 md:pt-16">
         <div className="flex flex-col justify-between md:flex-row mx-auto max-w-6xl">
           {/* Left image with rounded right corners */}
           <div className="hidden h-full w-full overflow-hidden rounded-r-[60px] md:block md:h-[420px] md:w-[34%] absolute -left-[0px]">

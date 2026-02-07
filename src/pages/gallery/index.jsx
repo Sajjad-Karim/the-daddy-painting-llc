@@ -13,7 +13,10 @@ import detailHeroImage from "../../assets/detail-page/hero.png";
 import detailSecondImage from "../../assets/detail-page/secondSection.png";
 import detailThirdImage from "../../assets/detail-page/thirdSection.png";
 import detailFourthImage from "../../assets/detail-page/fourth.png";
-import { initAboutScrollAnimations, cleanupScrollAnimations } from "../../utils/scrollAnimations";
+import {
+  initAboutScrollAnimations,
+  cleanupScrollAnimations,
+} from "../../utils/scrollAnimations";
 
 const CATEGORIES = [
   "All",
@@ -159,8 +162,15 @@ const Gallery = () => {
           backgroundPosition: "center",
         }}
       >
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0">
-          <img src={skyVectorImage} alt="" className="h-full w-full object-cover" />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-0"
+        >
+          <img
+            src={skyVectorImage}
+            alt=""
+            className="h-full w-full object-cover"
+          />
         </div>
 
         <div className="relative z-10 mx-auto flex max-w-6xl flex-col items-center px-4 pb-12 pt-4 md:min-h-[500px] md:pb-10 md:pt-4">
@@ -169,7 +179,7 @@ const Gallery = () => {
           <section className="mt-10 flex w-full flex-col items-center text-center md:mt-12">
             <div
               data-about-animate="fade-down"
-              className='inline-flex max-w-xs items-center gap-2 rounded-md bg-[#FFFFFF1A] px-6 py-2 text-[10px] tracking-wide text-[#1F2933] shadow-sm backdrop-blur md:max-w-none md:text-base'
+              className="inline-flex max-w-xs items-center gap-2 rounded-md bg-[#FFFFFF1A] px-6 py-2 text-[10px] tracking-wide text-[#1F2933] shadow-sm backdrop-blur md:max-w-none md:text-base"
             >
               <span className='uppercase font-["Alexandria"]'>
                 The Daddy&apos;s Painting LLC
@@ -185,7 +195,8 @@ const Gallery = () => {
               data-about-animate="fade-up"
               className='mt-4 max-w-2xl text-sm leading-relaxed text-[#2D2928] font-["Inter"] md:text-base'
             >
-              Explore a selection of our recent interior, exterior, cabinet, deck, fence, and commercial projects—designed to give you
+              Explore a selection of our recent interior, exterior, cabinet,
+              deck, fence, and commercial projects—designed to give you
               confidence in the quality and consistency of our work.
             </p>
           </section>
@@ -239,7 +250,7 @@ const Gallery = () => {
                 type="button"
                 data-about-animate="card"
                 onClick={() => handleOpenLightbox(index)}
-                className="group relative aspect-[4/3] w-full overflow-hidden rounded-[26px] bg-[#111827] text-left shadow-md cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02]"
+                className="group relative aspect-[4/3] w-full overflow-hidden rounded-[20px] bg-[#111827] text-left shadow-md cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02]"
               >
                 <img
                   src={item.src}
@@ -270,54 +281,61 @@ const Gallery = () => {
 
       {/* Lightbox */}
       {activeImage && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 px-4 py-6">
-          <button
-            type="button"
-            onClick={handleCloseLightbox}
-            className="absolute right-4 top-4 rounded-sm inline-flex h-9 w-9 items-center justify-center bg-white/10 text-white hover:bg-white/20 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-            aria-label="Close gallery preview"
-          >
-            <X className="h-5 w-5" aria-hidden="true" />
-          </button>
+        <div className="fixed inset-0 z-[9999] flex h-screen flex-col overflow-y-auto overflow-x-hidden bg-black/90 md:overflow-hidden">
+          {/* Fixed header: close button always visible on mobile when image is tall */}
+          <div className="sticky top-0 left-0 right-0 z-10 flex shrink-0 justify-end p-4 md:absolute md:right-4 md:top-4 md:p-0">
+            <button
+              type="button"
+              onClick={handleCloseLightbox}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-white hover:bg-white/30 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white shadow-lg"
+              aria-label="Close gallery preview"
+            >
+              <X className="h-5 w-5" aria-hidden="true" />
+            </button>
+          </div>
 
-          <button
-            type="button"
-            onClick={handlePrev}
-            className="absolute left-4 top-1/2 inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center bg-white/10 text-white hover:bg-white/20 cursor-pointer focus-visible:outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-white"
-            aria-label="Previous image"
-          >
-            <ChevronLeft className="h-5 w-5" aria-hidden="true" />
-          </button>
+          <div className="relative flex flex-1 min-h-0 items-center justify-center px-4 pb-6 md:px-4 md:py-4">
+            <button
+              type="button"
+              onClick={handlePrev}
+              className="absolute left-2 top-1/2 z-10 inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/20 text-white hover:bg-white/30 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white md:left-4"
+              aria-label="Previous image"
+            >
+              <ChevronLeft className="h-5 w-5" aria-hidden="true" />
+            </button>
 
-          <button
-            type="button"
-            onClick={handleNext}
-            className="absolute right-4 top-1/2 inline-flex h-10 w-10 -translate-y-1/2 rounded-sm items-center justify-center bg-white/10 text-white hover:bg-white/20 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-            aria-label="Next image"
-          >
-            <ChevronRight className="h-5 w-5" aria-hidden="true" />
-          </button>
+            <button
+              type="button"
+              onClick={handleNext}
+              className="absolute right-2 top-1/2 z-10 inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/20 text-white hover:bg-white/30 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white md:right-4"
+              aria-label="Next image"
+            >
+              <ChevronRight className="h-5 w-5" aria-hidden="true" />
+            </button>
 
-          <div
-            data-about-animate="zoom"
-            className="flex w-full max-w-5xl flex-col"
-          >
-            <div className="relative w-full bg-black max-h-[80vh] flex items-center justify-center">
-              <img
-                src={activeImage.src}
-                alt={activeImage.alt}
-                className="max-h-[80vh] w-full object-contain"
-              />
-            </div>
-            <div className="flex flex-col gap-2 bg-gradient-to-r from-[#111827] via-[#020617] to-[#111827] px-6 py-4 text-white border-t border-white/10">
-              <div className="inline-flex items-center gap-2 bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em]">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#A1F88B]" />
-                <span className='font-["Inter"]'>{activeImage.category}</span>
+            <div
+              data-about-animate="zoom"
+              className="flex h-full w-full max-w-5xl flex-col"
+            >
+              <div className="relative flex min-h-0 flex-1 items-center justify-center bg-black">
+                <img
+                  src={activeImage.src}
+                  alt={activeImage.alt}
+                  className="max-h-[75vh] w-full max-w-full object-contain md:max-h-[calc(100vh-7rem)] md:max-w-[calc(100vw-4rem)]"
+                />
               </div>
-              <p className='text-sm font-semibold font-["Inter"]'>{activeImage.label}</p>
-              <p className='text-xs text-white/70 font-["Inter"]'>
-                {activeImage.alt}
-              </p>
+              <div className="flex shrink-0 flex-col gap-2 bg-gradient-to-r from-[#111827] via-[#020617] to-[#111827] px-6 py-4 text-white border-t border-white/10">
+                <div className="inline-flex items-center gap-2 bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em]">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#A1F88B]" />
+                  <span className='font-["Inter"]'>{activeImage.category}</span>
+                </div>
+                <p className='text-sm font-semibold font-["Inter"]'>
+                  {activeImage.label}
+                </p>
+                <p className='text-xs text-white/70 font-["Inter"]'>
+                  {activeImage.alt}
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -327,4 +345,3 @@ const Gallery = () => {
 };
 
 export default Gallery;
-
