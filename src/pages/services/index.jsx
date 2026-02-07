@@ -250,8 +250,8 @@ const Services = () => {
       </section>
 
       {/* Contact + estimate form section */}
-      <section className="relative bg-[#E1F8F2] pb-50 pt-10">
-        <div className="mx-auto flex max-w-6xl flex-col md:gap-30 gap-10 px-4 lg:flex-row lg:items-start">
+      <section className="relative bg-[#E1F8F2] pb-24 pt-10">
+        <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 md:gap-24 lg:flex-row lg:items-start">
           {/* Left column: logo, heading, contact details, reviews, call-to-action */}
           <div ref={eighthLeftRef} className="w-full lg:w-1/2">
             <div className="flex flex-col items-center space-y-6 text-center md:items-start md:text-left">

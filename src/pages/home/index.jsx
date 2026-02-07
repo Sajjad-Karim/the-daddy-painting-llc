@@ -172,7 +172,7 @@ const Home = () => {
           <Header />
 
           {/* Hero body */}
-          <section className="mt-8 flex w-full flex-col items-center text-center md:mt-10">
+          <section className="mt-10 flex w-full flex-col items-center text-center md:mt-12">
             {/* Top-rated pill */}
             <div
               ref={heroPillRef}
@@ -449,7 +449,7 @@ const Home = () => {
         id="why-choose-us"
         className="relative bg-[#E1F8F2] pt-10pt-16 pb-16 "
       >
-        <div className="flex flex-col justify-between md:flex-row mx-auto max-w-6xl  ">
+        <div className="mx-auto flex max-w-6xl flex-col justify-between md:flex-row">
           {/* Left image with rounded right corners */}
           <div className="hidden h-full w-full overflow-hidden rounded-r-[60px] md:block md:h-[420px] md:w-[34%] absolute -left-[0px] ">
             <img
@@ -458,10 +458,10 @@ const Home = () => {
               className="h-full w-full object-cover object-[90%]"
             />
           </div>
-          <div className="w-[30%]"></div>
+          <div className="w-[20%]"></div>
 
           {/* Right content */}
-          <div className="w-full px-20 py-8 md:w-[66%] md:px-12">
+          <div className="w-full px-20 py-8 md:w-[70%] md:px-12">
             <h2
               ref={fourthHeadingRef}
               className='mb-8 font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[45px] font-["Rubik_One"] leading-tight'
@@ -583,7 +583,7 @@ const Home = () => {
         ></div>
 
         {/* Hero content including header */}
-        <div className="relative mx-auto flex  max-w-6xl flex-col items-center px-4 pb-10 pt-6 md:pt-4 lg:pt-4">
+        <div className="relative mx-auto flex max-w-6xl flex-col items-center px-4 pb-10 pt-6 md:pt-4 lg:pt-4">
           {/* Hero body */}
           <section className="mt-10 flex w-full flex-col items-center text-center">
             {/* Main heading */}
@@ -615,7 +615,7 @@ const Home = () => {
       </section>
 
       {/* Seventh section: full-width decorative image strip */}
-      <section className="relative  overflow-hidden bg-[#E1F8F2]">
+      <section className="relative overflow-hidden bg-[#E1F8F2]">
         <img
           src={fifthSectionBg}
           alt="Decorative paint texture"
@@ -624,8 +624,8 @@ const Home = () => {
       </section>
 
       {/* Eighth section: contact + estimate form */}
-      <section className="relative bg-[#E1F8F2] pb-50 pt-10">
-        <div className="mx-auto flex max-w-6xl flex-col md:gap-30  gap-10 px-4 lg:flex-row lg:items-start">
+      <section className="relative bg-[#E1F8F2] pb-24 pt-10">
+        <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 md:gap-24 lg:flex-row lg:items-start">
           {/* Left column: logo, heading, contact details, reviews, call-to-action */}
           <div ref={eighthLeftRef} className="w-full lg:w-1/2">
             <div className="flex flex-col items-center space-y-6 text-center md:items-start md:text-left">
@@ -695,7 +695,7 @@ const Home = () => {
               <div className="mt-6 flex flex-wrap items-center justify-center gap-4 md:justify-start">
                 <button
                   type="button"
-                onClick={handleCallNow}
+                  onClick={handleCallNow}
                   className="flex items-center gap-3 rounded-[10px] bg-[#039A02] px-6 py-3 text-sm font-semibold text-white shadow-md cursor-pointer hover:bg-[#02A11F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02]"
                 >
                   <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-white">

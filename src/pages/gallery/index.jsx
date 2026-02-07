@@ -193,7 +193,7 @@ const Gallery = () => {
       </main>
 
       {/* Category filters */}
-      <section className="relative bg-[#E1F8F2] pb-6 pt-16">
+      <section className="relative bg-[#E1F8F2] pb-16 pt-16">
         {/* Top wave border (same as other pages) */}
         <div
           aria-hidden="true"

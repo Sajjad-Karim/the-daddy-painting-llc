@@ -80,7 +80,7 @@ const About = () => {
     <div ref={aboutRootRef}>
       {/* Hero section */}
       <main
-        className="relative  overflow-hidden md:min-h-[550px]"
+        className="relative overflow-hidden md:min-h-[550px]"
         style={{
           backgroundImage: `url(${skyImage})`,
           backgroundSize: "cover",
@@ -477,8 +477,8 @@ const About = () => {
       </section>
 
       {/* Contact + estimate form section */}
-      <section className="relative bg-[#E1F8F2] pb-50 pt-10">
-        <div className="mx-auto flex max-w-6xl flex-col md:gap-30 gap-10 px-4 lg:flex-row lg:items-start">
+      <section className="relative bg-[#E1F8F2] pb-24 pt-10">
+        <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 md:gap-24 lg:flex-row lg:items-start">
           {/* Left column: logo, heading, contact details, reviews, call-to-action */}
           <div
             ref={eighthLeftRef}

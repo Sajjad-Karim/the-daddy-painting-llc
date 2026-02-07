@@ -108,7 +108,7 @@ const ServiceDetail = () => {
         <div className="relative z-10 mx-auto flex max-w-6xl flex-col items-center px-4 pb-12 pt-4 md:min-h-[1000px] md:pb-10 md:pt-4 lg:pt-4">
           <Header />
 
-          <section className="mt-8 flex w-full flex-col items-center text-center md:mt-10">
+          <section className="mt-10 flex w-full flex-col items-center text-center md:mt-12">
             <div
               ref={heroPillRef}
               className="inline-flex max-w-xs items-center gap-2 rounded-sm bg-[#FFFFFF1A] px-6 mb-2 py-2 text-[10px] tracking-wide text-[#1F2933] shadow-sm backdrop-blur md:max-w-none md:text-base"
@@ -586,8 +586,8 @@ const ServiceDetail = () => {
       </section>
 
       {/* Eighth section: contact + estimate form */}
-      <section className="relative bg-[#E1F8F2] pb-50 pt-10">
-        <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 md:gap-30 lg:flex-row lg:items-start">
+      <section className="relative bg-[#E1F8F2] pb-24 pt-10">
+        <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 md:gap-24 lg:flex-row lg:items-start">
           <div ref={eighthLeftRef} className="w-full lg:w-1/2">
             <div className="flex flex-col items-center space-y-6 text-center md:items-start md:text-left">
               <div className="flex justify-center md:justify-start">

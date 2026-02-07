@@ -160,7 +160,7 @@ const WhyChooseUs = () => {
                 src={leftSectionImage}
                 alt="Team painting a home interior"
                 data-about-animate="zoom"
-                className="w-full max-w-md rounded-[80px] object-cover shadow-lg md:max-w-lg"
+                className="w-full max-w-md rounded-[20px] object-cover shadow-lg md:max-w-lg"
               />
             </div>
           </div>
@@ -303,7 +303,7 @@ const WhyChooseUs = () => {
       </section>
 
       {/* WHY NEIGHBORS CHOOSE section – reused from home, with CTA */}
-      <section className="relative bg-[#E1F8F2] pt-10pt-16 pb-16 ">
+      <section className="relative bg-[#E1F8F2] pb-16 pt-16">
         <div className="flex flex-col justify-between md:flex-row mx-auto max-w-6xl">
           {/* Left image with rounded right corners */}
           <div className="hidden h-full w-full overflow-hidden rounded-r-[60px] md:block md:h-[420px] md:w-[34%] absolute -left-[0px]">
@@ -316,7 +316,7 @@ const WhyChooseUs = () => {
           <div className="w-[30%]" />
 
           {/* Right content */}
-          <div className="w-full px-20 py-8 md:w-[66%] md:px-12">
+          <div className="w-full px-20 py-8 md:w-[70%] md:px-12">
             <h2
               data-about-animate="zoom"
               className='mb-8 font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[45px] font-["Rubik_One"] leading-tight'
@@ -340,11 +340,12 @@ const WhyChooseUs = () => {
                   </h3>
                 </div>
                 <p className='text-xs leading-relaxed text-[#2D2928] font-["Inter"]'>
-                  We bring years of hands-on expertise to every job, ensuring professional techniques and long-lasting results.
+                  We bring years of hands-on expertise to every job, ensuring
+                  professional techniques and long-lasting results.
                 </p>
               </div>
 
-            {/* Card 2 */}
+              {/* Card 2 */}
               <div
                 data-about-animate="card"
                 className="rounded-[26px] border-2 h-fit border-[#02B446] px-5 py-6 shadow-sm bg-white/80 backdrop-blur-sm"
@@ -358,7 +359,8 @@ const WhyChooseUs = () => {
                   </h3>
                 </div>
                 <p className='text-xs leading-relaxed text-[#2D2928] font-["Inter"]'>
-                  No hidden fees. We provide clear, free estimates so you know exactly what to expect.
+                  No hidden fees. We provide clear, free estimates so you know
+                  exactly what to expect.
                 </p>
               </div>
 
@@ -376,7 +378,8 @@ const WhyChooseUs = () => {
                   </h3>
                 </div>
                 <p className='text-xs leading-relaxed text-[#2D2928] font-["Inter"]'>
-                  From Powdersville to Laurens, we&apos;re the local painting company committed to beautifying our South Carolina
+                  From Powdersville to Laurens, we&apos;re the local painting
+                  company committed to beautifying our South Carolina
                   neighborhoods.
                 </p>
               </div>
@@ -393,7 +396,9 @@ const WhyChooseUs = () => {
                 <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-white">
                   <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                 </span>
-                <span className='font-["Inter"] font-bold'>Request a Free Estimate</span>
+                <span className='font-["Inter"] font-bold'>
+                  Request a Free Estimate
+                </span>
               </button>
 
               <button
@@ -415,7 +420,7 @@ const WhyChooseUs = () => {
       </section>
 
       {/* Optional: small AI assistant bubble to match brand */}
-      <section className="relative bg-[#E1F8F2] py-10">
+      <section className="relative bg-[#E1F8F2] pb-16 pt-4">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4">
           <div
             data-about-animate="fade-left"
