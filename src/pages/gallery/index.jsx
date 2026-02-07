@@ -193,7 +193,7 @@ const Gallery = () => {
       </main>
 
       {/* Category filters */}
-      <section className="relative bg-[#E1F8F2] pb-16 pt-16">
+      <section className="relative bg-[#E1F8F2] pb-10 pt-10 md:pb-16 md:pt-16">
         {/* Top wave border (same as other pages) */}
         <div
           aria-hidden="true"
@@ -230,7 +230,7 @@ const Gallery = () => {
       </section>
 
       {/* Gallery grid */}
-      <section className="relative bg-[#E1F8F2] pb-16 pt-4">
+      <section className="relative bg-[#E1F8F2] pb-10 pt-6 md:pb-16 md:pt-4">
         <div className="mx-auto max-w-6xl px-4">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-6">
             {visibleItems.map((item, index) => (

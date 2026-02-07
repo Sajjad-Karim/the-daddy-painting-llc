@@ -129,7 +129,7 @@ const About = () => {
       </main>
 
       {/* Company Story section */}
-      <section className="relative bg-[#E1F8F2] pb-16 pt-16">
+      <section className="relative bg-[#E1F8F2] pb-10 pt-10 md:pb-16 md:pt-16">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-x-0 -top-[40px] z-0"
@@ -142,7 +142,7 @@ const About = () => {
         </div>
 
         <div className="relative mx-auto max-w-6xl px-4 pt-4">
-          <div className="grid gap-10 text-[#2D2928] md:grid-cols-2 md:items-center md:gap-12">
+          <div className="grid gap-6 text-[#2D2928] md:grid-cols-2 md:items-center md:gap-12">
             {/* Left column: title + paragraphs */}
             <div className="flex flex-col gap-6">
               <h2
@@ -196,9 +196,9 @@ const About = () => {
       </section>
 
       {/* Commitment to Quality section */}
-      <section className="relative bg-[#E1F8F2] pb-16 pt-4">
+      <section className="relative bg-[#E1F8F2] pb-10 pt-6 md:pb-16 md:pt-4">
         <div className="relative mx-auto max-w-6xl px-4">
-          <div className="grid gap-10 text-[#2D2928] md:grid-cols-2 md:items-center md:gap-12">
+          <div className="grid gap-6 text-[#2D2928] md:grid-cols-2 md:items-center md:gap-12">
             {/* Left column: image */}
             <div
               data-about-animate="fade-left"
@@ -251,17 +251,17 @@ const About = () => {
       </section>
 
       {/* Experience & Expertise section */}
-      <section className="relative bg-[#E1F8F2] pb-16 pt-4">
+      <section className="relative bg-[#E1F8F2] pb-10 pt-6 md:pb-16 md:pt-4">
         <div className="relative mx-auto max-w-6xl px-4">
           <h2
             data-about-animate="zoom"
-            className='mb-10 text-center font-bold text-[#2D2928] sm:text-3xl md:mb-12 md:text-[40px] font-["Rubik_One"] uppercase leading-tight'
+            className='mb-6 text-center font-bold text-[#2D2928] sm:text-3xl md:mb-12 md:text-[40px] font-["Rubik_One"] uppercase leading-tight'
           >
             Experience &amp; Expertise
           </h2>
 
           {/* Feature cards grid */}
-          <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
             {/* Free Estimates */}
             <div
               ref={aboutFeatureCardsRefs[0]}
@@ -360,7 +360,7 @@ const About = () => {
           </div>
 
           {/* Expertise description */}
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
+          <div className="mt-8 grid gap-4 md:mt-12 md:grid-cols-2 md:gap-6">
             <div
               data-about-animate="card"
               className="rounded-[26px] border-2 border-[#02B446] px-5 py-6 shadow-sm"
@@ -407,17 +407,17 @@ const About = () => {
       </section>
 
       {/* Mission & Core Values section */}
-      <section className="relative bg-[#E1F8F2] pb-16 pt-4">
+      <section className="relative bg-[#E1F8F2] pb-10 pt-6 md:pb-16 md:pt-4">
         <div className="relative mx-auto max-w-6xl px-4">
           <h2
             ref={aboutValuesRef}
             data-about-animate="zoom"
-            className='mb-10 text-center font-bold text-[#2D2928] sm:text-3xl md:mb-12 md:text-[40px] font-["Rubik_One"] uppercase leading-tight'
+            className='mb-6 text-center font-bold text-[#2D2928] sm:text-3xl md:mb-12 md:text-[40px] font-["Rubik_One"] uppercase leading-tight'
           >
             Our Mission &amp; Core Values
           </h2>
 
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-3 md:gap-6">
             <div
               data-about-animate="card"
               className="rounded-[26px] border-2 border-[#02B446] px-5 py-6 shadow-sm"
@@ -478,7 +478,7 @@ const About = () => {
 
       {/* Contact + estimate form section */}
       <section className="relative bg-[#E1F8F2] pb-24 pt-10">
-        <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 md:gap-24 lg:flex-row lg:items-start">
+        <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 md:gap-24 lg:flex-row lg:items-start">
           {/* Left column: logo, heading, contact details, reviews, call-to-action */}
           <div
             ref={eighthLeftRef}

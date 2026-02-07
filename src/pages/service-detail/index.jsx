@@ -154,9 +154,9 @@ const ServiceDetail = () => {
 
         <div
           ref={heroCardRef}
-          className="pointer-events-auto absolute bottom-6 left-1/2 z-20 w-[90%] max-w-[360px] -translate-x-1/2 rounded-[26px] border border-white bg-[#FFFFFF1A] px-6 py-4 text-center text-xs text-white backdrop-blur-md shadow-[0_18px_60px_rgba(0,0,0,0.45)] sm:px-8 sm:py-5 sm:text-sm md:bottom-28 md:left-auto md:right-12 md:w-auto md:max-w-[250px] md:-translate-x-0"
+          className="pointer-events-auto absolute bottom-6 left-1/2 z-20 w-[90%] max-w-[360px] -translate-x-1/2 rounded-[26px] border border-white bg-[#FFFFFF1A] px-2 py-2 text-center text-xs text-white backdrop-blur-md shadow-[0_18px_60px_rgba(0,0,0,0.45)] sm:px-8 sm:py-5 sm:text-sm md:bottom-28 md:left-auto md:right-12 md:w-auto md:max-w-[250px] md:-translate-x-0"
         >
-          <p className='font-["Inter"] text-[#2D2928] text-sm leading-relaxed md:text-base'>
+          <p className='font-["Inter"] text-[#2D2928] text-xs leading-relaxed md:text-base'>
             Transform the look and feel of your home with flawless interior
             painting. Whether it’s a single room refresh or a complete home
             makeover, The Daddy's Painting LLC delivers smooth finishes, sharp
@@ -166,7 +166,7 @@ const ServiceDetail = () => {
       </main>
 
       {/* Second section: We treat your home like our own */}
-      <section className="relative bg-[#E1F8F2] pb-16 pt-16">
+      <section className="relative bg-[#E1F8F2] pb-10 pt-10 md:pb-16 md:pt-16">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-x-0 -top-[40px] z-0"
@@ -179,7 +179,7 @@ const ServiceDetail = () => {
         </div>
 
         <div className="relative mx-auto max-w-6xl px-4 pt-4">
-          <div className="grid gap-10 text-[#2D2928] md:grid-cols-2 md:items-center md:gap-12">
+          <div className="grid gap-6 text-[#2D2928] md:grid-cols-2 md:items-center md:gap-12">
             {/* Left column: title + paragraphs */}
             <div className="flex flex-col gap-6">
               <h2
@@ -307,7 +307,7 @@ const ServiceDetail = () => {
       </div>
 
       {/* Fourth section: Why neighbors choose */}
-      <section className="relative bg-[#E1F8F2] pb-16 pt-16">
+      <section className="relative bg-[#E1F8F2] pb-10 pt-10 md:pb-16 md:pt-16">
         <div className="mx-auto flex max-w-6xl flex-col justify-between md:flex-row">
           <div className="absolute -left-[0px] hidden h-full w-full overflow-hidden rounded-r-[60px] md:block md:h-[420px] md:w-[34%]">
             <img
@@ -318,14 +318,14 @@ const ServiceDetail = () => {
           </div>
           <div className="w-[30%]" />
 
-          <div className="w-full px-20 py-8 md:w-[66%] md:px-12">
-            <h2 className='mb-8 font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[45px] font-["Rubik_One"] leading-tight'>
+          <div className="w-full px-4 py-6 md:w-[66%] md:px-12 md:py-8">
+            <h2 className='mb-6 font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mb-8 md:mt-6 md:text-[45px] font-["Rubik_One"] leading-tight'>
               WHY NEIGHBORS CHOOSE THE DADDY&apos;S PAINTING LLC
             </h2>
 
             <div
               ref={detailFourthCardsRef}
-              className="grid gap-6 md:grid-cols-3"
+              className="grid gap-4 md:grid-cols-3 md:gap-6"
             >
               {/* Card 1 */}
               <div
@@ -586,8 +586,8 @@ const ServiceDetail = () => {
       </section>
 
       {/* Eighth section: contact + estimate form */}
-      <section className="relative bg-[#E1F8F2] pb-24 pt-10">
-        <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 md:gap-24 lg:flex-row lg:items-start">
+      <section className="relative bg-[#E1F8F2] pb-10 pt-10 md:pb-24 md:pt-10">
+        <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 md:gap-24 lg:flex-row lg:items-start">
           <div ref={eighthLeftRef} className="w-full lg:w-1/2">
             <div className="flex flex-col items-center space-y-6 text-center md:items-start md:text-left">
               <div className="flex justify-center md:justify-start">

@@ -107,7 +107,7 @@ const WhyChooseUs = () => {
       </main>
 
       {/* Differentiators section */}
-      <section className="relative bg-[#E1F8F2] pb-16 pt-16">
+      <section className="relative bg-[#E1F8F2] pb-10 pt-10 md:pb-16 md:pt-16">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-x-0 -top-[40px] z-0"
@@ -120,7 +120,7 @@ const WhyChooseUs = () => {
         </div>
 
         <div className="relative mx-auto max-w-6xl px-4 pt-4">
-          <div className="grid gap-10 md:grid-cols-2 md:items-center md:gap-12">
+          <div className="grid gap-6 md:grid-cols-2 md:items-center md:gap-12">
             {/* Left: text */}
             <div className="flex flex-col gap-6">
               <h2
@@ -168,16 +168,16 @@ const WhyChooseUs = () => {
       </section>
 
       {/* Why choose cards grid (6 key reasons) */}
-      <section className="relative bg-[#E1F8F2] pb-16 pt-4">
+      <section className="relative bg-[#E1F8F2] pb-10 pt-6 md:pb-16 md:pt-4">
         <div className="relative mx-auto max-w-6xl px-4">
           <h2
             data-about-animate="zoom"
-            className='mb-10 text-center font-bold text-[#2D2928] sm:text-3xl md:mb-12 md:text-[40px] font-["Rubik_One"] uppercase leading-tight'
+            className='mb-6 text-center font-bold text-[#2D2928] sm:text-3xl md:mb-12 md:text-[40px] font-["Rubik_One"] uppercase leading-tight'
           >
             Reasons Homeowners &amp; Businesses Choose Us
           </h2>
 
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-3 md:gap-6">
             {/* 6+ Years of Professional Experience */}
             <div
               data-about-animate="card"
@@ -303,7 +303,7 @@ const WhyChooseUs = () => {
       </section>
 
       {/* WHY NEIGHBORS CHOOSE section – reused from home, with CTA */}
-      <section className="relative bg-[#E1F8F2] pb-16 pt-16">
+      <section className="relative bg-[#E1F8F2] pb-10 pt-10 md:pb-16 md:pt-16">
         <div className="flex flex-col justify-between md:flex-row mx-auto max-w-6xl">
           {/* Left image with rounded right corners */}
           <div className="hidden h-full w-full overflow-hidden rounded-r-[60px] md:block md:h-[420px] md:w-[34%] absolute -left-[0px]">
@@ -316,15 +316,15 @@ const WhyChooseUs = () => {
           <div className="w-[30%]" />
 
           {/* Right content */}
-          <div className="w-full px-20 py-8 md:w-[70%] md:px-12">
+          <div className="w-full px-4 py-6 md:w-[70%] md:px-12 md:py-8">
             <h2
               data-about-animate="zoom"
-              className='mb-8 font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[45px] font-["Rubik_One"] leading-tight'
+              className='mb-6 font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mb-8 md:mt-6 md:text-[45px] font-["Rubik_One"] leading-tight'
             >
               WHY NEIGHBORS CHOOSE THE DADDY&apos;S PAINTING LLC
             </h2>
 
-            <div className="grid gap-6 md:grid-cols-3">
+            <div className="grid gap-4 md:grid-cols-3 md:gap-6">
               {/* Card 1 */}
               <div
                 data-about-animate="card"
@@ -420,7 +420,7 @@ const WhyChooseUs = () => {
       </section>
 
       {/* Optional: small AI assistant bubble to match brand */}
-      <section className="relative bg-[#E1F8F2] pb-16 pt-4">
+      <section className="relative bg-[#E1F8F2] pb-10 pt-6 md:pb-16 md:pt-4">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4">
           <div
             data-about-animate="fade-left"

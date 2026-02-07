@@ -14,6 +14,7 @@ import { SERVICES } from "../../data/services";
 import skyVectorImage from "../../assets/vector.png";
 import skyImage from "../../assets/sky.png";
 import heroHouseImage from "../../assets/home.png";
+import mobileHomeImage from "../../assets/mobileHome.png";
 import borderVectorImage from "../../assets/borderVector.png";
 import thirdSectionBg from "../../assets/thirdSectionBg.png";
 import leftSectionImage from "../../assets/leftimage.png";
@@ -154,16 +155,21 @@ const Home = () => {
           />
         </div>
 
-        {/* House image anchored to bottom, full width */}
+        {/* House image anchored to bottom, full width - mobile vs desktop */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 md:-bottom-0 bottom-[44px] z-0 flex justify-center"
+          data-hero-house
+          className="pointer-events-none absolute inset-x-0 bottom-[40px] z-0 flex justify-center md:-bottom-0"
         >
           <img
-            data-hero-house
+            src={mobileHomeImage}
+            alt="Painted home exterior"
+            className="h-auto w-full object-contain drop-shadow-2xl md:hidden"
+          />
+          <img
             src={heroHouseImage}
             alt="Painted home exterior"
-            className="h-auto w-full object-contain drop-shadow-2xl"
+            className="hidden h-auto w-full object-contain drop-shadow-2xl md:block"
           />
         </div>
 
@@ -227,9 +233,9 @@ const Home = () => {
         {/* Right-bottom transform card */}
         <div
           ref={heroCardRef}
-          className="pointer-events-auto absolute bottom-6 left-1/2 z-20 w-[90%] max-w-[360px] -translate-x-1/2 rounded-[26px] border border-white bg-[#FFFFFF1A] px-6 py-4 text-center text-xs text-white backdrop-blur-md shadow-[0_18px_60px_rgba(0,0,0,0.45)] sm:px-8 sm:py-5 sm:text-sm md:bottom-28 md:left-auto md:right-12 md:w-auto md:max-w-[250px] md:-translate-x-0"
+          className="pointer-events-auto absolute bottom-2 -translate-x-1/2 left-1/11 z-20 w-[90%] max-w-[360px]  rounded-[10px] border border-white bg-[#FFFFFF1A] px-2 py-2 text-center text-xs text-white backdrop-blur-md shadow-[0_18px_60px_rgba(0,0,0,0.45)] sm:px-8 sm:py-5 sm:text-sm md:bottom-28 md:left-auto md:right-12 md:w-auto md:max-w-[250px] md:-translate-x-0"
         >
-          <p className='font-["Inter"] text-sm leading-relaxed'>
+          <p className='font-["Inter"] text-xs leading-relaxed'>
             Transform your property with{" "}
             <span className='font-["Alexandria"] font-semibold'>
               The Daddy&apos;s Painting LLC.
@@ -244,11 +250,14 @@ const Home = () => {
       </main>
 
       {/* Second section: intro copy + feature cards */}
-      <section id="about" className="relative bg-[#E1F8F2] pb-16 pt-16">
+      <section
+        id="about"
+        className="relative bg-[#E1F8F2] pb-10 pt-10 md:pb-16 md:pt-16"
+      >
         {/* Top wave border */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 -top-[40px] z-0"
+          className="pointer-events-none hidden md:block absolute inset-x-0 -top-[40px] z-0"
         >
           <img
             src={borderVectorImage}
@@ -258,7 +267,7 @@ const Home = () => {
         </div>
 
         <div className="relative mx-auto max-w-6xl px-4 pt-4">
-          <div className="grid gap-10 text-[#2D2928] md:grid-cols-3">
+          <div className="grid gap-6 text-[#2D2928] md:grid-cols-3 md:gap-10">
             <div>
               <h2
                 ref={secondHeadingRef}
@@ -291,7 +300,7 @@ const Home = () => {
           </div>
 
           {/* Feature cards */}
-          <div className="mt-10 grid grid-cols-2 gap-6 md:grid-cols-4">
+          <div className="mt-8 grid grid-cols-2 gap-4 md:mt-10 md:grid-cols-4 md:gap-6">
             {/* Free Estimates */}
             <div
               ref={featureCardsRefs[0]}
@@ -385,7 +394,7 @@ const Home = () => {
       </section>
 
       {/* Third section: services grid */}
-      <section className="relative bg-[#E1F8F2] pb-0 md:pb-24 pt-10">
+      <section className="relative bg-[#E1F8F2] pb-10 pt-10 md:pb-24 md:pt-10">
         {/* Dark background strip spanning full width without cropping important details */}
         <div
           aria-hidden="true"
@@ -402,7 +411,7 @@ const Home = () => {
           {/* 3x2 card grid overlapping the strip */}
           <div
             ref={servicesGridRef}
-            className="relative grid grid-cols-2 gap-4 md:gap-10 md:grid-cols-3 -mt-10 mx-auto max-w-6xl px-4"
+            className="relative grid grid-cols-2 gap-3 md:gap-10 md:grid-cols-3 -mt-10 mx-auto max-w-6xl px-4"
           >
             {SERVICES.map((card, index) => {
               const image =
@@ -447,7 +456,7 @@ const Home = () => {
       {/* Fourth section: Why neighbors choose */}
       <section
         id="why-choose-us"
-        className="relative bg-[#E1F8F2] pt-10pt-16 pb-16 "
+        className="relative bg-[#E1F8F2] pb-10 pt-10 md:pb-16 md:pt-16"
       >
         <div className="mx-auto flex max-w-6xl flex-col justify-between md:flex-row">
           {/* Left image with rounded right corners */}
@@ -461,7 +470,7 @@ const Home = () => {
           <div className="w-[20%]"></div>
 
           {/* Right content */}
-          <div className="w-full px-20 py-8 md:w-[70%] md:px-12">
+          <div className="w-full px-4 py-6 md:w-[70%] md:px-12 md:py-8">
             <h2
               ref={fourthHeadingRef}
               className='mb-8 font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[45px] font-["Rubik_One"] leading-tight'
@@ -469,7 +478,7 @@ const Home = () => {
               WHY NEIGHBORS CHOOSE THE DADDY&apos;S PAINTING LLC
             </h2>
 
-            <div className="grid gap-6 md:grid-cols-3">
+            <div className="grid gap-4 md:grid-cols-3 md:gap-6">
               {/* Card 1 */}
               <div
                 ref={benefitCardsRefs[0]}
@@ -624,8 +633,8 @@ const Home = () => {
       </section>
 
       {/* Eighth section: contact + estimate form */}
-      <section className="relative bg-[#E1F8F2] pb-24 pt-10">
-        <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 md:gap-24 lg:flex-row lg:items-start">
+      <section className="relative bg-[#E1F8F2] pb-10 pt-10 md:pb-24 md:pt-10">
+        <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 md:gap-24 lg:flex-row lg:items-start">
           {/* Left column: logo, heading, contact details, reviews, call-to-action */}
           <div ref={eighthLeftRef} className="w-full lg:w-1/2">
             <div className="flex flex-col items-center space-y-6 text-center md:items-start md:text-left">

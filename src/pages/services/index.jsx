@@ -211,7 +211,7 @@ const Services = () => {
       </main>
 
       {/* Painting Services section */}
-      <section className="relative bg-[#E1F8F2] pb-16 pt-16">
+      <section className="relative bg-[#E1F8F2] pb-10 pt-10 md:pb-16 md:pt-16">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-x-0 -top-[40px] z-0"
@@ -224,7 +224,7 @@ const Services = () => {
         </div>
 
         <div className="relative mx-auto max-w-6xl px-4 pt-4">
-          <h2 className='mb-10 font-bold text-[#2D2928] sm:text-3xl md:mb-12 md:text-[40px] font-["Rubik_One"] uppercase leading-tight'>
+          <h2 className='mb-6 font-bold text-[#2D2928] sm:text-3xl md:mb-12 md:text-[40px] font-["Rubik_One"] uppercase leading-tight'>
             Painting Services
           </h2>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
@@ -236,9 +236,9 @@ const Services = () => {
       </section>
 
       {/* Surface Preparation & Finishing section */}
-      <section className="relative bg-[#E1F8F2] pb-16 pt-4">
+      <section className="relative bg-[#E1F8F2] pb-10 pt-6 md:pb-16 md:pt-4">
         <div className="relative mx-auto max-w-6xl px-4">
-          <h2 className='mb-10 font-bold text-[#2D2928] sm:text-3xl md:mb-12 md:text-[40px] font-["Rubik_One"] uppercase leading-tight'>
+          <h2 className='mb-6 font-bold text-[#2D2928] sm:text-3xl md:mb-12 md:text-[40px] font-["Rubik_One"] uppercase leading-tight'>
             Surface Preparation &amp; Finishing
           </h2>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
@@ -250,8 +250,8 @@ const Services = () => {
       </section>
 
       {/* Contact + estimate form section */}
-      <section className="relative bg-[#E1F8F2] pb-24 pt-10">
-        <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 md:gap-24 lg:flex-row lg:items-start">
+      <section className="relative bg-[#E1F8F2] pb-10 pt-10 md:pb-24 md:pt-10">
+        <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 md:gap-24 lg:flex-row lg:items-start">
           {/* Left column: logo, heading, contact details, reviews, call-to-action */}
           <div ref={eighthLeftRef} className="w-full lg:w-1/2">
             <div className="flex flex-col items-center space-y-6 text-center md:items-start md:text-left">
