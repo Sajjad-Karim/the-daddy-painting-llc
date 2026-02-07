@@ -94,7 +94,7 @@ const ChatWidget = () => {
     <>
       {/* Fixed launcher: show only when scrolling down, hide when scrolling up */}
       {showLauncher && !isOpen && (
-        <div className="fixed bottom-8 right-6 z-[9998]">
+        <div className="fixed bottom-4 -right-4 z-[9998]">
           <button
             type="button"
             onClick={handleLauncherClick}

@@ -250,8 +250,8 @@ export const initScrollAnimations = (refs) => {
         { clipPath: "inset(100% 0% 0% 0%)" },
         {
           clipPath: "inset(0% 0% 0% 0%)",
-          duration: 2.5,
-          delay: index * 0.28,
+          duration: 2.1,
+          delay: index * 0.24,
           ease: "power3.inOut",
           immediateRender: false,
           scrollTrigger: {
@@ -278,8 +278,8 @@ export const initScrollAnimations = (refs) => {
           x: 0,
           scale: 1,
           filter: "blur(0px)",
-          duration: 3.5,
-          delay: index * 0.38,
+          duration: 3.0,
+          delay: index * 0.32,
           ease: cardEase,
           overwrite: "auto",
           immediateRender: false,
@@ -300,8 +300,8 @@ export const initScrollAnimations = (refs) => {
           {
             opacity: 1,
             y: 0,
-            duration: 1.8,
-            delay: index * 0.28 + 1.0,
+            duration: 1.5,
+            delay: index * 0.24 + 0.85,
             ease: "power3.out",
             immediateRender: false,
             scrollTrigger: {
@@ -319,9 +319,9 @@ export const initScrollAnimations = (refs) => {
             {
               opacity: 1,
               y: 0,
-              duration: 1.2,
-              stagger: 0.2,
-              delay: index * 0.28 + 1.2,
+              duration: 1.0,
+              stagger: 0.17,
+              delay: index * 0.24 + 1.0,
               ease: "power2.out",
               immediateRender: false,
               scrollTrigger: {
@@ -344,7 +344,7 @@ export const initScrollAnimations = (refs) => {
           trigger: card,
           start: "top 84%",
           end: "top 36%",
-          scrub: 3.5,
+          scrub: 3.0,
         },
       });
     }
