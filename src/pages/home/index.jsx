@@ -32,7 +32,6 @@ import residentialIcon from "../../assets/icons/residential.png";
 import fifthSectionBg from "../../assets/fifthSection.png";
 import contactLogoImage from "../../assets/logo.png";
 import googleImage from "../../assets/google.png";
-import aiIcon from "../../assets/start.png";
 import {
   initScrollAnimations,
   cleanupScrollAnimations,
@@ -94,12 +93,6 @@ const Home = () => {
     window.alert(
       "Thank you! Your free estimate request has been received. We'll contact you shortly.",
     );
-  };
-
-  const handleOpenChat = () => {
-    if (window.__openChatWidget) {
-      window.__openChatWidget();
-    }
   };
 
   useEffect(() => {
@@ -233,7 +226,7 @@ const Home = () => {
         {/* Right-bottom transform card */}
         <div
           ref={heroCardRef}
-          className="pointer-events-auto absolute bottom-2 -translate-x-1/2 left-1/11 z-20 w-[90%] max-w-[360px]  rounded-[10px] border border-white bg-[#FFFFFF1A] px-2 py-2 text-center text-xs text-white backdrop-blur-md shadow-[0_18px_60px_rgba(0,0,0,0.45)] sm:px-8 sm:py-5 sm:text-sm md:bottom-28 md:left-auto md:right-12 md:w-auto md:max-w-[250px] md:-translate-x-0"
+          className="pointer-events-auto absolute bottom-2 left-0 right-0 z-20 mx-auto w-[90%] max-w-[360px] rounded-[10px] border border-white bg-[#FFFFFF1A] px-2 py-2 text-center text-xs text-white backdrop-blur-md shadow-[0_18px_60px_rgba(0,0,0,0.45)] sm:px-8 sm:py-5 sm:text-sm md:bottom-28 md:left-auto md:right-12 md:mx-0 md:w-auto md:max-w-[250px]"
         >
           <p className='font-["Inter"] text-xs leading-relaxed'>
             Transform your property with{" "}
@@ -785,30 +778,6 @@ const Home = () => {
               </button>
             </div>
           </div>
-        </div>
-
-        {/* Talk to our AI bubble + icon (original home UI, now opens chat) */}
-        <div className="pointer-events-auto absolute bottom-10 right-5">
-          <button
-            type="button"
-            onClick={handleOpenChat}
-            className="relative cursor-pointer"
-            aria-label="Talk to our AI assistant"
-          >
-            <div className="relative">
-              {/* Speech bubble */}
-              <div className="inline-flex items-center rounded-md w-fit bg-white px-3.5 py-1.5 text-[11px] font-extrabold text-base text-[#02A11F] shadow-md relative -left-20 -top-1">
-                Talk to our AI
-              </div>
-
-              {/* Green circular AI icon */}
-              <img
-                src={aiIcon}
-                alt="AI assistant"
-                className="h-20 w-20 object-contain"
-              />
-            </div>
-          </button>
         </div>
       </section>
     </>

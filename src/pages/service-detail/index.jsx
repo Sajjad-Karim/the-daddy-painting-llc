@@ -32,7 +32,6 @@ import residentialIcon from "../../assets/icons/residential.png";
 import fifthSectionBg from "../../assets/fifthSection.png";
 import contactLogoImage from "../../assets/logo.png";
 import googleImage from "../../assets/google.png";
-import aiIcon from "../../assets/start.png";
 import {
   initDetailScrollAnimations,
   cleanupScrollAnimations,
@@ -154,7 +153,7 @@ const ServiceDetail = () => {
 
         <div
           ref={heroCardRef}
-          className="pointer-events-auto absolute bottom-6 left-1/2 z-20 w-[90%] max-w-[360px] -translate-x-1/2 rounded-[26px] border border-white bg-[#FFFFFF1A] px-2 py-2 text-center text-xs text-white backdrop-blur-md shadow-[0_18px_60px_rgba(0,0,0,0.45)] sm:px-8 sm:py-5 sm:text-sm md:bottom-28 md:left-auto md:right-12 md:w-auto md:max-w-[250px] md:-translate-x-0"
+          className="pointer-events-auto absolute bottom-6 left-1/2 z-20 w-[90%] max-w-[360px] -translate-x-1/2 rounded-[26px] border border-white bg-[#FFFFFF1A] px-6 py-4 text-center text-xs text-white backdrop-blur-md shadow-[0_18px_60px_rgba(0,0,0,0.45)] sm:px-8 sm:py-5 sm:text-sm md:bottom-28 md:left-auto md:right-12 md:w-auto md:max-w-[250px] md:-translate-x-0"
         >
           <p className='font-["Inter"] text-[#2D2928] text-xs leading-relaxed md:text-base'>
             Transform the look and feel of your home with flawless interior
@@ -725,19 +724,6 @@ const ServiceDetail = () => {
                 </span>
               </button>
             </div>
-          </div>
-        </div>
-
-        <div className="pointer-events-auto absolute bottom-10 right-5">
-          <div className="relative">
-            <div className="relative -left-20 -top-1 inline-flex w-fit items-center rounded-md bg-white px-3.5 py-1.5 text-[11px] font-extrabold text-base text-[#02A11F] shadow-md">
-              Talk to our AI
-            </div>
-            <img
-              src={aiIcon}
-              alt="AI assistant"
-              className="h-20 w-20 object-contain"
-            />
           </div>
         </div>
       </section>

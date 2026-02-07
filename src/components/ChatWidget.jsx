@@ -2,8 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import { MessageCircle, X, ArrowUpRight } from "lucide-react";
 import aiIcon from "../assets/start.png";
 
+const SCROLL_THRESHOLD = 100;
+
 const ChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showLauncher, setShowLauncher] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [messages, setMessages] = useState([
     {
@@ -36,8 +39,7 @@ const ChatWidget = () => {
         {
           id: Date.now() + 1,
           from: "assistant",
-          text:
-            "Thanks for sharing! For a detailed, free estimate, please use the form on this page or tap the “Request Free Estimate” button.",
+          text: "Thanks for sharing! For a detailed, free estimate, please use the form on this page or tap the “Request Free Estimate” button.",
         },
       ]);
     }, 700);
@@ -50,7 +52,6 @@ const ChatWidget = () => {
   }, [messages, isOpen]);
 
   useEffect(() => {
-    // Expose simple global open/close so existing \"Talk to our AI\" UI can trigger this
     window.__openChatWidget = () => setIsOpen(true);
     window.__closeChatWidget = () => setIsOpen(false);
 
@@ -64,8 +65,56 @@ const ChatWidget = () => {
     };
   }, []);
 
+  const lastScrollYRef = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY <= SCROLL_THRESHOLD) {
+        setShowLauncher(false);
+      } else if (currentScrollY > lastScrollYRef.current) {
+        setShowLauncher(true);
+      } else {
+        setShowLauncher(false);
+      }
+
+      lastScrollYRef.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleLauncherClick = () => {
+    setIsOpen(true);
+  };
+
   return (
     <>
+      {/* Fixed launcher: show only when scrolling down, hide when scrolling up */}
+      {showLauncher && !isOpen && (
+        <div className="fixed bottom-8 right-6 z-[9998]">
+          <button
+            type="button"
+            onClick={handleLauncherClick}
+            className="group relative cursor-pointer"
+            aria-label="Talk to our AI assistant"
+          >
+            <div className="relative">
+              <div className="inline-flex items-center rounded-md w-fit bg-white px-3.5 py-1.5 text-[11px] font-extrabold text-[#02A11F] shadow-md relative -left-20 -top-1 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                Talk to our AI
+              </div>
+              <img
+                src={aiIcon}
+                alt="AI assistant"
+                className="h-14 w-14 object-contain"
+              />
+            </div>
+          </button>
+        </div>
+      )}
+
       {/* Panel */}
       {isOpen && (
         <div className="fixed bottom-24 right-4 z-[9999] w-[min(100vw-2rem,360px)] rounded-2xl border border-white/10 bg-[#020617]/95 p-3 shadow-[0_24px_70px_rgba(0,0,0,0.75)] backdrop-blur-lg">
@@ -119,7 +168,10 @@ const ChatWidget = () => {
           </div>
 
           {/* Footer / input */}
-          <form onSubmit={handleSubmit} className="mt-3 flex items-center gap-2">
+          <form
+            onSubmit={handleSubmit}
+            className="mt-3 flex items-center gap-2"
+          >
             <input
               type="text"
               value={inputValue}
@@ -142,4 +194,3 @@ const ChatWidget = () => {
 };
 
 export default ChatWidget;
-

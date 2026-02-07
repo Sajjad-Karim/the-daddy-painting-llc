@@ -23,7 +23,6 @@ import drywallServiceImage from "../../assets/services/drywall.png";
 import tickIcon from "../../assets/tick.png";
 import contactLogoImage from "../../assets/logo.png";
 import googleImage from "../../assets/google.png";
-import aiIcon from "../../assets/start.png";
 import {
   initServicesScrollAnimations,
   cleanupScrollAnimations,
@@ -397,23 +396,6 @@ const Services = () => {
                 </span>
               </button>
             </div>
-          </div>
-        </div>
-
-        {/* Talk to our AI bubble + icon */}
-        <div className="pointer-events-auto absolute bottom-10 right-5">
-          <div className="relative">
-            {/* Speech bubble */}
-            <div className="inline-flex items-center rounded-md w-fit bg-white px-3.5 py-1.5 text-[11px] font-extrabold text-base text-[#02A11F] shadow-md relative -left-20 -top-1">
-              Talk to our AI
-            </div>
-
-            {/* Green circular AI icon */}
-            <img
-              src={aiIcon}
-              alt="AI assistant"
-              className="h-20 w-20 object-contain"
-            />
           </div>
         </div>
       </section>

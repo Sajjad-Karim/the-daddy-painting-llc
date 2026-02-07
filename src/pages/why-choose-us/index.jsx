@@ -17,7 +17,6 @@ import leftSectionImage from "../../assets/leftimage.png";
 import tickIcon from "../../assets/tick.png";
 import contactLogoImage from "../../assets/logo.png";
 import googleImage from "../../assets/google.png";
-import aiIcon from "../../assets/start.png";
 import {
   initAboutScrollAnimations,
   cleanupScrollAnimations,
@@ -431,18 +430,6 @@ const WhyChooseUs = () => {
               here to help you make confident decisions—and keep your project
               running smoothly from start to finish.
             </p>
-          </div>
-          <div data-about-animate="rotate" className="pointer-events-auto">
-            <div className="relative">
-              <div className="inline-flex items-center rounded-md w-fit bg-white px-3.5 py-1.5 text-[11px] font-extrabold text-base text-[#02A11F] shadow-md relative -left-20 -top-1">
-                Talk to our AI
-              </div>
-              <img
-                src={aiIcon}
-                alt="AI assistant"
-                className="h-20 w-20 object-contain"
-              />
-            </div>
           </div>
         </div>
       </section>
