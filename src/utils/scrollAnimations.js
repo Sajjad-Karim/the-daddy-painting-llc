@@ -44,7 +44,7 @@ export const initScrollAnimations = (refs) => {
         opacity: 1,
         y: 0,
         scale: 1,
-        duration: 1.1,
+        duration: 1.35,
         ease: "back.out(1.4)",
         immediateRender: false,
         scrollTrigger: {
@@ -70,7 +70,7 @@ export const initScrollAnimations = (refs) => {
         y: 0,
         scale: 1,
         x: 0,
-        duration: 1.2,
+        duration: 1.45,
         ease: "power3.out",
         immediateRender: false,
         scrollTrigger: {
@@ -94,8 +94,8 @@ export const initScrollAnimations = (refs) => {
         opacity: 1,
         y: 0,
         scale: 1,
-        duration: 0.9,
-        stagger: 0.2,
+        duration: 1.15,
+        stagger: 0.28,
         ease: "back.out(1.5)",
         immediateRender: false,
         scrollTrigger: {
@@ -121,7 +121,7 @@ export const initScrollAnimations = (refs) => {
         x: 0,
         scale: 1,
         rotation: 0,
-        duration: 1.1,
+        duration: 1.35,
         ease: "power3.out",
         immediateRender: false,
         scrollTrigger: {
@@ -146,7 +146,7 @@ export const initScrollAnimations = (refs) => {
         opacity: 1,
         x: 0,
         scale: 1,
-        duration: 0.9,
+        duration: 1.15,
         ease: "power3.out",
         immediateRender: false,
         scrollTrigger: {
@@ -172,8 +172,8 @@ export const initScrollAnimations = (refs) => {
             opacity: 1,
             y: 0,
             x: 0,
-            duration: 0.7,
-            delay: index * 0.1,
+            duration: 0.95,
+            delay: index * 0.15,
             ease: "power2.out",
             immediateRender: false,
             scrollTrigger: {
@@ -204,8 +204,8 @@ export const initScrollAnimations = (refs) => {
             scale: 1,
             y: 0,
             rotation: 0,
-            duration: 0.7,
-            delay: index * 0.1,
+            duration: 1.0,
+            delay: index * 0.15,
             ease: "back.out(1.3)",
             immediateRender: false,
             scrollTrigger: {
@@ -250,8 +250,8 @@ export const initScrollAnimations = (refs) => {
         { clipPath: "inset(100% 0% 0% 0%)" },
         {
           clipPath: "inset(0% 0% 0% 0%)",
-          duration: 0.95,
-          delay: index * 0.11,
+          duration: 2.5,
+          delay: index * 0.28,
           ease: "power3.inOut",
           immediateRender: false,
           scrollTrigger: {
@@ -278,8 +278,8 @@ export const initScrollAnimations = (refs) => {
           x: 0,
           scale: 1,
           filter: "blur(0px)",
-          duration: 1.15,
-          delay: index * 0.11,
+          duration: 3.5,
+          delay: index * 0.38,
           ease: cardEase,
           overwrite: "auto",
           immediateRender: false,
@@ -300,8 +300,8 @@ export const initScrollAnimations = (refs) => {
           {
             opacity: 1,
             y: 0,
-            duration: 0.8,
-            delay: index * 0.11 + 0.45,
+            duration: 1.8,
+            delay: index * 0.28 + 1.0,
             ease: "power3.out",
             immediateRender: false,
             scrollTrigger: {
@@ -319,9 +319,9 @@ export const initScrollAnimations = (refs) => {
             {
               opacity: 1,
               y: 0,
-              duration: 0.5,
-              stagger: 0.09,
-              delay: index * 0.11 + 0.65,
+              duration: 1.2,
+              stagger: 0.2,
+              delay: index * 0.28 + 1.2,
               ease: "power2.out",
               immediateRender: false,
               scrollTrigger: {
@@ -344,7 +344,7 @@ export const initScrollAnimations = (refs) => {
           trigger: card,
           start: "top 84%",
           end: "top 36%",
-          scrub: 1.3,
+          scrub: 3.5,
         },
       });
     }
@@ -365,7 +365,7 @@ export const initScrollAnimations = (refs) => {
         opacity: 1,
         x: 0,
         scale: 1,
-        duration: 0.9,
+        duration: 1.15,
         ease: "power3.out",
         immediateRender: false,
         scrollTrigger: {
@@ -395,8 +395,8 @@ export const initScrollAnimations = (refs) => {
             scale: 1,
             rotationX: 0,
             transformOrigin: "center bottom",
-            duration: 0.7,
-            delay: index * 0.15,
+            duration: 1.0,
+            delay: index * 0.2,
             ease: "power3.out",
             immediateRender: false,
             scrollTrigger: {
@@ -423,7 +423,7 @@ export const initScrollAnimations = (refs) => {
         opacity: 1,
         scale: 1,
         y: 0,
-        duration: 0.8,
+        duration: 1.1,
         ease: "power3.out",
         immediateRender: false,
         scrollTrigger: {
@@ -448,7 +448,7 @@ export const initScrollAnimations = (refs) => {
         opacity: 1,
         x: 0,
         scale: 1,
-        duration: 0.9,
+        duration: 1.15,
         ease: "power3.out",
         immediateRender: false,
         scrollTrigger: {
@@ -474,7 +474,7 @@ export const initScrollAnimations = (refs) => {
         x: 0,
         scale: 1,
         y: 0,
-        duration: 0.9,
+        duration: 1.15,
         ease: "power3.out",
         immediateRender: false,
         scrollTrigger: {
@@ -496,7 +496,7 @@ export const initScrollAnimations = (refs) => {
         trigger: heroHouseRef,
         start: "top bottom",
         end: "bottom top",
-        scrub: 1,
+        scrub: 1.8,
       },
     });
   }
@@ -534,7 +534,7 @@ export const initDetailScrollAnimations = (refs) => {
         opacity: 1,
         y: 0,
         scale: 1,
-        duration: 1.1,
+        duration: 1.35,
         ease: "back.out(1.4)",
         immediateRender: false,
         scrollTrigger: {
@@ -554,7 +554,7 @@ export const initDetailScrollAnimations = (refs) => {
         y: 0,
         scale: 1,
         x: 0,
-        duration: 1.2,
+        duration: 1.45,
         ease: "power3.out",
         immediateRender: false,
         scrollTrigger: {
@@ -573,8 +573,8 @@ export const initDetailScrollAnimations = (refs) => {
         opacity: 1,
         y: 0,
         scale: 1,
-        duration: 0.9,
-        stagger: 0.2,
+        duration: 1.15,
+        stagger: 0.28,
         ease: "back.out(1.5)",
         immediateRender: false,
         scrollTrigger: {
@@ -594,7 +594,7 @@ export const initDetailScrollAnimations = (refs) => {
         x: 0,
         scale: 1,
         rotation: 0,
-        duration: 1.1,
+        duration: 1.35,
         ease: "power3.out",
         immediateRender: false,
         scrollTrigger: {
@@ -617,7 +617,7 @@ export const initDetailScrollAnimations = (refs) => {
         opacity: 1,
         x: 0,
         scale: 1,
-        duration: 0.95,
+        duration: 1.2,
         ease: "power3.out",
         immediateRender: false,
         scrollTrigger: {
@@ -636,8 +636,8 @@ export const initDetailScrollAnimations = (refs) => {
       {
         opacity: 1,
         y: 0,
-        duration: 0.85,
-        delay: 0.18 + index * 0.14,
+        duration: 1.1,
+        delay: 0.22 + index * 0.18,
         ease: "power3.out",
         immediateRender: false,
         scrollTrigger: {
@@ -662,8 +662,8 @@ export const initDetailScrollAnimations = (refs) => {
         x: 0,
         scale: 1,
         filter: "blur(0px)",
-        duration: 1.05,
-        delay: 0.35,
+        duration: 1.35,
+        delay: 0.45,
         ease: "back.out(1.12)",
         immediateRender: false,
         scrollTrigger: {
@@ -682,8 +682,8 @@ export const initDetailScrollAnimations = (refs) => {
       { clipPath: "inset(100% 0% 0% 0%)" },
       {
         clipPath: "inset(0% 0% 0% 0%)",
-        duration: 0.9,
-        delay: index * 0.12,
+        duration: 1.25,
+        delay: index * 0.18,
         ease: "power3.inOut",
         immediateRender: false,
         scrollTrigger: {
@@ -708,8 +708,8 @@ export const initDetailScrollAnimations = (refs) => {
         y: 0,
         scale: 1,
         filter: "blur(0px)",
-        duration: 1.1,
-        delay: index * 0.12,
+        duration: 1.45,
+        delay: index * 0.18,
         ease: "power3.out",
         overwrite: "auto",
         immediateRender: false,
@@ -732,8 +732,8 @@ export const initDetailScrollAnimations = (refs) => {
         {
           opacity: 1,
           y: 0,
-          duration: 0.7,
-          delay: index * 0.12 + 0.35,
+          duration: 1.0,
+          delay: index * 0.18 + 0.55,
           ease: "power3.out",
           immediateRender: false,
           scrollTrigger: {
@@ -755,7 +755,7 @@ export const initDetailScrollAnimations = (refs) => {
         trigger: card,
         start: "top 84%",
         end: "top 38%",
-        scrub: 1.2,
+        scrub: 2.0,
       },
     });
   };
@@ -788,7 +788,7 @@ export const initDetailScrollAnimations = (refs) => {
         opacity: 1,
         x: 0,
         scale: 1,
-        duration: 0.9,
+        duration: 1.15,
         ease: "power3.out",
         immediateRender: false,
         scrollTrigger: {
@@ -808,7 +808,7 @@ export const initDetailScrollAnimations = (refs) => {
         x: 0,
         scale: 1,
         y: 0,
-        duration: 0.9,
+        duration: 1.15,
         ease: "power3.out",
         immediateRender: false,
         scrollTrigger: {
@@ -863,9 +863,9 @@ export const initServicesScrollAnimations = (refs) => {
       rotation: 0,
       scale: 1,
       y: 0,
-      duration: 1.1,
+      duration: 1.5,
       ease: "back.out(1.2)",
-      delay: index * 0.08,
+      delay: index * 0.15,
       immediateRender: false,
       scrollTrigger: {
         trigger: card,
@@ -885,9 +885,9 @@ export const initServicesScrollAnimations = (refs) => {
       gsap.to(imageWrap, {
         rotation: 0,
         opacity: 1,
-        duration: 1,
+        duration: 1.3,
         ease: "power3.out",
-        delay: index * 0.08 + 0.1,
+        delay: index * 0.15 + 0.18,
         immediateRender: false,
         scrollTrigger: {
           trigger: card,
@@ -910,9 +910,9 @@ export const initServicesScrollAnimations = (refs) => {
         rotation: 0,
         opacity: 1,
         scale: 1,
-        duration: 0.8,
+        duration: 1.1,
         ease: "elastic.out(1, 0.5)",
-        delay: index * 0.08 + 0.25,
+        delay: index * 0.15 + 0.35,
         immediateRender: false,
         scrollTrigger: {
           trigger: card,
@@ -935,9 +935,9 @@ export const initServicesScrollAnimations = (refs) => {
         rotation: 0,
         opacity: 1,
         y: 0,
-        duration: 0.9,
+        duration: 1.2,
         ease: "power3.out",
-        delay: index * 0.08 + 0.3,
+        delay: index * 0.15 + 0.4,
         immediateRender: false,
         scrollTrigger: {
           trigger: card,
@@ -960,10 +960,10 @@ export const initServicesScrollAnimations = (refs) => {
         rotation: 0,
         opacity: 1,
         scale: 1,
-        duration: 0.5,
-        stagger: 0.08,
+        duration: 0.8,
+        stagger: 0.12,
         ease: "back.out(1.3)",
-        delay: index * 0.08 + 0.45,
+        delay: index * 0.15 + 0.6,
         immediateRender: false,
         scrollTrigger: {
           trigger: card,
@@ -983,7 +983,7 @@ export const initServicesScrollAnimations = (refs) => {
         trigger: card,
         start: "top 85%",
         end: "top 60%",
-        scrub: 1.2,
+        scrub: 2.0,
       },
     });
 
@@ -996,7 +996,7 @@ export const initServicesScrollAnimations = (refs) => {
         trigger: card,
         start: "top 60%",
         end: "top 40%",
-        scrub: 1.2,
+        scrub: 2.0,
       },
     });
 
@@ -1009,7 +1009,7 @@ export const initServicesScrollAnimations = (refs) => {
         trigger: card,
         start: "top 40%",
         end: "top 15%",
-        scrub: 1.2,
+        scrub: 2.0,
       },
     });
 
@@ -1022,7 +1022,7 @@ export const initServicesScrollAnimations = (refs) => {
           trigger: card,
           start: "top 80%",
           end: "top 20%",
-          scrub: 1.5,
+          scrub: 2.2,
         },
       });
     }
@@ -1036,7 +1036,7 @@ export const initServicesScrollAnimations = (refs) => {
           trigger: card,
           start: "top 70%",
           end: "top 30%",
-          scrub: 1.6,
+          scrub: 2.2,
         },
       });
     }
@@ -1051,7 +1051,7 @@ export const initServicesScrollAnimations = (refs) => {
         trigger: card,
         start: "top 75%",
         end: "top 35%",
-        scrub: 1.2,
+        scrub: 2.0,
       },
     });
   });
@@ -1065,7 +1065,7 @@ export const initServicesScrollAnimations = (refs) => {
         opacity: 1,
         x: 0,
         scale: 1,
-        duration: 0.9,
+        duration: 1.15,
         ease: "power3.out",
         immediateRender: false,
         scrollTrigger: {
@@ -1073,7 +1073,7 @@ export const initServicesScrollAnimations = (refs) => {
           start: "top 80%",
           toggleActions: "play none none reverse",
         },
-      }
+      },
     );
   }
   if (eighthFormRef?.current) {
@@ -1085,7 +1085,7 @@ export const initServicesScrollAnimations = (refs) => {
         x: 0,
         scale: 1,
         y: 0,
-        duration: 0.9,
+        duration: 1.15,
         ease: "power3.out",
         immediateRender: false,
         scrollTrigger: {
@@ -1093,7 +1093,7 @@ export const initServicesScrollAnimations = (refs) => {
           start: "top 80%",
           toggleActions: "play none none reverse",
         },
-      }
+      },
     );
   }
 
@@ -1163,7 +1163,7 @@ export const initAboutScrollAnimations = (refs) => {
       scale: 1,
       rotation: 0,
       filter: "blur(0px)",
-      duration: type === "card" ? 0.95 : 0.85,
+      duration: type === "card" ? 1.2 : 1.1,
       ease: type === "rotate" ? "back.out(1.15)" : "power3.out",
       immediateRender: false,
       scrollTrigger: {
