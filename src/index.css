@@ -239,3 +239,75 @@
   writing-mode: vertical-lr;
   transform: rotate(180deg);
 }
+
+/* Premium micro-animations – Apple/Stripe/Linear style */
+/* power2.out ≈ cubic-bezier(0.33, 0, 0.2, 1) */
+:root {
+  --ease-subtle: cubic-bezier(0.33, 0, 0.2, 1);
+  --ease-smooth: cubic-bezier(0.25, 0, 0.2, 1);
+  --duration-micro: 0.2s;
+  --duration-quick: 0.35s;
+}
+
+/* Buttons: hover, tap, focus – subtle and fluid */
+button:not(:disabled),
+[role="button"]:not(:disabled),
+a[data-slot="button"] {
+  transition:
+    transform var(--duration-micro) var(--ease-subtle),
+    box-shadow var(--duration-quick) var(--ease-smooth),
+    background-color var(--duration-quick) var(--ease-smooth),
+    color var(--duration-quick) var(--ease-smooth),
+    border-color var(--duration-quick) var(--ease-smooth);
+}
+button:not(:disabled):hover,
+[role="button"]:not(:disabled):hover,
+a[data-slot="button"]:hover {
+  transform: translateY(-1px);
+}
+button:not(:disabled):active,
+[role="button"]:not(:disabled):active,
+a[data-slot="button"]:active {
+  transform: translateY(0) scale(0.98);
+}
+@media (prefers-reduced-motion: reduce) {
+  button:not(:disabled),
+  [role="button"]:not(:disabled),
+  a[data-slot="button"] {
+    transition: none;
+  }
+  button:not(:disabled):hover,
+  [role="button"]:not(:disabled):hover,
+  a[data-slot="button"]:hover,
+  button:not(:disabled):active,
+  [role="button"]:not(:disabled):active,
+  a[data-slot="button"]:active {
+    transform: none;
+  }
+}
+
+/* Cards: enter + subtle depth on hover */
+[data-service-card],
+[data-services-card],
+[data-about-animate],
+[data-detail-card] {
+  transition:
+    transform var(--duration-quick) var(--ease-smooth),
+    box-shadow var(--duration-quick) var(--ease-smooth);
+}
+[data-service-card]:hover,
+[data-services-card]:hover {
+  transform: translateY(-2px);
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-service-card],
+  [data-services-card],
+  [data-about-animate],
+  [data-detail-card] {
+    transition: none;
+  }
+  [data-service-card]:hover,
+  [data-services-card]:hover {
+    transform: none;
+  }
+}

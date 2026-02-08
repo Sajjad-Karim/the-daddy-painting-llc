@@ -43,6 +43,7 @@ const Header = () => {
 
   useEffect(() => {
     const isMobile = window.matchMedia("(max-width: 767px)").matches;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (isMenuOpen) {
       setIsAnimating(true);
@@ -59,7 +60,17 @@ const Header = () => {
         display: "flex",
       });
 
-      if (isMobile) {
+      if (reduceMotion) {
+        gsap.set(menuOverlayRef.current, { opacity: 1, display: "flex" });
+        gsap.set(rightPanelRef.current, { opacity: 1 });
+        gsap.set(logoRef.current, { opacity: 1 });
+        gsap.set(closeButtonRef.current, { opacity: 1 });
+        menuItemsRef.current.forEach((item) => item && gsap.set(item, { opacity: 1, x: 0, y: 0, scale: 1, rotation: 0 }));
+        gsap.set(socialIconsRef.current, { opacity: 1, y: 0, scale: 1, rotation: 0 });
+        gsap.set(bottomSectionRef.current, { opacity: 1, y: 0, scale: 1, rotationX: 0 });
+        leftImageRef.current && gsap.set(leftImageRef.current, { clipPath: "inset(0 0 0 0)", x: 0 });
+        tl.to({}, { duration: 0, onComplete: () => setIsAnimating(false) });
+      } else if (isMobile) {
         // Mobile: simple fade-only animations to avoid layout shift and performance issues
         gsap.set(leftImageRef.current, { opacity: 0 });
         gsap.set(rightPanelRef.current, { opacity: 0 });
@@ -199,7 +210,10 @@ const Header = () => {
         onComplete: () => setIsAnimating(false),
       });
 
-      if (isMobile) {
+      if (reduceMotion) {
+        gsap.set(menuOverlayRef.current, { opacity: 0 });
+        closeTl.to({}, { duration: 0 });
+      } else if (isMobile) {
         // Mobile: simple fade-out
         closeTl
           .to(bottomSectionRef.current, { opacity: 0, y: 16, duration: 0.2 }, 0)
