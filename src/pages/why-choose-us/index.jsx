@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { CONTACT } from "../../data/contact";
 import { Link } from "react-router-dom";
 import {
   ArrowUpRight,
@@ -27,7 +28,7 @@ const WhyChooseUs = () => {
   const rootRef = useRef(null);
 
   const handleCallNow = () => {
-    window.location.href = "tel:+18644512806";
+    window.location.href = CONTACT.phoneHref;
   };
 
   const handleRequestEstimateClick = () => {
@@ -412,7 +413,7 @@ const WhyChooseUs = () => {
                   <Phone className="h-4 w-4" aria-hidden="true" />
                 </span>
                 <span className='font-["Alexandria"]'>
-                  Or Call Now: <span className="font-bold">(864) 451-2806</span>
+                  Or Call Now: <span className="font-bold">{CONTACT.phoneDisplay}</span>
                 </span>
               </button>
             </div>

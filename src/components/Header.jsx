@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 import { Menu, Phone, ArrowUpRight, X } from "lucide-react";
 import { gsap } from "gsap";
+import { CONTACT, SOCIAL } from "../data/contact";
 import logoImage from "../assets/logo.png";
 import whiteLogoImage from "../assets/whiteLogo.png";
 import menuLeftImage from "../assets/Rectangle.png";
@@ -23,7 +24,7 @@ const Header = () => {
   const timelineRef = useRef(null);
 
   const handleCallNow = () => {
-    window.location.href = "tel:+18644512806";
+    window.location.href = CONTACT.phoneHref;
   };
 
   const handleRequestEstimate = () => {
@@ -325,7 +326,7 @@ const Header = () => {
             <span className='font-["Inter"] leading-tight'>
               <span className="block">Call Now</span>
               <span className="block text-[9px] font-semibold">
-                (864) 451-2806
+                {CONTACT.phoneDisplay}
               </span>
             </span>
           </button>
@@ -388,7 +389,7 @@ const Header = () => {
                 </span>
                 <div className="leading-tight text-[#039A02]">
                   <p className="text-sm font-semibold">Call Now</p>
-                  <p className="text-sm font-semibold">(864) 451-2806</p>
+                  <p className="text-sm font-semibold">{CONTACT.phoneDisplay}</p>
                 </div>
               </div>
 
@@ -488,8 +489,10 @@ const Header = () => {
                 </nav>
 
                 <div ref={socialIconsRef} className="flex items-center gap-4">
-                  <button
-                    type="button"
+                  <a
+                    href={SOCIAL.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex h-10 w-10 items-center justify-center rounded-full border border-[#A1F88B] text-white shadow-sm cursor-pointer hover:bg-[#A1F88B]/20 hover:border-[#8BEF5F] hover:shadow-md transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#A1F88B]"
                     aria-label="Visit our Facebook page"
                   >
@@ -498,9 +501,11 @@ const Header = () => {
                       alt="Facebook"
                       className="h-4 w-4 object-contain"
                     />
-                  </button>
-                  <button
-                    type="button"
+                  </a>
+                  <a
+                    href={SOCIAL.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex h-10 w-10 items-center justify-center rounded-full border border-[#A1F88B] text-white shadow-sm cursor-pointer hover:bg-[#A1F88B]/20 hover:border-[#8BEF5F] hover:shadow-md transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#A1F88B]"
                     aria-label="Visit our Instagram profile"
                   >
@@ -509,7 +514,7 @@ const Header = () => {
                       alt="Instagram"
                       className="h-4 w-4 object-contain"
                     />
-                  </button>
+                  </a>
                 </div>
               </div>
 
@@ -518,20 +523,26 @@ const Header = () => {
                 ref={bottomSectionRef}
                 className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 pb-4 md:flex-row"
               >
-                <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={handleCallNow}
+                  className="flex items-center gap-3 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A1F88B] focus-visible:ring-offset-2 rounded"
+                  aria-label="Call now"
+                >
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#A1F88B] text-[#2D2928]">
                     <Phone className="h-4 w-4" aria-hidden="true" />
                   </div>
-                  <div className='text-xs uppercase tracking-[0.18em] text-[#A1F88B] font-["Inter"]'>
+                  <div className='text-xs uppercase tracking-[0.18em] text-[#A1F88B] font-["Inter"] text-left'>
                     <p className="font-semibold">Call Now</p>
                     <p className="mt-1 text-sm normal-case tracking-normal text-[#A1F88B] font-semibold">
-                      (864) 451-2806
+                      {CONTACT.phoneDisplay}
                     </p>
                   </div>
-                </div>
+                </button>
 
                 <button
                   type="button"
+                  onClick={handleRequestEstimate}
                   className="flex items-center gap-3 rounded-full bg-gradient-to-r from-white via-[#E9FFF5] to-[#C8F1FF] p-3 text-sm font-semibold text-[#02A11F] shadow-md cursor-pointer hover:shadow-xl hover:brightness-110 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#02A11F]"
                 >
                   <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#02A11F] text-white">

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { CONTACT } from "../../data/contact";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   initScrollAnimations,
@@ -48,7 +49,7 @@ const Home = () => {
   const eighthFormRef = useRef(null);
 
   const handleCallNow = () => {
-    window.location.href = "tel:+18644512806";
+    window.location.href = CONTACT.phoneHref;
   };
 
   const handleRequestEstimate = () => {

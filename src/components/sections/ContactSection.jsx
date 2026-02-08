@@ -1,6 +1,7 @@
 import { Phone, MapPin, Star, Facebook, Instagram } from "lucide-react";
 import contactLogoImage from "../../assets/logo.png";
 import googleImage from "../../assets/google.png";
+import { CONTACT, SOCIAL } from "../../data/contact";
 
 const FORM_LABELS = ["Full Name", "Phone Number", "Email", "Message"];
 
@@ -22,7 +23,7 @@ const ContactSection = ({
     if (onCallNow) {
       onCallNow();
     } else {
-      window.location.href = "tel:+18644512806";
+      window.location.href = CONTACT.phoneHref;
     }
   };
 
@@ -81,7 +82,7 @@ const ContactSection = ({
                 <span className="mt-1 flex h-8 w-8 items-center justify-center text-[#039A02]">
                   <Phone className="h-4 w-4" aria-hidden="true" />
                 </span>
-                <p className="">(864) 451-2806</p>
+                <p className="">{CONTACT.phoneDisplay}</p>
               </div>
 
               <div className="flex items-center gap-1">
@@ -123,25 +124,29 @@ const ContactSection = ({
                   <Phone className="h-4 w-4" aria-hidden="true" />
                 </span>
                 <span className='font-["Alexandria"]'>
-                  Call Now: <span className="font-bold">(864) 451-2806</span>
+                  Call Now: <span className="font-bold">{CONTACT.phoneDisplay}</span>
                 </span>
               </button>
 
               <div className="flex items-center gap-3">
-                <button
-                  type="button"
+                <a
+                  href={SOCIAL.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex h-9 w-9 items-center justify-center rounded-full border-[#2D2928] border-1 text-[#2D2928] cursor-pointer hover:bg-[#039A02]/10 hover:border-[#039A02] hover:text-[#039A02] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02]"
                   aria-label="Visit our Facebook page"
                 >
                   <Facebook className="h-4 w-4" aria-hidden="true" />
-                </button>
-                <button
-                  type="button"
+                </a>
+                <a
+                  href={SOCIAL.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex h-9 w-9 items-center justify-center rounded-full border-[#2D2928] border-1 text-[#2D2928] cursor-pointer hover:bg-[#039A02]/10 hover:border-[#039A02] hover:text-[#039A02] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02]"
                   aria-label="Visit our Instagram profile"
                 >
                   <Instagram className="h-4 w-4" aria-hidden="true" />
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -158,7 +163,13 @@ const ContactSection = ({
               no-obligation estimate.
             </h3>
 
-            <form className="space-y-5">
+            <form
+              className="space-y-5"
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleRequestEstimate();
+              }}
+            >
               {FORM_LABELS.map((label) => (
                 <div key={label} className="space-y-1">
                   <label
@@ -185,8 +196,7 @@ const ContactSection = ({
             </form>
 
             <button
-              type="button"
-              onClick={handleRequestEstimate}
+              type="submit"
               className="mt-6 flex w-full items-center justify-center gap-3 rounded-full bg-[#02A11F] px-6 py-3 text-sm font-semibold shadow-md cursor-pointer hover:bg-[#039A02] hover:shadow-lg transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 text-white focus-visible:ring-[#02A11F]"
               {...buttonDataAttrs}
             >

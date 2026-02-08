@@ -77,26 +77,8 @@ export const initScrollAnimations = (refs) => {
       reduceMotion: MEDIA_REDUCE_MOTION,
     },
     (context) => {
-      const { desktop, mobile, reduceMotion } = context.conditions;
-      const d = (v) => (reduceMotion ? 0 : v);
-      const runScrub = !reduceMotion && desktop;
-
-      const fadeUp = (el, opts = {}) => {
-        if (!el) return;
-        gsap.fromTo(
-          el,
-          { opacity: 0, y: TRANSFORM.fadeUpY },
-          {
-            opacity: 1,
-            y: 0,
-            duration: d(mobile ? DURATION.quick : DURATION.standard),
-            ease: EASE.smooth,
-            immediateRender: false,
-            scrollTrigger: stBase(el, TRIGGER.early),
-            ...opts,
-          },
-        );
-      };
+      const { reduceMotion } = context.conditions;
+      const runScrub = !reduceMotion;
 
       if (reduceMotion) {
         // Instant reveal – no animation
@@ -110,8 +92,7 @@ export const initScrollAnimations = (refs) => {
         return () => {};
       }
 
-      if (desktop) {
-        // Desktop: full premium animations
+      // Same full premium animations for both desktop and mobile
         if (heroPillRef?.current) {
           gsap.fromTo(
             heroPillRef.current,
@@ -402,67 +383,6 @@ export const initScrollAnimations = (refs) => {
             },
           });
         }
-      } else {
-        // Mobile: lighter fade-up only
-        if (heroPillRef?.current) fadeUp(heroPillRef.current);
-        if (heroHeadingRef?.current) fadeUp(heroHeadingRef.current);
-        if (heroButtonsRef?.current && heroButtonsRef.current.children.length > 0) {
-          gsap.fromTo(
-            heroButtonsRef.current.children,
-            { opacity: 0, y: TRANSFORM.fadeUpY },
-            {
-              opacity: 1,
-              y: 0,
-              duration: DURATION.quick,
-              stagger: STAGGER.tight,
-              ease: EASE.subtle,
-              immediateRender: false,
-              scrollTrigger: stBase(heroButtonsRef.current, "top 85%"),
-            },
-          );
-        }
-        if (heroCardRef?.current) fadeUp(heroCardRef.current);
-        if (secondHeadingRef?.current) fadeUp(secondHeadingRef.current);
-        secondTextRefs?.forEach((ref, index) => {
-          if (ref?.current) fadeUp(ref.current, { delay: index * 0.05 });
-        });
-        featureCardsRefs?.forEach((ref, index) => {
-          if (ref?.current) fadeUp(ref.current, { delay: index * 0.05 });
-        });
-        const serviceCardsMobile = servicesGridRef?.current
-          ? Array.from(servicesGridRef.current.querySelectorAll("[data-service-card]"))
-          : [];
-        const cardCountMobile = Math.max(serviceCardsMobile.length, serviceCardsRefs?.length ?? 0);
-        for (let index = 0; index < cardCountMobile; index++) {
-          const card =
-            serviceCardsRefs?.[index]?.current ?? serviceCardsMobile?.[index] ?? null;
-          if (!card) continue;
-          fadeUp(card, { delay: index * 0.08 });
-          const content = card.querySelector("[data-service-card-content]");
-          if (content) {
-            gsap.fromTo(
-              content,
-              { opacity: 0, y: TRANSFORM.fadeUpY },
-              {
-                opacity: 1,
-                y: 0,
-                duration: DURATION.quick,
-                delay: index * 0.08 + 0.25,
-                ease: EASE.subtle,
-                immediateRender: false,
-                scrollTrigger: stBase(card, TRIGGER.early),
-              },
-            );
-          }
-        }
-        if (fourthHeadingRef?.current) fadeUp(fourthHeadingRef.current);
-        benefitCardsRefs?.forEach((ref, index) => {
-          if (ref?.current) fadeUp(ref.current, { delay: index * 0.06 });
-        });
-        if (sixthHeadingRef?.current) fadeUp(sixthHeadingRef.current);
-        if (eighthLeftRef?.current) fadeUp(eighthLeftRef.current);
-        if (eighthFormRef?.current) fadeUp(eighthFormRef.current);
-      }
       return () => {};
     },
   );
@@ -500,8 +420,8 @@ export const initDetailScrollAnimations = (refs) => {
       reduceMotion: MEDIA_REDUCE_MOTION,
     },
     (context) => {
-      const { desktop, mobile, reduceMotion } = context.conditions;
-      const runScrub = !reduceMotion && desktop;
+      const { reduceMotion } = context.conditions;
+      const runScrub = !reduceMotion;
 
       if (reduceMotion) {
         [heroPillRef, heroHeadingRef, heroCardRef, detailSecondHeadingRef, detailSecondImageRef, eighthLeftRef, eighthFormRef]
@@ -515,8 +435,8 @@ export const initDetailScrollAnimations = (refs) => {
         return () => {};
       }
 
-      if (desktop) {
-        if (heroPillRef?.current) {
+      // Same full premium animations for both desktop and mobile
+      if (heroPillRef?.current) {
           gsap.fromTo(
             heroPillRef.current,
             { opacity: 0, y: -TRANSFORM.fadeUpY, scale: 0.99 },
@@ -778,61 +698,6 @@ export const initDetailScrollAnimations = (refs) => {
         },
       );
     }
-      } else {
-        const fadeUp = (el, opts = {}) => {
-          if (!el) return;
-          gsap.fromTo(
-            el,
-            { opacity: 0, y: TRANSFORM.fadeUpY },
-            {
-              opacity: 1,
-              y: 0,
-              duration: DURATION.quick,
-              ease: EASE.subtle,
-              immediateRender: false,
-              scrollTrigger: stBase(el, TRIGGER.early),
-              ...opts,
-            },
-          );
-        };
-        if (heroPillRef?.current) fadeUp(heroPillRef.current);
-        if (heroHeadingRef?.current) fadeUp(heroHeadingRef.current);
-        if (heroButtonsRef?.current && heroButtonsRef.current.children.length > 0) {
-          gsap.fromTo(
-            heroButtonsRef.current.children,
-            { opacity: 0, y: TRANSFORM.fadeUpY },
-            {
-              opacity: 1,
-              y: 0,
-              duration: DURATION.quick,
-              stagger: STAGGER.tight,
-              ease: EASE.subtle,
-              immediateRender: false,
-              scrollTrigger: stBase(heroButtonsRef.current, "top 85%"),
-            },
-          );
-        }
-        if (heroCardRef?.current) fadeUp(heroCardRef.current);
-        const secondTrigger = detailSecondHeadingRef?.current;
-        if (secondTrigger) {
-          fadeUp(secondTrigger);
-          detailSecondTextRefs?.forEach((textRef, index) => {
-            if (textRef?.current) fadeUp(textRef.current, { delay: 0.1 + index * 0.08 });
-          });
-          if (detailSecondImageRef?.current) fadeUp(detailSecondImageRef.current, { delay: 0.2 });
-        }
-        const addCardFade = (container) => {
-          if (!container?.current) return;
-          container.current.querySelectorAll("[data-detail-card], [data-detail-step-card]").forEach((card, index) => {
-            fadeUp(card, { delay: index * 0.06 });
-          });
-        };
-        addCardFade(detailThirdSectionRef);
-        addCardFade(detailFourthCardsRef);
-        addCardFade(detailStepCardsRef);
-        if (eighthLeftRef?.current) fadeUp(eighthLeftRef.current);
-        if (eighthFormRef?.current) fadeUp(eighthFormRef.current);
-      }
       return () => {};
     },
   );
@@ -861,31 +726,15 @@ export const initServicesScrollAnimations = (refs) => {
       reduceMotion: MEDIA_REDUCE_MOTION,
     },
     (context) => {
-      const { desktop, mobile, reduceMotion } = context.conditions;
-      const fadeUp = (el, opts = {}) => {
-        if (!el) return;
-        gsap.fromTo(
-          el,
-          { opacity: 0, y: TRANSFORM.fadeUpY },
-          {
-            opacity: 1,
-            y: 0,
-            duration: reduceMotion ? 0 : (mobile ? DURATION.quick : DURATION.standard),
-            ease: EASE.smooth,
-            immediateRender: false,
-            scrollTrigger: stBase(el, mobile ? TRIGGER.early : "top 90%"),
-            ...opts,
-          },
-        );
-      };
+      const { reduceMotion } = context.conditions;
       if (reduceMotion) {
         cards.forEach((c) => gsap.set(c, { opacity: 1, y: 0 }));
         eighthLeftRef?.current && gsap.set(eighthLeftRef.current, { opacity: 1, x: 0, scale: 1 });
         eighthFormRef?.current && gsap.set(eighthFormRef.current, { opacity: 1, x: 0, scale: 1, y: 0 });
         return () => {};
       }
-      if (desktop) {
-        cards.forEach((card, index) => {
+      // Same full premium animations for both desktop and mobile
+      cards.forEach((card, index) => {
           gsap.fromTo(
             card,
             { opacity: 0, y: TRANSFORM.fadeUpYDesktop },
@@ -931,11 +780,6 @@ export const initServicesScrollAnimations = (refs) => {
             },
           );
         }
-      } else {
-        cards.forEach((card, index) => fadeUp(card, { delay: index * 0.05 }));
-        if (eighthLeftRef?.current) fadeUp(eighthLeftRef.current);
-        if (eighthFormRef?.current) fadeUp(eighthFormRef.current);
-      }
       return () => {};
     },
   );
@@ -964,13 +808,13 @@ export const initAboutScrollAnimations = (refs) => {
       reduceMotion: MEDIA_REDUCE_MOTION,
     },
     (context) => {
-      const { desktop, mobile, reduceMotion } = context.conditions;
+      const { reduceMotion } = context.conditions;
       if (reduceMotion) {
         animated.forEach((el) => gsap.set(el, { opacity: 1, y: 0, x: 0, scale: 1, rotation: 0 }));
         return () => {};
       }
-      if (desktop) {
-        animated.forEach((el, index) => {
+      // Same full premium animations for both desktop and mobile
+      animated.forEach((el, index) => {
           const type = el.getAttribute("data-about-animate") || "fade-up";
           const base = {
             opacity: 0,
@@ -1013,23 +857,6 @@ export const initAboutScrollAnimations = (refs) => {
             scrollTrigger: stBase(el),
           });
         });
-      } else {
-        animated.forEach((el, index) => {
-          gsap.fromTo(
-            el,
-            { opacity: 0, y: TRANSFORM.fadeUpY },
-            {
-              opacity: 1,
-              y: 0,
-              duration: DURATION.quick,
-              delay: index * 0.03,
-              ease: EASE.subtle,
-              immediateRender: false,
-              scrollTrigger: stBase(el),
-            },
-          );
-        });
-      }
       return () => {};
     },
   );

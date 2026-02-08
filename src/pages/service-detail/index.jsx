@@ -37,6 +37,7 @@ import {
   cleanupScrollAnimations,
   setupScrollTriggerResize,
 } from "../../utils/scrollAnimations";
+import { CONTACT, SOCIAL } from "../../data/contact";
 
 const SERVICE_IMAGES = {
   interior: interiorServiceImage,
@@ -54,6 +55,16 @@ const DEFAULT_HERO_TITLE =
 const ServiceDetail = () => {
   const { slug } = useParams();
   const service = getServiceBySlug(slug);
+
+  const handleCallNow = () => {
+    window.location.href = CONTACT.phoneHref;
+  };
+
+  const handleRequestEstimate = () => {
+    window.alert(
+      "Thank you! Your free estimate request has been received. We'll contact you shortly.",
+    );
+  };
   const heroPill = service?.heroPill ?? DEFAULT_HERO_PILL;
   const heroTitle = service?.heroTitle ?? DEFAULT_HERO_TITLE;
 
@@ -133,6 +144,7 @@ const ServiceDetail = () => {
             >
               <button
                 type="button"
+                onClick={handleRequestEstimate}
                 className="flex items-center justify-center gap-3 rounded-full bg-[#2D2928] px-7 py-3 text-sm font-semibold text-white shadow-lg cursor-pointer hover:bg-[#1F1B1A] hover:shadow-xl transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02] sm:w-auto"
               >
                 <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#039A02] text-white">
@@ -143,15 +155,16 @@ const ServiceDetail = () => {
                 </span>
               </button>
 
-              <Link
-                to="/"
-                className="flex items-center justify-center gap-2 rounded-full bg-white px-8 py-3 text-sm font-semibold text-[#111827] shadow-md cursor-pointer hover:bg-[#F9FAFB] hover:shadow-lg transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02] sm:w-auto "
+              <a
+                href={CONTACT.phoneHref}
+                className="flex items-center justify-center gap-2 rounded-full bg-white px-8 py-3 text-sm font-semibold text-[#111827] shadow-md cursor-pointer hover:bg-[#F9FAFB] hover:shadow-lg transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02] sm:w-auto"
+                aria-label="Call now"
               >
                 <span className="font-['Alexandria'] font-light">Call Now</span>
-                <span className='font-["Alexandria"]  font-bold'>
-                  (864) 451-2806
+                <span className='font-["Alexandria"] font-bold'>
+                  {CONTACT.phoneDisplay}
                 </span>
-              </Link>
+              </a>
             </div>
           </section>
         </div>
@@ -567,14 +580,14 @@ const ServiceDetail = () => {
             </p>
 
             <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-              <button
-                type="button"
-                className="flex items-center gap-2 rounded-full bg-[#039A02] px-8 py-3 text-sm font-semibold text-[#111827] shadow-md cursor-pointer hover:bg-[#02A11F] hover:shadow-lg transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02]"
+              <Link
+                to="/gallery"
+                className="flex items-center gap-2 rounded-full bg-[#039A02] px-8 py-3 text-sm font-semibold text-white shadow-md cursor-pointer hover:bg-[#02A11F] hover:shadow-lg transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02]"
               >
                 <span className='font-["Alexandria"] text-white'>
                   View Our Gallery
                 </span>
-              </button>
+              </Link>
             </div>
           </section>
         </div>
@@ -618,7 +631,7 @@ const ServiceDetail = () => {
                   <span className="mt-1 flex h-8 w-8 items-center justify-center text-[#039A02]">
                     <Phone className="h-4 w-4" aria-hidden="true" />
                   </span>
-                  <p className="">(864) 451-2806</p>
+                  <p className="">{CONTACT.phoneDisplay}</p>
                 </div>
 
                 <div className="flex items-center gap-1">
@@ -652,31 +665,36 @@ const ServiceDetail = () => {
               <div className="mt-6 flex flex-wrap items-center justify-center gap-4 md:justify-start">
                 <button
                   type="button"
+                  onClick={handleCallNow}
                   className="flex cursor-pointer items-center gap-3 rounded-[10px] bg-[#039A02] px-6 py-3 text-sm font-semibold text-white shadow-md hover:bg-[#02A11F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02]"
                 >
                   <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-white">
                     <Phone className="h-4 w-4" aria-hidden="true" />
                   </span>
                   <span className='font-["Alexandria"]'>
-                    Call Now: <span className="font-bold">(864) 451-2806</span>
+                    Call Now: <span className="font-bold">{CONTACT.phoneDisplay}</span>
                   </span>
                 </button>
 
                 <div className="flex items-center gap-3">
-                  <button
-                    type="button"
+                  <a
+                    href={SOCIAL.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border-1 border-[#2D2928] text-[#2D2928] hover:border-[#039A02] hover:bg-[#039A02]/10 hover:text-[#039A02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02] transition-all"
                     aria-label="Visit our Facebook page"
                   >
                     <Facebook className="h-4 w-4" aria-hidden="true" />
-                  </button>
-                  <button
-                    type="button"
+                  </a>
+                  <a
+                    href={SOCIAL.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border-1 border-[#2D2928] text-[#2D2928] hover:border-[#039A02] hover:bg-[#039A02]/10 hover:text-[#039A02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02] transition-all"
                     aria-label="Visit our Instagram profile"
                   >
                     <Instagram className="h-4 w-4" aria-hidden="true" />
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -692,7 +710,13 @@ const ServiceDetail = () => {
                 no-obligation estimate.
               </h3>
 
-              <form className="space-y-5">
+              <form
+                className="space-y-5"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleRequestEstimate();
+                }}
+              >
                 {["Full Name", "Phone Number", "Email", "Message"].map(
                   (label) => (
                     <div key={label} className="space-y-1">
@@ -721,7 +745,7 @@ const ServiceDetail = () => {
               </form>
 
               <button
-                type="button"
+                type="submit"
                 className="mt-6 flex w-full cursor-pointer items-center justify-center gap-3 rounded-full bg-[#02A11F] px-6 py-3 text-sm font-semibold text-white shadow-md hover:bg-[#039A02] hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#02A11F] transition-all"
               >
                 <span className='font-["Alexandria"] text-white'>
