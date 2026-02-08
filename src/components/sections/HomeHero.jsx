@@ -35,7 +35,7 @@ const HomeHero = ({
     <div
       aria-hidden="true"
       data-hero-house
-      className="pointer-events-none absolute inset-x-0 bottom-[40px] z-0 flex justify-center md:-bottom-0"
+      className="pointer-events-none absolute inset-x-0 bottom-[0px] z-0 flex justify-center md:-bottom-0"
     >
       <img
         src={mobileHomeImage}
@@ -103,7 +103,7 @@ const HomeHero = ({
       ref={heroCardRef}
       className="pointer-events-auto absolute bottom-2 left-0 right-0 z-20 mx-auto w-[90%] max-w-[360px] rounded-[10px] border border-white bg-[#FFFFFF1A] px-2 py-2 text-center text-xs text-white backdrop-blur-md shadow-[0_18px_60px_rgba(0,0,0,0.45)] sm:px-8 sm:py-5 sm:text-sm md:bottom-28 md:left-auto md:right-12 md:mx-0 md:w-auto md:max-w-[250px]"
     >
-      <p className='font-["Inter"] text-xs leading-relaxed'>
+      <p className='font-["Inter"] text-[10px]  md:text-xs leading-relaxed'>
         Transform your property with{" "}
         <span className='font-["Alexandria"] font-semibold'>
           The Daddy&apos;s Painting LLC.
