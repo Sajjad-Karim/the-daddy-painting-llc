@@ -14,6 +14,7 @@ import ContactSection from "../../components/sections/ContactSection";
 import {
   initServicesScrollAnimations,
   cleanupScrollAnimations,
+  setupScrollTriggerResize,
 } from "../../utils/scrollAnimations";
 
 const SERVICE_IMAGES = {
@@ -56,9 +57,12 @@ const Services = () => {
       refreshTimer = setTimeout(() => ScrollTrigger.refresh(), 150);
     }, 400);
 
+    const teardownResize = setupScrollTriggerResize();
+
     return () => {
       clearTimeout(timer);
       clearTimeout(refreshTimer);
+      teardownResize();
       cleanupScrollAnimations();
     };
   }, []);

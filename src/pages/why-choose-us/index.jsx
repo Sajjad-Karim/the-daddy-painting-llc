@@ -20,6 +20,7 @@ import googleImage from "../../assets/google.png";
 import {
   initAboutScrollAnimations,
   cleanupScrollAnimations,
+  setupScrollTriggerResize,
 } from "../../utils/scrollAnimations";
 
 const WhyChooseUs = () => {
@@ -41,14 +42,15 @@ const WhyChooseUs = () => {
       initAboutScrollAnimations({
         aboutRootRef: rootRef,
       });
-      refreshTimer = setTimeout(() => {
-        ScrollTrigger.refresh();
-      }, 150);
+      refreshTimer = setTimeout(() => ScrollTrigger.refresh(), 150);
     }, 400);
+
+    const teardownResize = setupScrollTriggerResize();
 
     return () => {
       clearTimeout(timer);
       clearTimeout(refreshTimer);
+      teardownResize();
       cleanupScrollAnimations();
     };
   }, []);

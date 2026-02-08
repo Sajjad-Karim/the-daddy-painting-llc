@@ -3,6 +3,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   initScrollAnimations,
   cleanupScrollAnimations,
+  setupScrollTriggerResize,
 } from "../../utils/scrollAnimations";
 import HomeHero from "../../components/sections/HomeHero";
 import IntroSection from "../../components/sections/IntroSection";
@@ -80,9 +81,12 @@ const Home = () => {
       refreshTimer = setTimeout(() => ScrollTrigger.refresh(), 250);
     }, 500);
 
+    const teardownResize = setupScrollTriggerResize();
+
     return () => {
       clearTimeout(timer);
       clearTimeout(refreshTimer);
+      teardownResize();
       cleanupScrollAnimations();
     };
   }, []);

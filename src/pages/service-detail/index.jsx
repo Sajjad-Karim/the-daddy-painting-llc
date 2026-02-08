@@ -35,6 +35,7 @@ import googleImage from "../../assets/google.png";
 import {
   initDetailScrollAnimations,
   cleanupScrollAnimations,
+  setupScrollTriggerResize,
 } from "../../utils/scrollAnimations";
 
 const SERVICE_IMAGES = {
@@ -88,8 +89,12 @@ const ServiceDetail = () => {
         eighthFormRef,
       });
     }, 200);
+
+    const teardownResize = setupScrollTriggerResize();
+
     return () => {
       clearTimeout(timer);
+      teardownResize();
       cleanupScrollAnimations();
     };
   }, []);

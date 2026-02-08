@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Menu, Phone, ArrowUpRight, X } from "lucide-react";
 import { gsap } from "gsap";
 import logoImage from "../assets/logo.png";
@@ -12,7 +12,6 @@ import instagramIcon from "../assets/insta.svg";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
-  const navigate = useNavigate();
   const menuOverlayRef = useRef(null);
   const leftImageRef = useRef(null);
   const rightPanelRef = useRef(null);
@@ -43,6 +42,8 @@ const Header = () => {
   };
 
   useEffect(() => {
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
+
     if (isMenuOpen) {
       setIsAnimating(true);
       if (timelineRef.current) {
@@ -53,159 +54,139 @@ const Header = () => {
         onComplete: () => setIsAnimating(false),
       });
 
-      // Set unique initial states for each element
       gsap.set(menuOverlayRef.current, {
         opacity: 0,
         display: "flex",
       });
-      gsap.set(leftImageRef.current, {
-        clipPath: "inset(0 100% 0 0)",
-        x: -50,
-      });
-      gsap.set(rightPanelRef.current, {
-        clipPath: "inset(0 0 0 100%)",
-        x: 50,
-      });
-      gsap.set(logoRef.current, {
-        opacity: 0,
-        scale: 0.3,
-        rotation: -45,
-        transformOrigin: "center center",
-      });
-      gsap.set(closeButtonRef.current, {
-        opacity: 0,
-        scale: 0,
-        x: 30,
-        y: -30,
-        rotation: 270,
-        transformOrigin: "center center",
-      });
-      // Each menu item from different directions
-      menuItemsRef.current.forEach((item, index) => {
-        if (item) {
-          const isEven = index % 2 === 0;
-          gsap.set(item, {
-            opacity: 0,
-            x: isEven ? -80 : 80,
-            y: index * 15,
-            scale: 0.6,
-            rotation: isEven ? -25 : 25,
-            transformOrigin: "center center",
-          });
-        }
-      });
-      gsap.set(socialIconsRef.current, {
-        opacity: 0,
-        y: 100,
-        scale: 0.3,
-        rotation: 180,
-      });
-      gsap.set(bottomSectionRef.current, {
-        opacity: 0,
-        y: 120,
-        scale: 0.8,
-        rotationX: 90,
-        transformOrigin: "center bottom",
-      });
 
-      // 1. Overlay: quick fade in
-      tl.to(menuOverlayRef.current, {
-        opacity: 1,
-        duration: 0.2,
-        ease: "power2.out",
-      })
-        // 2. Left panel: clip-path reveal from left
-        .to(
-          leftImageRef.current,
-          {
-            clipPath: "inset(0 0% 0 0)",
-            x: 0,
-            duration: 0.7,
-            ease: "power2.inOut",
-          },
-          "+=0.1",
-        )
-        // 3. Right panel: clip-path reveal from right (parallel)
-        .to(
-          rightPanelRef.current,
-          {
-            clipPath: "inset(0 0 0 0%)",
-            x: 0,
-            duration: 0.7,
-            ease: "power2.inOut",
-          },
-          "-=0.7",
-        )
-        // 4. Logo: scale + rotate from center
-        .to(
-          logoRef.current,
-          {
-            opacity: 1,
-            scale: 1,
-            rotation: 0,
-            duration: 0.6,
-            ease: "back.out(1.5)",
-          },
-          "-=0.4",
-        )
-        // 5. Close button: spin in from top-right
-        .to(
-          closeButtonRef.current,
-          {
-            opacity: 1,
-            scale: 1,
-            x: 0,
-            y: 0,
-            rotation: 0,
-            duration: 0.5,
-            ease: "elastic.out(1, 0.4)",
-          },
-          "-=0.5",
-        )
-        // 6. Menu items: each from alternating sides with stagger
-        .to(
-          menuItemsRef.current,
-          {
-            opacity: 1,
-            x: 0,
-            y: 0,
-            scale: 1,
-            rotation: 0,
-            duration: 0.5,
-            stagger: {
-              each: 0.1,
-              from: "start",
+      if (isMobile) {
+        // Mobile: simple fade-only animations to avoid layout shift and performance issues
+        gsap.set(leftImageRef.current, { opacity: 0 });
+        gsap.set(rightPanelRef.current, { opacity: 0 });
+        gsap.set(logoRef.current, { opacity: 0 });
+        gsap.set(closeButtonRef.current, { opacity: 0 });
+        menuItemsRef.current.forEach((item) => {
+          if (item) gsap.set(item, { opacity: 0, y: 12 });
+        });
+        gsap.set(socialIconsRef.current, { opacity: 0, y: 20 });
+        gsap.set(bottomSectionRef.current, { opacity: 0, y: 24 });
+
+        tl.to(menuOverlayRef.current, {
+          opacity: 1,
+          duration: 0.2,
+          ease: "power2.out",
+        })
+          .to(rightPanelRef.current, { opacity: 1, duration: 0.3 }, "-=0.1")
+          .to(logoRef.current, { opacity: 1, duration: 0.25 }, "-=0.2")
+          .to(closeButtonRef.current, { opacity: 1, duration: 0.2 }, "-=0.2")
+          .to(
+            menuItemsRef.current,
+            { opacity: 1, y: 0, duration: 0.3, stagger: 0.06 },
+            "-=0.15",
+          )
+          .to(socialIconsRef.current, { opacity: 1, y: 0, duration: 0.25 }, "-=0.2")
+          .to(bottomSectionRef.current, { opacity: 1, y: 0, duration: 0.3 }, "-=0.2");
+      } else {
+        // Desktop: full split-panel animations
+        gsap.set(leftImageRef.current, {
+          clipPath: "inset(0 100% 0 0)",
+          x: -50,
+        });
+        gsap.set(rightPanelRef.current, {
+          clipPath: "inset(0 0 0 100%)",
+          x: 50,
+        });
+        gsap.set(logoRef.current, {
+          opacity: 0,
+          scale: 0.3,
+          rotation: -45,
+          transformOrigin: "center center",
+        });
+        gsap.set(closeButtonRef.current, {
+          opacity: 0,
+          scale: 0,
+          x: 30,
+          y: -30,
+          rotation: 270,
+          transformOrigin: "center center",
+        });
+        menuItemsRef.current.forEach((item, index) => {
+          if (item) {
+            const isEven = index % 2 === 0;
+            gsap.set(item, {
+              opacity: 0,
+              x: isEven ? -60 : 60,
+              y: index * 10,
+              scale: 0.9,
+              rotation: isEven ? -15 : 15,
+              transformOrigin: "center center",
+            });
+          }
+        });
+        gsap.set(socialIconsRef.current, {
+          opacity: 0,
+          y: 60,
+          scale: 0.9,
+          rotation: 90,
+        });
+        gsap.set(bottomSectionRef.current, {
+          opacity: 0,
+          y: 60,
+          scale: 0.95,
+          rotationX: 45,
+          transformOrigin: "center bottom",
+        });
+
+        tl.to(menuOverlayRef.current, {
+          opacity: 1,
+          duration: 0.2,
+          ease: "power2.out",
+        })
+          .to(
+            leftImageRef.current,
+            { clipPath: "inset(0 0% 0 0)", x: 0, duration: 0.6, ease: "power2.inOut" },
+            "+=0.1",
+          )
+          .to(
+            rightPanelRef.current,
+            { clipPath: "inset(0 0 0 0%)", x: 0, duration: 0.6, ease: "power2.inOut" },
+            "-=0.6",
+          )
+          .to(
+            logoRef.current,
+            { opacity: 1, scale: 1, rotation: 0, duration: 0.5, ease: "back.out(1.3)" },
+            "-=0.35",
+          )
+          .to(
+            closeButtonRef.current,
+            { opacity: 1, scale: 1, x: 0, y: 0, rotation: 0, duration: 0.4, ease: "power2.out" },
+            "-=0.4",
+          )
+          .to(
+            menuItemsRef.current,
+            {
+              opacity: 1,
+              x: 0,
+              y: 0,
+              scale: 1,
+              rotation: 0,
+              duration: 0.4,
+              stagger: { each: 0.08, from: "start" },
+              ease: "power3.out",
             },
-            ease: "power3.out",
-          },
-          "-=0.3",
-        )
-        // 7. Social icons: bounce up from bottom
-        .to(
-          socialIconsRef.current,
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            rotation: 0,
-            duration: 0.5,
-            ease: "bounce.out",
-          },
-          "-=0.2",
-        )
-        // 8. Bottom section: flip up from bottom
-        .to(
-          bottomSectionRef.current,
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            rotationX: 0,
-            duration: 0.6,
-            ease: "power3.out",
-          },
-          "-=0.3",
-        );
+            "-=0.25",
+          )
+          .to(
+            socialIconsRef.current,
+            { opacity: 1, y: 0, scale: 1, rotation: 0, duration: 0.4, ease: "power2.out" },
+            "-=0.2",
+          )
+          .to(
+            bottomSectionRef.current,
+            { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.5, ease: "power3.out" },
+            "-=0.25",
+          );
+      }
 
       timelineRef.current = tl;
     } else if (menuOverlayRef.current) {
@@ -218,105 +199,76 @@ const Header = () => {
         onComplete: () => setIsAnimating(false),
       });
 
-      // Close animations - each element exits uniquely
-      closeTl
-        // Bottom: flip down
-        .to(bottomSectionRef.current, {
-          opacity: 0,
-          y: 80,
-          scale: 0.85,
-          rotationX: -45,
-          duration: 0.35,
-          ease: "power2.in",
-        })
-        // Social: spin down
-        .to(
-          socialIconsRef.current,
-          {
+      if (isMobile) {
+        // Mobile: simple fade-out
+        closeTl
+          .to(bottomSectionRef.current, { opacity: 0, y: 16, duration: 0.2 }, 0)
+          .to(socialIconsRef.current, { opacity: 0, y: 12, duration: 0.2 }, 0)
+          .to(
+            menuItemsRef.current,
+            { opacity: 0, y: -8, duration: 0.2, stagger: 0.03 },
+            0,
+          )
+          .to(closeButtonRef.current, { opacity: 0, duration: 0.2 }, 0)
+          .to(logoRef.current, { opacity: 0, duration: 0.2 }, 0)
+          .to(rightPanelRef.current, { opacity: 0, duration: 0.2 }, 0)
+          .to(menuOverlayRef.current, { opacity: 0, duration: 0.2 }, "-=0.1");
+      } else {
+        // Desktop: full close animations
+        closeTl
+          .to(bottomSectionRef.current, {
             opacity: 0,
             y: 60,
-            scale: 0.4,
-            rotation: -180,
+            scale: 0.9,
+            rotationX: -45,
             duration: 0.3,
             ease: "power2.in",
-          },
-          "-=0.25",
-        )
-        // Menu items: exit to alternating sides
-        .to(
-          menuItemsRef.current,
-          {
-            opacity: 0,
-            x: (index) => (index % 2 === 0 ? -60 : 60),
-            y: (index) => index * -10,
-            scale: 0.5,
-            rotation: (index) => (index % 2 === 0 ? -30 : 30),
-            duration: 0.3,
-            stagger: {
-              each: 0.05,
-              from: "end",
+          })
+          .to(
+            socialIconsRef.current,
+            { opacity: 0, y: 40, scale: 0.8, rotation: -90, duration: 0.25, ease: "power2.in" },
+            "-=0.2",
+          )
+          .to(
+            menuItemsRef.current,
+            {
+              opacity: 0,
+              x: (idx) => (idx % 2 === 0 ? -40 : 40),
+              y: (idx) => idx * -8,
+              scale: 0.8,
+              rotation: (idx) => (idx % 2 === 0 ? -15 : 15),
+              duration: 0.25,
+              stagger: { each: 0.04, from: "end" },
+              ease: "power2.in",
             },
-            ease: "power2.in",
-          },
-          "-=0.2",
-        )
-        // Close button: spin out to top-right
-        .to(
-          closeButtonRef.current,
-          {
-            opacity: 0,
-            scale: 0,
-            x: 40,
-            y: -40,
-            rotation: 270,
-            duration: 0.3,
-            ease: "power2.in",
-          },
-          "-=0.25",
-        )
-        // Logo: scale down and rotate
-        .to(
-          logoRef.current,
-          {
-            opacity: 0,
-            scale: 0.2,
-            rotation: 45,
-            duration: 0.3,
-            ease: "power2.in",
-          },
-          "-=0.25",
-        )
-        // Panels: clip-path close
-        .to(
-          leftImageRef.current,
-          {
-            clipPath: "inset(0 100% 0 0)",
-            x: -50,
-            duration: 0.5,
-            ease: "power2.in",
-          },
-          "-=0.2",
-        )
-        .to(
-          rightPanelRef.current,
-          {
-            clipPath: "inset(0 0 0 100%)",
-            x: 50,
-            duration: 0.5,
-            ease: "power2.in",
-          },
-          "-=0.5",
-        )
-        // Overlay: fade out
-        .to(
-          menuOverlayRef.current,
-          {
-            opacity: 0,
-            duration: 0.25,
-            ease: "power2.in",
-          },
-          "-=0.3",
-        );
+            "-=0.15",
+          )
+          .to(
+            closeButtonRef.current,
+            { opacity: 0, scale: 0.5, x: 30, y: -30, rotation: 180, duration: 0.25, ease: "power2.in" },
+            "-=0.2",
+          )
+          .to(
+            logoRef.current,
+            { opacity: 0, scale: 0.5, rotation: 30, duration: 0.25, ease: "power2.in" },
+            "-=0.2",
+          )
+          .to(
+            leftImageRef.current,
+            { clipPath: "inset(0 100% 0 0)", x: -50, duration: 0.4, ease: "power2.in" },
+            "-=0.15",
+          )
+          .to(
+            rightPanelRef.current,
+            { clipPath: "inset(0 0 0 100%)", x: 50, duration: 0.4, ease: "power2.in" },
+            "-=0.4",
+          )
+          .to(
+            menuOverlayRef.current,
+            { opacity: 0, duration: 0.2, ease: "power2.in" },
+            "-=0.25",
+          );
+      }
 
       timelineRef.current = closeTl;
     }

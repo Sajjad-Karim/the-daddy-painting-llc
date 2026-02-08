@@ -9,11 +9,10 @@ const ServicesCard = ({ service, image }) => {
     <Link
       to={`/services/${service.slug}`}
       data-services-card
-      className="group relative block overflow-hidden rounded-[28px] border border-[#02B446]/15 bg-white shadow-[0_4px_24px_rgba(3,154,2,0.06)] hover:border-[#039A02]/40 hover:shadow-[0_24px_56px_rgba(3,154,2,0.2)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#039A02] focus-visible:ring-offset-4"
-      style={{ willChange: "transform" }}
+      className="group relative block overflow-hidden rounded-[28px] border border-[#02B446]/15 bg-white shadow-[0_4px_24px_rgba(3,154,2,0.06)] hover:border-[#039A02]/40 hover:shadow-[0_24px_56px_rgba(3,154,2,0.2)] active:border-[#039A02]/40 active:shadow-[0_24px_56px_rgba(3,154,2,0.2)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#039A02] focus-visible:ring-offset-4"
       aria-label={`View ${service.title} details`}
     >
-      <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-[#039A02] via-[#02B446] to-[#02A11F] opacity-70 transition-opacity duration-500 group-hover:opacity-100" />
+      <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-[#039A02] via-[#02B446] to-[#02A11F] opacity-70 transition-opacity duration-500 group-hover:opacity-100 group-active:opacity-100" />
 
       <div
         data-services-card-image
@@ -22,8 +21,7 @@ const ServicesCard = ({ service, image }) => {
         <img
           src={image}
           alt={service.title}
-          className="h-full w-full object-cover group-hover:scale-110"
-          style={{ willChange: "transform" }}
+          className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] group-active:scale-[1.03]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#2D2928]/90 via-[#2D2928]/35 to-transparent" />
 
@@ -67,10 +65,10 @@ const ServicesCard = ({ service, image }) => {
           </div>
         )}
 
-        <div className="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-[#039A02] transition-colors group-hover:text-[#02A11F]">
+        <div className="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-[#039A02] transition-colors group-hover:text-[#02A11F] group-active:text-[#02A11F]">
           Request a Free Estimate
           <ArrowUpRight
-            className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-active:translate-x-0.5 group-active:-translate-y-0.5"
             aria-hidden="true"
           />
         </div>

@@ -16,6 +16,7 @@ import ContactSection from "../../components/sections/ContactSection";
 import {
   initAboutScrollAnimations,
   cleanupScrollAnimations,
+  setupScrollTriggerResize,
 } from "../../utils/scrollAnimations";
 
 const About = () => {
@@ -55,14 +56,15 @@ const About = () => {
         eighthLeftRef,
         eighthFormRef,
       });
-      refreshTimer = setTimeout(() => {
-        ScrollTrigger.refresh();
-      }, 150);
+      refreshTimer = setTimeout(() => ScrollTrigger.refresh(), 150);
     }, 400);
+
+    const teardownResize = setupScrollTriggerResize();
 
     return () => {
       clearTimeout(timer);
       clearTimeout(refreshTimer);
+      teardownResize();
       cleanupScrollAnimations();
     };
   }, []);

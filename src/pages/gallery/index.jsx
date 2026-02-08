@@ -16,6 +16,7 @@ import detailFourthImage from "../../assets/detail-page/fourth.png";
 import {
   initAboutScrollAnimations,
   cleanupScrollAnimations,
+  setupScrollTriggerResize,
 } from "../../utils/scrollAnimations";
 
 const CATEGORIES = [
@@ -114,14 +115,15 @@ const Gallery = () => {
       initAboutScrollAnimations({
         aboutRootRef: rootRef,
       });
-      refreshTimer = setTimeout(() => {
-        ScrollTrigger.refresh();
-      }, 150);
+      refreshTimer = setTimeout(() => ScrollTrigger.refresh(), 150);
     }, 400);
+
+    const teardownResize = setupScrollTriggerResize();
 
     return () => {
       clearTimeout(timer);
       clearTimeout(refreshTimer);
+      teardownResize();
       cleanupScrollAnimations();
     };
   }, []);
@@ -255,8 +257,7 @@ const Gallery = () => {
                 <img
                   src={item.src}
                   alt={item.alt}
-                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                  style={{ willChange: "transform" }}
+                  className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] group-active:scale-[1.03] group-focus-within:scale-[1.03]"
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent" />
 
@@ -270,7 +271,7 @@ const Gallery = () => {
                   </p>
                 </div>
 
-                <div className="absolute right-3 top-3 rounded-full bg-black/50 p-1.5 text-white opacity-0 shadow-sm transition-opacity duration-300 group-hover:opacity-100">
+                <div className="absolute right-3 top-3 rounded-full bg-black/50 p-1.5 text-white opacity-0 shadow-sm transition-opacity duration-300 group-hover:opacity-100 group-active:opacity-100 group-focus-within:opacity-100">
                   <ImageIcon className="h-4 w-4" aria-hidden="true" />
                 </div>
               </button>
