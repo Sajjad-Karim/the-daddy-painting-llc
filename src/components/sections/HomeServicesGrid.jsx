@@ -46,7 +46,7 @@ const HomeServicesGrid = ({ servicesGridRef, serviceCardsRefs }) => {
                 key={card.slug}
                 ref={serviceCardsRefs[index]}
                 data-service-card
-                className="relative h-[280px] overflow-hidden rounded-[25px] text-left text-white shadow-xl md:h-[400px]"
+                className="group relative h-[280px] overflow-hidden rounded-[25px] text-left text-white shadow-xl md:h-[400px] cursor-pointer transform-gpu transition-transform duration-500 ease-out hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_22px_45px_rgba(15,23,42,0.45)]"
                 style={{
                   backgroundImage: `url(${image})`,
                   backgroundSize: "cover",
@@ -55,7 +55,7 @@ const HomeServicesGrid = ({ servicesGridRef, serviceCardsRefs }) => {
               >
                 <div
                   data-service-card-content
-                  className="absolute inset-x-3 bottom-3 rounded-[10px] bg-gradient-to-t from-black/85 via-black/75 to-black/60 px-3 py-4 md:px-6 md:py-6"
+                  className="absolute inset-x-3 bottom-3 rounded-[10px] bg-gradient-to-t from-black/85 via-black/75 to-black/60 px-3 py-4 md:px-6 md:py-6 transform-gpu transition-all duration-500 ease-out group-hover:translate-y-[-6px] group-hover:from-black/90 group-hover:via-black/80 group-hover:to-black/70"
                 >
                   <h3 className='mb-2 max-w-xs text-base md:font-extrabold leading-tight tracking-[0.03em] text-[#E9FFF7] md:mb-3 md:text-4xl font-["inter"]'>
                     {card.title}

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -8,8 +8,12 @@ import skyVectorImage from "../../assets/vector.png";
 import skyImage from "../../assets/sky.png";
 import heroHouseImage from "../../assets/home.png";
 import mobileHomeImage from "../../assets/mobileHome.png";
+import { DURATION } from "../../utils/gsapConfig";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const HERO_HEADING_TEXT =
+  "PROFESSIONAL RESIDENTIAL & COMMERCIAL PAINTING SERVICES YOU CAN TRUST.";
 
 const HomeHero = ({
   heroPillRef,
@@ -52,6 +56,59 @@ const HomeHero = ({
       animation.kill();
     };
   }, []);
+
+  useLayoutEffect(() => {
+    if (!heroHeadingRef?.current) {
+      return;
+    }
+
+    const headingElement = heroHeadingRef.current;
+    const headingWordElements = Array.from(
+      headingElement.querySelectorAll("[data-hero-heading-word]"),
+    );
+
+    if (!headingWordElements.length) {
+      return;
+    }
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (prefersReducedMotion) {
+      gsap.set(headingWordElements, {
+        opacity: 1,
+        y: 0,
+      });
+      return;
+    }
+
+    gsap.set(headingWordElements, {
+      opacity: 0,
+      y: -32,
+    });
+
+    const headingTimeline = gsap.timeline();
+
+    headingTimeline.fromTo(
+      headingWordElements,
+      {
+        opacity: 0,
+        y: -32,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: DURATION.quick,
+        ease: "power3.out",
+        stagger: 0.08,
+      },
+    );
+
+    return () => {
+      headingTimeline.kill();
+    };
+  }, [heroHeadingRef]);
 
   return (
     <main
@@ -107,10 +164,19 @@ const HomeHero = ({
 
           <h1
             ref={heroHeadingRef}
+            data-hero-heading
             className='text-center font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[45px] font-["Rubik_One"] leading-tight'
           >
-            PROFESSIONAL RESIDENTIAL &amp; COMMERCIAL PAINTING SERVICES YOU CAN
-            TRUST.
+            {HERO_HEADING_TEXT.split(" ").map((word, index, array) => (
+              <span
+                key={`${word}-${index}`}
+                data-hero-heading-word
+                className="inline-block will-change-transform"
+              >
+                {word}
+                {index !== array.length - 1 ? "\u00A0" : ""}
+              </span>
+            ))}
           </h1>
 
           <div

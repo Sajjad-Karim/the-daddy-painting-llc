@@ -191,8 +191,9 @@ const Home = () => {
     const servicesTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: servicesGridRef.current,
-        start: TRIGGER.default,
-        toggleActions: "restart none restart none",
+        start: "top 92%",
+        end: "bottom 15%",
+        scrub: 0.8,
       },
     });
 
@@ -200,27 +201,22 @@ const Home = () => {
       serviceCardsElements,
       {
         opacity: 0,
-        y: -90,
-        scale: 0.99,
+        y: 40,
+        scale: 0.96,
+        rotationX: 6,
+        transformOrigin: "center center",
       },
       {
         opacity: 1,
         y: 0,
         scale: 1,
-        duration: (index, _target, targets) => {
-          const maxDuration = DURATION.slow;
-          const minDuration = DURATION.quick;
-
-          if (targets.length <= 1) {
-            return maxDuration;
-          }
-
-          const progress = index / (targets.length - 1);
-
-          return maxDuration - (maxDuration - minDuration) * progress;
-        },
+        rotationX: 0,
+        duration: DURATION.slow,
         ease: EASE.fluid,
-        stagger: STAGGER.normal,
+        stagger: {
+          each: STAGGER.normal,
+          from: "start",
+        },
       },
     );
 
@@ -229,14 +225,16 @@ const Home = () => {
         serviceCardContentElements,
         {
           opacity: 0,
+          y: 16,
         },
         {
           opacity: 1,
+          y: 0,
           duration: DURATION.standard,
           ease: EASE.smooth,
           stagger: STAGGER.normal,
         },
-        "<+=0.05",
+        "<+=0.15",
       );
     }
 

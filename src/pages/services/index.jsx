@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { SERVICES } from "../../data/services";
 import interiorServiceImage from "../../assets/services/interior.png";
 import exteriorServiceImage from "../../assets/services/exterior.png";
@@ -10,6 +10,9 @@ import borderVectorImage from "../../assets/borderVector.png";
 import ServicesHero from "../../components/sections/ServicesHero";
 import ServicesCard from "../../components/ServicesCard";
 import ContactSection from "../../components/sections/ContactSection";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { DURATION, EASE, STAGGER, TRIGGER } from "../../utils/gsapConfig";
 
 const SERVICE_IMAGES = {
   interior: interiorServiceImage,
@@ -28,6 +31,8 @@ const PAINTING_SERVICES = [
 ];
 const PREP_FINISHING_SERVICES = ["power-washing", "drywall-repair"];
 
+gsap.registerPlugin(ScrollTrigger);
+
 const Services = () => {
   const servicesCardsRootRef = useRef(null);
   const eighthLeftRef = useRef(null);
@@ -42,6 +47,102 @@ const Services = () => {
 
   const getImage = (service) =>
     SERVICE_IMAGES[service.imageKey] || interiorServiceImage;
+
+  useLayoutEffect(() => {
+    if (!servicesCardsRootRef.current) {
+      return;
+    }
+
+    const servicesCardsElements = Array.from(
+      servicesCardsRootRef.current.querySelectorAll("[data-services-card]"),
+    );
+
+    if (!servicesCardsElements.length) {
+      return;
+    }
+
+    const servicesCardContentElements = servicesCardsElements
+      .map((cardElement) =>
+        cardElement.querySelector("[data-services-card-content]"),
+      )
+      .filter(Boolean);
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (prefersReducedMotion) {
+      gsap.set(servicesCardsElements, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        rotationX: 0,
+      });
+      if (servicesCardContentElements.length) {
+        gsap.set(servicesCardContentElements, {
+          opacity: 1,
+          y: 0,
+        });
+      }
+      return;
+    }
+
+    const servicesCardsTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: servicesCardsElements[0],
+        start: TRIGGER.default,
+        scrub: 0.5,
+      },
+    });
+
+    servicesCardsTimeline.fromTo(
+      servicesCardsElements,
+      {
+        opacity: 0,
+        y: 40,
+        scale: 0.96,
+        rotationX: 6,
+        transformOrigin: "center center",
+      },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        rotationX: 0,
+        duration: DURATION.slow,
+        ease: EASE.fluid,
+        stagger: {
+          each: STAGGER.normal,
+          from: "start",
+        },
+      },
+    );
+
+    if (servicesCardContentElements.length) {
+      servicesCardsTimeline.fromTo(
+        servicesCardContentElements,
+        {
+          opacity: 0,
+          y: 16,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: DURATION.standard,
+          ease: EASE.smooth,
+          stagger: STAGGER.normal,
+        },
+        "<+=0.15",
+      );
+    }
+
+    return () => {
+      if (servicesCardsTimeline.scrollTrigger) {
+        servicesCardsTimeline.scrollTrigger.kill();
+      }
+      servicesCardsTimeline.kill();
+    };
+  }, []);
 
   return (
     <div ref={servicesCardsRootRef}>

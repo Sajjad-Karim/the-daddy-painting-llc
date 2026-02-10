@@ -56,6 +56,14 @@ const ContactSection = ({
     }
 
     const contactDuration = DURATION.standard;
+    const headingElement = leftColumnElement
+      ? leftColumnElement.querySelector("[data-contact-heading]")
+      : null;
+    const headingWordElements = headingElement
+      ? Array.from(
+          headingElement.querySelectorAll("[data-contact-heading-word]"),
+        )
+      : [];
 
     const contactTimeline = gsap.timeline({
       scrollTrigger: {
@@ -78,6 +86,29 @@ const ContactSection = ({
           duration: contactDuration,
           ease: EASE.fluid,
         },
+      );
+    }
+
+    if (headingWordElements.length) {
+      gsap.set(headingWordElements, {
+        opacity: 0,
+        y: 24,
+      });
+
+      contactTimeline.fromTo(
+        headingWordElements,
+        {
+          opacity: 0,
+          y: 24,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: DURATION.quick,
+          ease: "back.out(1.7)",
+          stagger: 0.05,
+        },
+        "-=0.4",
       );
     }
 
@@ -145,11 +176,22 @@ const ContactSection = ({
 
             <div className="space-y-3">
               <h2
+                data-contact-heading
                 className='mx-auto font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-left md:text-[35px] font-["Rubik_One"] leading-tight'
                 {...headingAttrs}
               >
-                PROFESSIONAL RESIDENTIAL &amp; COMMERCIAL PAINTING SERVICES YOU
-                CAN TRUST.
+                {"PROFESSIONAL RESIDENTIAL & COMMERCIAL PAINTING SERVICES YOU CAN TRUST."
+                  .split(" ")
+                  .map((word, index) => (
+                    <span
+                      key={`${word}-${index}`}
+                      data-contact-heading-word
+                      className="inline-block will-change-transform"
+                    >
+                      {word}
+                      {index !== 8 ? "\u00A0" : ""}
+                    </span>
+                  ))}
               </h2>
               <p
                 className='text-sm text-[#2D2928] font-["Alexandria"]'
