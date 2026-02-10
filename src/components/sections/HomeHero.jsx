@@ -83,9 +83,11 @@ const HomeHero = ({
       return;
     }
 
+    const fallFromY = -56;
+
     gsap.set(headingWordElements, {
       opacity: 0,
-      y: -32,
+      y: fallFromY,
     });
 
     const headingTimeline = gsap.timeline();
@@ -94,14 +96,14 @@ const HomeHero = ({
       headingWordElements,
       {
         opacity: 0,
-        y: -32,
+        y: fallFromY,
       },
       {
         opacity: 1,
         y: 0,
-        duration: DURATION.quick,
+        duration: DURATION.standard,
         ease: "power3.out",
-        stagger: 0.08,
+        stagger: 0.12,
       },
     );
 
