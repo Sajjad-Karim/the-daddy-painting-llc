@@ -55,6 +55,8 @@ const ContactSection = ({
       return;
     }
 
+    const contactDuration = DURATION.standard;
+
     const contactTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: leftColumnElement || formElement,
@@ -73,7 +75,7 @@ const ContactSection = ({
         {
           opacity: 1,
           x: 0,
-          duration: DURATION.slow,
+          duration: contactDuration,
           ease: EASE.fluid,
         },
       );
@@ -89,9 +91,8 @@ const ContactSection = ({
         {
           opacity: 1,
           x: 0,
-          duration: DURATION.micro,
+          duration: contactDuration,
           ease: EASE.fluid,
-          stagger: STAGGER.relaxed,
         },
         leftColumnElement ? "-=0.25" : undefined,
       );
