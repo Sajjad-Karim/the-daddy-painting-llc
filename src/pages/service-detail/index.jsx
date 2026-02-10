@@ -84,6 +84,61 @@ const ServiceDetail = () => {
   const eighthFormRef = useRef(null);
 
   useLayoutEffect(() => {
+    if (!heroHeadingRef.current) {
+      return;
+    }
+
+    const headingElement = heroHeadingRef.current;
+    const headingWordElements = Array.from(
+      headingElement.querySelectorAll("[data-hero-heading-word]"),
+    );
+
+    if (!headingWordElements.length) {
+      return;
+    }
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (prefersReducedMotion) {
+      gsap.set(headingWordElements, {
+        opacity: 1,
+        y: 0,
+      });
+      return;
+    }
+
+    const fallFromY = -56;
+
+    gsap.set(headingWordElements, {
+      opacity: 0,
+      y: fallFromY,
+    });
+
+    const headingTimeline = gsap.timeline();
+
+    headingTimeline.fromTo(
+      headingWordElements,
+      {
+        opacity: 0,
+        y: fallFromY,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: DURATION.standard,
+        ease: "power3.out",
+        stagger: 0.12,
+      },
+    );
+
+    return () => {
+      headingTimeline.kill();
+    };
+  }, []);
+
+  useLayoutEffect(() => {
     const detailCards = Array.from(
       document.querySelectorAll("[data-detail-card]"),
     );
@@ -287,7 +342,16 @@ const ServiceDetail = () => {
               ref={heroHeadingRef}
               className='text-center font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[35px] font-["Rubik_One"]'
             >
-              {heroTitle}
+              {heroTitle.split(" ").map((word, index, array) => (
+                <span
+                  key={`${word}-${index}`}
+                  data-hero-heading-word
+                  className="inline-block will-change-transform"
+                >
+                  {word}
+                  {index !== array.length - 1 ? "\u00A0" : ""}
+                </span>
+              ))}
             </h1>
 
             <div

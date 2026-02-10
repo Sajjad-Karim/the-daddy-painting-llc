@@ -9,7 +9,7 @@ const ServicesCard = ({ service, image }) => {
     <Link
       to={`/services/${service.slug}`}
       data-services-card
-      className="group relative block overflow-hidden rounded-[28px] border border-[#02B446]/15 bg-white shadow-[0_4px_24px_rgba(3,154,2,0.06)] hover:border-[#039A02]/40 hover:shadow-[0_24px_56px_rgba(3,154,2,0.2)] active:border-[#039A02]/40 active:shadow-[0_24px_56px_rgba(3,154,2,0.2)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#039A02] focus-visible:ring-offset-4"
+      className="group relative block overflow-hidden rounded-[28px] border border-[#02B446]/15 bg-white shadow-[0_4px_24px_rgba(3,154,2,0.06)] transform-gpu transition-transform duration-500 ease-out hover:-translate-y-2 hover:scale-[1.02] hover:border-[#039A02]/40 hover:shadow-[0_26px_60px_rgba(15,23,42,0.45)] active:border-[#039A02]/40 active:shadow-[0_26px_60px_rgba(15,23,42,0.45)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#039A02] focus-visible:ring-offset-4"
       aria-label={`View ${service.title} details`}
     >
       <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-[#039A02] via-[#02B446] to-[#02A11F] opacity-70 transition-opacity duration-500 group-hover:opacity-100 group-active:opacity-100" />
@@ -21,9 +21,9 @@ const ServicesCard = ({ service, image }) => {
         <img
           src={image}
           alt={service.title}
-          className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] group-active:scale-[1.03]"
+          className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.05] group-active:scale-[1.05]"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#2D2928]/90 via-[#2D2928]/35 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#2D2928]/90 via-[#2D2928]/35 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-100" />
 
         <div className="absolute bottom-4 left-4 right-4">
           <div
@@ -40,7 +40,7 @@ const ServicesCard = ({ service, image }) => {
 
       <div
         data-services-card-content
-        className="flex h-full flex-col bg-gradient-to-br from-white to-[#F8FDF9] p-6"
+        className="flex h-full flex-col bg-gradient-to-br from-white to-[#F8FDF9] p-6 transform-gpu transition-transform duration-500 ease-out group-hover:-translate-y-1"
       >
         <p className='mb-5 text-sm leading-relaxed text-[#2D2928]/90 font-["Inter"] md:text-base'>
           {service.body}
