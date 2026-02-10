@@ -171,8 +171,8 @@ const Gallery = () => {
       galleryCardElements,
       {
         opacity: 0,
-        y: -150,
-        scale: 0.98,
+        y: -90,
+        scale: 0.99,
       },
       {
         opacity: 1,
@@ -190,7 +190,7 @@ const Gallery = () => {
 
           return maxDuration - (maxDuration - minDuration) * progress;
         },
-        ease: EASE.smooth,
+        ease: EASE.fluid,
         stagger: STAGGER.normal,
       },
     );

@@ -153,8 +153,8 @@ const ServiceDetail = () => {
         detailCards,
         {
           opacity: 0,
-          y: -150,
-          scale: 0.98,
+          y: -90,
+          scale: 0.99,
         },
         {
           opacity: 1,
@@ -172,7 +172,7 @@ const ServiceDetail = () => {
 
             return maxDuration - (maxDuration - minDuration) * progress;
           },
-          ease: EASE.smooth,
+          ease: EASE.fluid,
           stagger: STAGGER.normal,
         },
       );
@@ -209,8 +209,8 @@ const ServiceDetail = () => {
         detailStepCards,
         {
           opacity: 0,
-          y: -150,
-          scale: 0.98,
+          y: -90,
+          scale: 0.99,
         },
         {
           opacity: 1,
@@ -228,7 +228,7 @@ const ServiceDetail = () => {
 
             return maxDuration - (maxDuration - minDuration) * progress;
           },
-          ease: EASE.smooth,
+          ease: EASE.fluid,
           stagger: STAGGER.normal,
         },
       );

@@ -199,9 +199,9 @@ const Home = () => {
     servicesTimeline.fromTo(
       serviceCardsElements,
       {
-        opacity: 1,
-        y: -150,
-        scale: 0.98,
+        opacity: 0,
+        y: -90,
+        scale: 0.99,
       },
       {
         opacity: 1,
@@ -219,7 +219,7 @@ const Home = () => {
 
           return maxDuration - (maxDuration - minDuration) * progress;
         },
-        ease: EASE.smooth,
+        ease: EASE.fluid,
         stagger: STAGGER.normal,
       },
     );
