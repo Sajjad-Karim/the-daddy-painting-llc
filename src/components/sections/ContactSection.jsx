@@ -1,7 +1,13 @@
+import { useLayoutEffect } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Phone, MapPin, Star, Facebook, Instagram } from "lucide-react";
 import contactLogoImage from "../../assets/logo.png";
 import googleImage from "../../assets/google.png";
 import { CONTACT, SOCIAL } from "../../data/contact";
+import { DURATION, EASE, STAGGER, TRIGGER } from "../../utils/gsapConfig";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const FORM_LABELS = ["Full Name", "Phone Number", "Email", "Message"];
 
@@ -19,6 +25,86 @@ const ContactSection = ({
   buttonDataAttrs = {},
   sectionClassName,
 }) => {
+  useLayoutEffect(() => {
+    const leftColumnElement = leftRef?.current;
+    const formElement = formRef?.current;
+
+    if (!leftColumnElement && !formElement) {
+      return;
+    }
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (prefersReducedMotion) {
+      if (leftColumnElement) {
+        gsap.set(leftColumnElement, {
+          opacity: 1,
+          x: 0,
+        });
+      }
+
+      if (formElement) {
+        gsap.set(formElement, {
+          opacity: 1,
+          x: 0,
+        });
+      }
+
+      return;
+    }
+
+    const contactTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: leftColumnElement || formElement,
+        start: TRIGGER.default,
+        toggleActions: "restart none restart none",
+      },
+    });
+
+    if (leftColumnElement) {
+      contactTimeline.fromTo(
+        leftColumnElement,
+        {
+          opacity: 0,
+          x: -400,
+        },
+        {
+          opacity: 1,
+          x: 0,
+          duration: DURATION.slow,
+          ease: EASE.fluid,
+        },
+      );
+    }
+
+    if (formElement) {
+      contactTimeline.fromTo(
+        formElement,
+        {
+          opacity: 0,
+          x: 400,
+        },
+        {
+          opacity: 1,
+          x: 0,
+          duration: DURATION.micro,
+          ease: EASE.fluid,
+          stagger: STAGGER.relaxed,
+        },
+        leftColumnElement ? "-=0.25" : undefined,
+      );
+    }
+
+    return () => {
+      if (contactTimeline.scrollTrigger) {
+        contactTimeline.scrollTrigger.kill();
+      }
+      contactTimeline.kill();
+    };
+  }, [leftRef, formRef]);
+
   const handleCallNow = () => {
     if (onCallNow) {
       onCallNow();
@@ -41,15 +127,11 @@ const ContactSection = ({
     <section
       className={
         sectionClassName ??
-        "relative bg-[#E1F8F2] pb-10 pt-10 md:pb-24 md:pt-10"
+        "relative bg-[#E1F8F2] pb-10 pt-10 md:pb-24 md:pt-10 overflow-x-hidden"
       }
     >
       <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 md:gap-24 lg:flex-row lg:items-start">
-        <div
-          ref={leftRef}
-          className="w-full lg:w-1/2"
-          {...leftColumnAttrs}
-        >
+        <div ref={leftRef} className="w-full lg:w-1/2" {...leftColumnAttrs}>
           <div className="flex flex-col items-center space-y-6 text-center md:items-start md:text-left">
             <div className="flex justify-center md:justify-start">
               <img
@@ -124,7 +206,8 @@ const ContactSection = ({
                   <Phone className="h-4 w-4" aria-hidden="true" />
                 </span>
                 <span className='font-["Alexandria"]'>
-                  Call Now: <span className="font-bold">{CONTACT.phoneDisplay}</span>
+                  Call Now:{" "}
+                  <span className="font-bold">{CONTACT.phoneDisplay}</span>
                 </span>
               </button>
 

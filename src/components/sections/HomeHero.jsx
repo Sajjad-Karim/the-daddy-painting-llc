@@ -35,7 +35,7 @@ const HomeHero = ({
     }
 
     const animation = gsap.to(heroHouseRef.current, {
-      y: 30,
+      y: 90,
       ease: "none",
       scrollTrigger: {
         trigger: heroHouseRef.current,

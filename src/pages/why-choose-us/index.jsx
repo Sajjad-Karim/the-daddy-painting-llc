@@ -1,6 +1,8 @@
-import { useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { CONTACT } from "../../data/contact";
 import { Link } from "react-router-dom";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   ArrowUpRight,
   Phone,
@@ -17,9 +19,21 @@ import leftSectionImage from "../../assets/leftimage.png";
 import tickIcon from "../../assets/tick.png";
 import contactLogoImage from "../../assets/logo.png";
 import googleImage from "../../assets/google.png";
+import { DURATION, EASE, STAGGER, TRIGGER } from "../../utils/gsapConfig";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const WhyChooseUs = () => {
   const rootRef = useRef(null);
+  const reasonsCardsRefs = [
+    useRef(null),
+    useRef(null),
+    useRef(null),
+    useRef(null),
+    useRef(null),
+    useRef(null),
+  ];
+  const neighborsCardsRefs = [useRef(null), useRef(null), useRef(null)];
 
   const handleCallNow = () => {
     window.location.href = CONTACT.phoneHref;
@@ -30,6 +44,72 @@ const WhyChooseUs = () => {
       "Thank you! Your free estimate request has been received. We'll contact you shortly.",
     );
   };
+
+  useLayoutEffect(() => {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    const createCardsTimeline = (cardRefs) => {
+      const cardElements = cardRefs
+        .map((cardRef) => cardRef.current)
+        .filter(Boolean);
+
+      if (!cardElements.length) {
+        return null;
+      }
+
+      if (prefersReducedMotion) {
+        gsap.set(cardElements, {
+          opacity: 1,
+          x: 0,
+        });
+        return null;
+      }
+
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: cardElements[0],
+          start: TRIGGER.default,
+          toggleActions: "restart none restart none",
+        },
+      });
+
+      timeline.fromTo(
+        cardElements,
+        {
+          opacity: 0,
+          x: -400,
+        },
+        {
+          opacity: 1,
+          x: 0,
+          duration: DURATION.quick,
+          ease: EASE.fluid,
+          stagger: STAGGER.relaxed,
+        },
+      );
+
+      return timeline;
+    };
+
+    const reasonsCardsTimeline = createCardsTimeline(reasonsCardsRefs);
+    const neighborsCardsTimeline = createCardsTimeline(neighborsCardsRefs);
+
+    return () => {
+      [reasonsCardsTimeline, neighborsCardsTimeline].forEach((timeline) => {
+        if (!timeline) {
+          return;
+        }
+
+        if (timeline.scrollTrigger) {
+          timeline.scrollTrigger.kill();
+        }
+
+        timeline.kill();
+      });
+    };
+  }, []);
 
   return (
     <div ref={rootRef}>
@@ -157,6 +237,7 @@ const WhyChooseUs = () => {
           <div className="grid gap-4 md:grid-cols-3 md:gap-6">
             {/* 6+ Years of Professional Experience */}
             <div
+              ref={reasonsCardsRefs[0]}
               data-about-animate="card"
               className="rounded-[26px] border-2 border-[#02B446] px-5 py-6 shadow-sm bg-white/70 backdrop-blur-sm"
             >
@@ -180,6 +261,7 @@ const WhyChooseUs = () => {
 
             {/* Free & Honest Estimates */}
             <div
+              ref={reasonsCardsRefs[1]}
               data-about-animate="card"
               className="rounded-[26px] border-2 border-[#02B446] px-5 py-6 shadow-sm bg-white/70 backdrop-blur-sm"
             >
@@ -200,6 +282,7 @@ const WhyChooseUs = () => {
 
             {/* Residential & Commercial Specialists */}
             <div
+              ref={reasonsCardsRefs[2]}
               data-about-animate="card"
               className="rounded-[26px] border-2 border-[#02B446] px-5 py-6 shadow-sm bg-white/70 backdrop-blur-sm"
             >
@@ -220,6 +303,7 @@ const WhyChooseUs = () => {
 
             {/* High-Quality Materials & Finishes */}
             <div
+              ref={reasonsCardsRefs[3]}
               data-about-animate="card"
               className="rounded-[26px] border-2 border-[#02B446] px-5 py-6 shadow-sm bg-white/70 backdrop-blur-sm"
             >
@@ -240,6 +324,7 @@ const WhyChooseUs = () => {
 
             {/* Reliable, On-Time & Clean Work */}
             <div
+              ref={reasonsCardsRefs[4]}
               data-about-animate="card"
               className="rounded-[26px] border-2 border-[#02B446] px-5 py-6 shadow-sm bg-white/70 backdrop-blur-sm"
             >
@@ -259,6 +344,7 @@ const WhyChooseUs = () => {
 
             {/* Serving Multiple Cities in South Carolina */}
             <div
+              ref={reasonsCardsRefs[5]}
               data-about-animate="card"
               className="rounded-[26px] border-2 border-[#02B446] px-5 py-6 shadow-sm bg-white/70 backdrop-blur-sm"
             >
@@ -304,6 +390,7 @@ const WhyChooseUs = () => {
             <div className="grid gap-4 md:grid-cols-3 md:gap-6">
               {/* Card 1 */}
               <div
+                ref={neighborsCardsRefs[0]}
                 data-about-animate="card"
                 className="rounded-[26px] border-2 h-fit border-[#02B446] px-5 py-6 shadow-sm bg-white/80 backdrop-blur-sm"
               >
@@ -324,6 +411,7 @@ const WhyChooseUs = () => {
 
               {/* Card 2 */}
               <div
+                ref={neighborsCardsRefs[1]}
                 data-about-animate="card"
                 className="rounded-[26px] border-2 h-fit border-[#02B446] px-5 py-6 shadow-sm bg-white/80 backdrop-blur-sm"
               >
@@ -343,6 +431,7 @@ const WhyChooseUs = () => {
 
               {/* Card 3 */}
               <div
+                ref={neighborsCardsRefs[2]}
                 data-about-animate="card"
                 className="rounded-[26px] border-2 h-fit border-[#02B446] px-5 py-6 shadow-sm bg-white/80 backdrop-blur-sm"
               >

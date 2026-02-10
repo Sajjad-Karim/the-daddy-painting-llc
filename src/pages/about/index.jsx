@@ -1,6 +1,8 @@
-import { useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Header from "../../components/Header";
 import skyVectorImage from "../../assets/vector.png";
 import skyImage from "../../assets/sky.png";
@@ -12,6 +14,9 @@ import yearsExperienceIcon from "../../assets/icons/yearsexperience.png";
 import openIcon from "../../assets/icons/open.png";
 import residentialIcon from "../../assets/icons/residential.png";
 import ContactSection from "../../components/sections/ContactSection";
+import { DURATION, EASE, STAGGER, TRIGGER } from "../../utils/gsapConfig";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
   const aboutRootRef = useRef(null);
@@ -31,6 +36,62 @@ const About = () => {
   ];
   const eighthLeftRef = useRef(null);
   const eighthFormRef = useRef(null);
+
+  useLayoutEffect(() => {
+    if (!aboutRootRef.current) {
+      return;
+    }
+
+    const cardNodeList =
+      aboutRootRef.current.querySelectorAll('[data-about-animate="card"]');
+    const aboutCardsElements = Array.from(cardNodeList);
+
+    if (!aboutCardsElements.length) {
+      return;
+    }
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (prefersReducedMotion) {
+      gsap.set(aboutCardsElements, {
+        opacity: 1,
+        x: 0,
+      });
+      return;
+    }
+
+    const aboutCardsTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: aboutCardsElements[0],
+        start: TRIGGER.default,
+        toggleActions: "restart none restart none",
+      },
+    });
+
+    aboutCardsTimeline.fromTo(
+      aboutCardsElements,
+      {
+        opacity: 0,
+        x: -400,
+      },
+      {
+        opacity: 1,
+        x: 0,
+        duration: DURATION.quick,
+        ease: EASE.smooth,
+        stagger: STAGGER.tight,
+      },
+    );
+
+    return () => {
+      if (aboutCardsTimeline.scrollTrigger) {
+        aboutCardsTimeline.scrollTrigger.kill();
+      }
+      aboutCardsTimeline.kill();
+    };
+  }, []);
 
   return (
     <div ref={aboutRootRef}>
