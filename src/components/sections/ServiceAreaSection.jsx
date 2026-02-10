@@ -27,7 +27,7 @@ const ServiceAreaSection = ({ sixthHeadingRef }) => (
       <section className="mt-10 flex w-full flex-col items-center text-center">
         <h1
           ref={sixthHeadingRef}
-          className='mt-6 text-center font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[45px] font-["Rubik_One"] leading-tight'
+          className='mt-6 text-center font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[35px] font-["Rubik_One"] leading-tight'
         >
           Proudly Serving Easley, SC & Surrounding Areas.
         </h1>

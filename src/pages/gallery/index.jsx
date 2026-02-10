@@ -1,5 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useMemo, useRef, useState } from "react";
 import { X, ChevronLeft, ChevronRight, Image as ImageIcon } from "lucide-react";
 import Header from "../../components/Header";
 import skyVectorImage from "../../assets/vector.png";
@@ -13,11 +12,6 @@ import detailHeroImage from "../../assets/detail-page/hero.png";
 import detailSecondImage from "../../assets/detail-page/secondSection.png";
 import detailThirdImage from "../../assets/detail-page/thirdSection.png";
 import detailFourthImage from "../../assets/detail-page/fourth.png";
-import {
-  initAboutScrollAnimations,
-  cleanupScrollAnimations,
-  setupScrollTriggerResize,
-} from "../../utils/scrollAnimations";
 
 const CATEGORIES = [
   "All",
@@ -109,25 +103,6 @@ const Gallery = () => {
     [activeCategory, items],
   );
 
-  useEffect(() => {
-    let refreshTimer;
-    const timer = setTimeout(() => {
-      initAboutScrollAnimations({
-        aboutRootRef: rootRef,
-      });
-      refreshTimer = setTimeout(() => ScrollTrigger.refresh(), 150);
-    }, 400);
-
-    const teardownResize = setupScrollTriggerResize();
-
-    return () => {
-      clearTimeout(timer);
-      clearTimeout(refreshTimer);
-      teardownResize();
-      cleanupScrollAnimations();
-    };
-  }, []);
-
   const handleOpenLightbox = (index) => {
     setLightboxIndex(index);
   };
@@ -189,7 +164,7 @@ const Gallery = () => {
             </div>
             <h1
               data-about-animate="zoom"
-              className='mt-4 text-center font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[45px] font-["Rubik_One"] leading-tight'
+              className='mt-4 text-center font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[35px] font-["Rubik_One"] leading-tight'
             >
               PROJECT GALLERY
             </h1>

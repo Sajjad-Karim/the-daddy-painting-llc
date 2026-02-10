@@ -1,11 +1,5 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { CONTACT } from "../../data/contact";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import {
-  initScrollAnimations,
-  cleanupScrollAnimations,
-  setupScrollTriggerResize,
-} from "../../utils/scrollAnimations";
 import HomeHero from "../../components/sections/HomeHero";
 import IntroSection from "../../components/sections/IntroSection";
 import HomeServicesGrid from "../../components/sections/HomeServicesGrid";
@@ -57,40 +51,6 @@ const Home = () => {
       "Thank you! Your free estimate request has been received. We'll contact you shortly.",
     );
   };
-
-  useEffect(() => {
-    let refreshTimer;
-    const timer = setTimeout(() => {
-      const refs = {
-        heroPillRef,
-        heroHeadingRef,
-        heroButtonsRef,
-        heroCardRef,
-        secondHeadingRef,
-        secondTextRefs,
-        featureCardsRefs,
-        servicesGridRef,
-        serviceCardsRefs,
-        fourthHeadingRef,
-        benefitCardsRefs,
-        sixthHeadingRef,
-        eighthLeftRef,
-        eighthFormRef,
-      };
-
-      initScrollAnimations(refs);
-      refreshTimer = setTimeout(() => ScrollTrigger.refresh(), 250);
-    }, 500);
-
-    const teardownResize = setupScrollTriggerResize();
-
-    return () => {
-      clearTimeout(timer);
-      clearTimeout(refreshTimer);
-      teardownResize();
-      cleanupScrollAnimations();
-    };
-  }, []);
 
   return (
     <>

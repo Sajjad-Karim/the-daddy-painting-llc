@@ -1,7 +1,6 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Header from "../../components/Header";
 import skyVectorImage from "../../assets/vector.png";
 import skyImage from "../../assets/sky.png";
@@ -13,11 +12,6 @@ import yearsExperienceIcon from "../../assets/icons/yearsexperience.png";
 import openIcon from "../../assets/icons/open.png";
 import residentialIcon from "../../assets/icons/residential.png";
 import ContactSection from "../../components/sections/ContactSection";
-import {
-  initAboutScrollAnimations,
-  cleanupScrollAnimations,
-  setupScrollTriggerResize,
-} from "../../utils/scrollAnimations";
 
 const About = () => {
   const aboutRootRef = useRef(null);
@@ -37,37 +31,6 @@ const About = () => {
   ];
   const eighthLeftRef = useRef(null);
   const eighthFormRef = useRef(null);
-
-  useEffect(() => {
-    let refreshTimer;
-    const timer = setTimeout(() => {
-      initAboutScrollAnimations({
-        aboutRootRef,
-        aboutStoryRef,
-        aboutStoryTextRefs: [aboutStoryText0Ref, aboutStoryText1Ref],
-        aboutStoryImageRef,
-        aboutCommitmentRef,
-        aboutCommitmentTextRefs: [
-          aboutCommitmentText0Ref,
-          aboutCommitmentText1Ref,
-        ],
-        aboutValuesRef,
-        aboutFeatureCardsRefs,
-        eighthLeftRef,
-        eighthFormRef,
-      });
-      refreshTimer = setTimeout(() => ScrollTrigger.refresh(), 150);
-    }, 400);
-
-    const teardownResize = setupScrollTriggerResize();
-
-    return () => {
-      clearTimeout(timer);
-      clearTimeout(refreshTimer);
-      teardownResize();
-      cleanupScrollAnimations();
-    };
-  }, []);
 
   return (
     <div ref={aboutRootRef}>
@@ -105,7 +68,7 @@ const About = () => {
             </div>
             <h1
               data-about-animate="zoom"
-              className='mt-4 text-center font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[45px] font-["Rubik_One"] leading-tight'
+              className='mt-4 text-center font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[35px] font-["Rubik_One"] leading-tight'
             >
               ABOUT US
             </h1>
@@ -141,7 +104,7 @@ const About = () => {
               <h2
                 ref={aboutStoryRef}
                 data-about-animate="fade-left"
-                className='font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[45px] font-["Rubik_One"] uppercase leading-tight'
+                className='font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[35px] font-["Rubik_One"] uppercase leading-tight'
               >
                 OUR STORY
               </h2>
@@ -210,7 +173,7 @@ const About = () => {
               <h2
                 ref={aboutCommitmentRef}
                 data-about-animate="fade-right"
-                className='font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[45px] font-["Rubik_One"] uppercase leading-tight'
+                className='font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[35px] font-["Rubik_One"] uppercase leading-tight'
               >
                 COMMITMENT TO QUALITY &amp; DETAIL
               </h2>

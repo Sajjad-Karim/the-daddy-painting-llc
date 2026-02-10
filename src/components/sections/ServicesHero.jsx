@@ -27,7 +27,7 @@ const ServicesHero = () => (
             The Daddy&apos;s Painting LLC
           </span>
         </div>
-        <h1 className='mt-4 text-center font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[45px] font-["Rubik_One"] leading-tight'>
+        <h1 className='mt-4 text-center font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[35px] font-["Rubik_One"] leading-tight'>
           OUR PAINTING SERVICES
         </h1>
         <p className='mt-4 max-w-2xl text-sm leading-relaxed text-[#2D2928] font-["Inter"] md:text-base'>

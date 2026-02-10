@@ -66,11 +66,11 @@ const IntroSection = ({
     </div>
 
     <div className="relative mx-auto max-w-6xl px-4 pt-4">
-      <div className="grid gap-6 text-[#2D2928] md:grid-cols-3 md:gap-10">
+      <div className="grid items-start gap-6 text-[#2D2928] md:grid-cols-3 md:gap-10">
         <div>
           <h2
             ref={secondHeadingRef}
-            className='font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[45px] font-["Rubik_One"] leading-tight'
+            className='font-bold text-[#2D2928]  sm:text-3xl md:text-[35px] font-["Rubik_One"] leading-tight'
           >
             BRINGING <span className="text-[#039A02]">COLOR</span> AND QUALITY
             TO SOUTH CAROLINA LIVING.

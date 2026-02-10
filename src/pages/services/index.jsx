@@ -1,5 +1,4 @@
-import { useEffect, useRef } from "react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef } from "react";
 import { SERVICES } from "../../data/services";
 import interiorServiceImage from "../../assets/services/interior.png";
 import exteriorServiceImage from "../../assets/services/exterior.png";
@@ -11,11 +10,6 @@ import borderVectorImage from "../../assets/borderVector.png";
 import ServicesHero from "../../components/sections/ServicesHero";
 import ServicesCard from "../../components/ServicesCard";
 import ContactSection from "../../components/sections/ContactSection";
-import {
-  initServicesScrollAnimations,
-  cleanupScrollAnimations,
-  setupScrollTriggerResize,
-} from "../../utils/scrollAnimations";
 
 const SERVICE_IMAGES = {
   interior: interiorServiceImage,
@@ -45,27 +39,6 @@ const Services = () => {
   const prepFinishingItems = SERVICES.filter((s) =>
     PREP_FINISHING_SERVICES.includes(s.slug),
   );
-
-  useEffect(() => {
-    let refreshTimer;
-    const timer = setTimeout(() => {
-      initServicesScrollAnimations({
-        servicesCardsRootRef,
-        eighthLeftRef,
-        eighthFormRef,
-      });
-      refreshTimer = setTimeout(() => ScrollTrigger.refresh(), 150);
-    }, 400);
-
-    const teardownResize = setupScrollTriggerResize();
-
-    return () => {
-      clearTimeout(timer);
-      clearTimeout(refreshTimer);
-      teardownResize();
-      cleanupScrollAnimations();
-    };
-  }, []);
 
   const getImage = (service) =>
     SERVICE_IMAGES[service.imageKey] || interiorServiceImage;

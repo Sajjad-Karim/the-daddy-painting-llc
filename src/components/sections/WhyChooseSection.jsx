@@ -42,7 +42,7 @@ const WhyChooseSection = ({ fourthHeadingRef, benefitCardsRefs }) => (
       <div className="w-full px-4 py-6 md:w-[70%] md:px-12 md:py-8">
         <h2
           ref={fourthHeadingRef}
-          className='mb-8 font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[45px] font-["Rubik_One"] leading-tight'
+          className='mb-8 font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[35px] font-["Rubik_One"] leading-tight'
         >
           WHY NEIGHBORS CHOOSE THE DADDY&apos;S PAINTING LLC
         </h2>

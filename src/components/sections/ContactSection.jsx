@@ -62,7 +62,7 @@ const ContactSection = ({
 
             <div className="space-y-3">
               <h2
-                className='mx-auto font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-left md:text-[45px] font-["Rubik_One"] leading-tight'
+                className='mx-auto font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-left md:text-[35px] font-["Rubik_One"] leading-tight'
                 {...headingAttrs}
               >
                 PROFESSIONAL RESIDENTIAL &amp; COMMERCIAL PAINTING SERVICES YOU

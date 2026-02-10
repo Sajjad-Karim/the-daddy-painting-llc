@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
-import { Menu, Phone, ArrowUpRight, X } from "lucide-react";
+import { Menu, Phone, X } from "lucide-react";
 import { gsap } from "gsap";
 import { CONTACT, SOCIAL } from "../data/contact";
 import logoImage from "../assets/logo.png";
@@ -25,13 +25,6 @@ const Header = () => {
 
   const handleCallNow = () => {
     window.location.href = CONTACT.phoneHref;
-  };
-
-  const handleRequestEstimate = () => {
-    // Simple static toast/alert for now
-    window.alert(
-      "Thank you! Your free estimate request has been received. We'll contact you shortly.",
-    );
   };
 
   const handleToggleMenu = () => {
@@ -344,7 +337,7 @@ const Header = () => {
         </div>
 
         {/* Desktop header */}
-        <div className="hidden items-center justify-between md:flex">
+        <div className="hidden items-center justify-between gap-8 md:flex">
           {/* Left: circular menu icon + label */}
           <div className="flex items-center gap-3">
             <button
@@ -361,53 +354,33 @@ const Header = () => {
             </span>
           </div>
 
-          {/* Right group: logo + call now + CTA */}
-          <div className="flex items-center gap-10">
-            {/* Logo (closer to Call Now than Menu) */}
-            <Link
-              to="/"
-              className="flex items-center justify-center cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02] rounded"
-              aria-label="Go to home page"
-            >
-              <img
-                src={logoImage}
-                alt="The Daddy's Painting LLC logo"
-                className="h-20 w-auto md:h-30"
-              />
-            </Link>
+          {/* Center: logo */}
+          <Link
+            to="/"
+            className="flex items-center justify-center cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02] rounded"
+            aria-label="Go to home page"
+          >
+            <img
+              src={logoImage}
+              alt="The Daddy's Painting LLC logo"
+              className="h-20 w-auto md:h-30"
+            />
+          </Link>
 
-            {/* Call Now + CTA */}
-            <div className="flex items-center gap-6">
-              {/* Call Now inline group (no white background) */}
-              <div
-                className="hidden items-center gap-3 text-sm md:flex cursor-pointer"
-                role="button"
-                onClick={handleCallNow}
-              >
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#039A02] text-white">
-                  <Phone className="h-3.5 w-3.5" aria-hidden="true" />
-                </span>
-                <div className="leading-tight text-[#039A02]">
-                  <p className="text-sm font-semibold">Call Now</p>
-                  <p className="text-sm font-semibold">{CONTACT.phoneDisplay}</p>
-                </div>
-              </div>
-
-              {/* Get a Free Estimate pill */}
-              <button
-                type="button"
-                onClick={handleRequestEstimate}
-                className="flex items-center gap-3 rounded-full bg-[#2D2928] px-5 py-2 text-sm font-semibold text-white shadow-md cursor-pointer hover:bg-[#1F1B1A] hover:shadow-xl transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02]"
-              >
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#039A02] text-white">
-                  <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
-                </span>
-                <span className='text-[#A1F88B] font-["Inter"]'>
-                  Get a Free Estimate
-                </span>
-              </button>
+          {/* Right: Call Now */}
+          <button
+            type="button"
+            className="flex items-center gap-3 text-sm cursor-pointer"
+            onClick={handleCallNow}
+          >
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#039A02] text-white">
+              <Phone className="h-3.5 w-3.5" aria-hidden="true" />
+            </span>
+            <div className="leading-tight text-left text-[#039A02]">
+              <p className="text-sm font-semibold">Call Now</p>
+              <p className="text-sm font-semibold">{CONTACT.phoneDisplay}</p>
             </div>
-          </div>
+          </button>
         </div>
       </div>
 
@@ -518,10 +491,10 @@ const Header = () => {
                 </div>
               </div>
 
-              {/* Bottom: call now + primary CTA */}
+              {/* Bottom: call now */}
               <div
                 ref={bottomSectionRef}
-                className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 pb-4 md:flex-row"
+                className="mt-8 flex flex-col items-center justify-center gap-4 border-t border-white/10 pt-6 pb-4 md:flex-row"
               >
                 <button
                   type="button"
@@ -538,19 +511,6 @@ const Header = () => {
                       {CONTACT.phoneDisplay}
                     </p>
                   </div>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={handleRequestEstimate}
-                  className="flex items-center gap-3 rounded-full bg-gradient-to-r from-white via-[#E9FFF5] to-[#C8F1FF] p-3 text-sm font-semibold text-[#02A11F] shadow-md cursor-pointer hover:shadow-xl hover:brightness-110 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#02A11F]"
-                >
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#02A11F] text-white">
-                    <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-                  </span>
-                  <span className='font-["Inter"] font-bold'>
-                    Get a Free Estimate
-                  </span>
                 </button>
               </div>
             </div>

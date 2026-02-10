@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { CONTACT } from "../../data/contact";
 import { Link } from "react-router-dom";
 import {
@@ -9,7 +9,6 @@ import {
   Facebook,
   Instagram,
 } from "lucide-react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Header from "../../components/Header";
 import skyVectorImage from "../../assets/vector.png";
 import skyImage from "../../assets/sky.png";
@@ -18,11 +17,6 @@ import leftSectionImage from "../../assets/leftimage.png";
 import tickIcon from "../../assets/tick.png";
 import contactLogoImage from "../../assets/logo.png";
 import googleImage from "../../assets/google.png";
-import {
-  initAboutScrollAnimations,
-  cleanupScrollAnimations,
-  setupScrollTriggerResize,
-} from "../../utils/scrollAnimations";
 
 const WhyChooseUs = () => {
   const rootRef = useRef(null);
@@ -36,25 +30,6 @@ const WhyChooseUs = () => {
       "Thank you! Your free estimate request has been received. We'll contact you shortly.",
     );
   };
-
-  useEffect(() => {
-    let refreshTimer;
-    const timer = setTimeout(() => {
-      initAboutScrollAnimations({
-        aboutRootRef: rootRef,
-      });
-      refreshTimer = setTimeout(() => ScrollTrigger.refresh(), 150);
-    }, 400);
-
-    const teardownResize = setupScrollTriggerResize();
-
-    return () => {
-      clearTimeout(timer);
-      clearTimeout(refreshTimer);
-      teardownResize();
-      cleanupScrollAnimations();
-    };
-  }, []);
 
   return (
     <div ref={rootRef}>
@@ -92,7 +67,7 @@ const WhyChooseUs = () => {
             </div>
             <h1
               data-about-animate="zoom"
-              className='mt-4 text-center font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[45px] font-["Rubik_One"] leading-tight'
+              className='mt-4 text-center font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[35px] font-["Rubik_One"] leading-tight'
             >
               WHY CHOOSE US
             </h1>
@@ -127,7 +102,7 @@ const WhyChooseUs = () => {
             <div className="flex flex-col gap-6">
               <h2
                 data-about-animate="fade-left"
-                className='font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[45px] font-["Rubik_One"] uppercase leading-tight'
+                className='font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[35px] font-["Rubik_One"] uppercase leading-tight'
               >
                 WHAT MAKES US DIFFERENT
               </h2>
@@ -321,7 +296,7 @@ const WhyChooseUs = () => {
           <div className="w-full px-4 py-6 md:w-[70%] md:px-12 md:py-8">
             <h2
               data-about-animate="zoom"
-              className='mb-6 font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mb-8 md:mt-6 md:text-[45px] font-["Rubik_One"] leading-tight'
+              className='mb-6 font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mb-8 md:mt-6 md:text-[35px] font-["Rubik_One"] leading-tight'
             >
               WHY NEIGHBORS CHOOSE THE DADDY&apos;S PAINTING LLC
             </h2>
@@ -413,7 +388,8 @@ const WhyChooseUs = () => {
                   <Phone className="h-4 w-4" aria-hidden="true" />
                 </span>
                 <span className='font-["Alexandria"]'>
-                  Or Call Now: <span className="font-bold">{CONTACT.phoneDisplay}</span>
+                  Or Call Now:{" "}
+                  <span className="font-bold">{CONTACT.phoneDisplay}</span>
                 </span>
               </button>
             </div>

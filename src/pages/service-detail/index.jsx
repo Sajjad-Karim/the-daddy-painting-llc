@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { Link, useParams } from "react-router-dom";
 import {
   ArrowUpRight,
@@ -32,11 +32,6 @@ import residentialIcon from "../../assets/icons/residential.png";
 import fifthSectionBg from "../../assets/fifthSection.png";
 import contactLogoImage from "../../assets/logo.png";
 import googleImage from "../../assets/google.png";
-import {
-  initDetailScrollAnimations,
-  cleanupScrollAnimations,
-  setupScrollTriggerResize,
-} from "../../utils/scrollAnimations";
 import { CONTACT, SOCIAL } from "../../data/contact";
 
 const SERVICE_IMAGES = {
@@ -83,33 +78,6 @@ const ServiceDetail = () => {
   const eighthLeftRef = useRef(null);
   const eighthFormRef = useRef(null);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      initDetailScrollAnimations({
-        heroPillRef,
-        heroHeadingRef,
-        heroButtonsRef,
-        heroCardRef,
-        detailSecondHeadingRef,
-        detailSecondTextRefs,
-        detailSecondImageRef,
-        detailThirdSectionRef,
-        detailFourthCardsRef,
-        detailStepCardsRef,
-        eighthLeftRef,
-        eighthFormRef,
-      });
-    }, 200);
-
-    const teardownResize = setupScrollTriggerResize();
-
-    return () => {
-      clearTimeout(timer);
-      teardownResize();
-      cleanupScrollAnimations();
-    };
-  }, []);
-
   return (
     <>
       <main
@@ -133,7 +101,7 @@ const ServiceDetail = () => {
 
             <h1
               ref={heroHeadingRef}
-              className='text-center font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[45px] font-["Rubik_One"]'
+              className='text-center font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[35px] font-["Rubik_One"]'
             >
               {heroTitle}
             </h1>
@@ -201,7 +169,7 @@ const ServiceDetail = () => {
             <div className="flex flex-col gap-6">
               <h2
                 ref={detailSecondHeadingRef}
-                className='font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[45px] font-["Rubik_One"] uppercase leading-tight'
+                className='font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[35px] font-["Rubik_One"] uppercase leading-tight'
               >
                 WE TREAT YOUR
                 <br />
@@ -304,7 +272,7 @@ const ServiceDetail = () => {
                   data-detail-card-content
                   className="rounded-[28px] border border-white/40 bg-[#FFFFFF1A] px-6 py-8 shadow-xl backdrop-blur-md md:px-8 md:py-10"
                 >
-                  <h2 className='mb-4 font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[45px] font-["Rubik_One"] uppercase leading-tight'>
+                  <h2 className='mb-4 font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[35px] font-["Rubik_One"] uppercase leading-tight'>
                     COMPREHENS
                     <br />
                     IVE INTERIOR
@@ -336,7 +304,7 @@ const ServiceDetail = () => {
           <div className="w-[30%]" />
 
           <div className="w-full px-4 py-6 md:w-[66%] md:px-12 md:py-8">
-            <h2 className='mb-6 font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mb-8 md:mt-6 md:text-[45px] font-["Rubik_One"] leading-tight'>
+            <h2 className='mb-6 font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mb-8 md:mt-6 md:text-[35px] font-["Rubik_One"] leading-tight'>
               WHY NEIGHBORS CHOOSE THE DADDY&apos;S PAINTING LLC
             </h2>
 
@@ -442,7 +410,7 @@ const ServiceDetail = () => {
 
             {/* Right: title, intro, and 4 step boxes */}
             <div className="flex flex-col gap-6">
-              <h2 className='font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[45px] font-["Rubik_One"] uppercase leading-tight'>
+              <h2 className='font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[35px] font-["Rubik_One"] uppercase leading-tight'>
                 OUR 4-STEP
                 <br />
                 INTERIOR
@@ -569,7 +537,7 @@ const ServiceDetail = () => {
 
         <div className="relative mx-auto flex max-w-6xl flex-col items-center px-4 pb-10 pt-6 md:pt-4 lg:pt-4">
           <section className="mt-10 flex w-full flex-col items-center text-center">
-            <h1 className='mt-6 text-center font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[45px] font-["Rubik_One"] leading-tight'>
+            <h1 className='mt-6 text-center font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-[35px] font-["Rubik_One"] leading-tight'>
               Proudly Serving Easley, SC & Surrounding Areas.
             </h1>
             <p className='max-w-xl text-sm text-[#2D2928] md:text-base font-["Inter"]'>
@@ -616,7 +584,7 @@ const ServiceDetail = () => {
               </div>
 
               <div className="space-y-3">
-                <h2 className='mx-auto font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-left md:text-[45px] font-["Rubik_One"] leading-tight'>
+                <h2 className='mx-auto font-bold text-[#2D2928] sm:max-w-3xl sm:text-3xl md:mt-6 md:text-left md:text-[35px] font-["Rubik_One"] leading-tight'>
                   PROFESSIONAL RESIDENTIAL &amp; COMMERCIAL PAINTING SERVICES
                   YOU CAN TRUST.
                 </h2>
