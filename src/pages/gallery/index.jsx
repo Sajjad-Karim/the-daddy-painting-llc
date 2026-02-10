@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import { X, ChevronLeft, ChevronRight, Image as ImageIcon } from "lucide-react";
 import Header from "../../components/Header";
 import skyVectorImage from "../../assets/vector.png";
@@ -12,6 +12,11 @@ import detailHeroImage from "../../assets/detail-page/hero.png";
 import detailSecondImage from "../../assets/detail-page/secondSection.png";
 import detailThirdImage from "../../assets/detail-page/thirdSection.png";
 import detailFourthImage from "../../assets/detail-page/fourth.png";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { DURATION, EASE, STAGGER, TRIGGER } from "../../utils/gsapConfig";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const CATEGORIES = [
   "All",
@@ -128,6 +133,76 @@ const Gallery = () => {
   const activeImage =
     lightboxIndex !== null ? visibleItems[lightboxIndex] : null;
 
+  useLayoutEffect(() => {
+    if (!rootRef.current) {
+      return;
+    }
+
+    const galleryCardElements = Array.from(
+      rootRef.current.querySelectorAll("[data-gallery-card]"),
+    );
+
+    if (!galleryCardElements.length) {
+      return;
+    }
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (prefersReducedMotion) {
+      gsap.set(galleryCardElements, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+      });
+      return;
+    }
+
+    const galleryTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: galleryCardElements[0],
+        start: TRIGGER.default,
+        toggleActions: "restart none restart none",
+      },
+    });
+
+    galleryTimeline.fromTo(
+      galleryCardElements,
+      {
+        opacity: 0,
+        y: -150,
+        scale: 0.98,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: (index, _target, targets) => {
+          const maxDuration = DURATION.slow;
+          const minDuration = DURATION.quick;
+
+          if (targets.length <= 1) {
+            return maxDuration;
+          }
+
+          const progress = index / (targets.length - 1);
+
+          return maxDuration - (maxDuration - minDuration) * progress;
+        },
+        ease: EASE.smooth,
+        stagger: STAGGER.normal,
+      },
+    );
+
+    return () => {
+      if (galleryTimeline.scrollTrigger) {
+        galleryTimeline.scrollTrigger.kill();
+      }
+      galleryTimeline.kill();
+    };
+  }, []);
+
   return (
     <div ref={rootRef}>
       {/* Hero */}
@@ -226,6 +301,7 @@ const Gallery = () => {
                 key={item.id}
                 type="button"
                 data-about-animate="card"
+                data-gallery-card
                 onClick={() => handleOpenLightbox(index)}
                 className="group relative aspect-[4/3] w-full overflow-hidden rounded-[20px] bg-[#111827] text-left shadow-md cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#039A02]"
               >

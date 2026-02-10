@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
 import {
   ArrowUpRight,
@@ -33,6 +33,9 @@ import fifthSectionBg from "../../assets/fifthSection.png";
 import contactLogoImage from "../../assets/logo.png";
 import googleImage from "../../assets/google.png";
 import { CONTACT, SOCIAL } from "../../data/contact";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { DURATION, EASE, STAGGER, TRIGGER } from "../../utils/gsapConfig";
 
 const SERVICE_IMAGES = {
   interior: interiorServiceImage,
@@ -46,6 +49,8 @@ const SERVICE_IMAGES = {
 const DEFAULT_HERO_PILL = "#1 Interior Painting Specialists in South Carolina";
 const DEFAULT_HERO_TITLE =
   "Expert Interior Painting Services in Easley & Greenville, SC";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const ServiceDetail = () => {
   const { slug } = useParams();
@@ -77,6 +82,185 @@ const ServiceDetail = () => {
   const detailStepCardsRef = useRef(null);
   const eighthLeftRef = useRef(null);
   const eighthFormRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const detailCards = Array.from(
+      document.querySelectorAll("[data-detail-card]"),
+    );
+    const detailCardContents = detailCards
+      .map((card) =>
+        card.querySelector("[data-detail-card-content]"),
+      )
+      .filter(Boolean);
+
+    const detailStepCards = Array.from(
+      document.querySelectorAll("[data-detail-step-card]"),
+    );
+    const detailStepCardContents = detailStepCards
+      .map((card) =>
+        card.querySelector("[data-detail-step-card-content]"),
+      )
+      .filter(Boolean);
+
+    if (!detailCards.length && !detailStepCards.length) {
+      return;
+    }
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (prefersReducedMotion) {
+      if (detailCards.length) {
+        gsap.set(detailCards, {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+        });
+      }
+      if (detailStepCards.length) {
+        gsap.set(detailStepCards, {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+        });
+      }
+      if (detailCardContents.length) {
+        gsap.set(detailCardContents, {
+          opacity: 1,
+        });
+      }
+      if (detailStepCardContents.length) {
+        gsap.set(detailStepCardContents, {
+          opacity: 1,
+        });
+      }
+      return;
+    }
+
+    const timelines = [];
+
+    if (detailCards.length) {
+      const detailCardsTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: detailCards[0],
+          start: TRIGGER.default,
+          toggleActions: "restart none restart none",
+        },
+      });
+
+      detailCardsTimeline.fromTo(
+        detailCards,
+        {
+          opacity: 0,
+          y: -150,
+          scale: 0.98,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: (index, _target, targets) => {
+            const maxDuration = DURATION.slow;
+            const minDuration = DURATION.quick;
+
+            if (targets.length <= 1) {
+              return maxDuration;
+            }
+
+            const progress = index / (targets.length - 1);
+
+            return maxDuration - (maxDuration - minDuration) * progress;
+          },
+          ease: EASE.smooth,
+          stagger: STAGGER.normal,
+        },
+      );
+
+      if (detailCardContents.length) {
+        detailCardsTimeline.fromTo(
+          detailCardContents,
+          {
+            opacity: 0,
+          },
+          {
+            opacity: 1,
+            duration: DURATION.standard,
+            ease: EASE.smooth,
+            stagger: STAGGER.normal,
+          },
+          "<+=0.05",
+        );
+      }
+
+      timelines.push(detailCardsTimeline);
+    }
+
+    if (detailStepCards.length) {
+      const detailStepTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: detailStepCards[0],
+          start: TRIGGER.default,
+          toggleActions: "restart none restart none",
+        },
+      });
+
+      detailStepTimeline.fromTo(
+        detailStepCards,
+        {
+          opacity: 0,
+          y: -150,
+          scale: 0.98,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: (index, _target, targets) => {
+            const maxDuration = DURATION.slow;
+            const minDuration = DURATION.quick;
+
+            if (targets.length <= 1) {
+              return maxDuration;
+            }
+
+            const progress = index / (targets.length - 1);
+
+            return maxDuration - (maxDuration - minDuration) * progress;
+          },
+          ease: EASE.smooth,
+          stagger: STAGGER.normal,
+        },
+      );
+
+      if (detailStepCardContents.length) {
+        detailStepTimeline.fromTo(
+          detailStepCardContents,
+          {
+            opacity: 0,
+          },
+          {
+            opacity: 1,
+            duration: DURATION.standard,
+            ease: EASE.smooth,
+            stagger: STAGGER.normal,
+          },
+          "<+=0.05",
+        );
+      }
+
+      timelines.push(detailStepTimeline);
+    }
+
+    return () => {
+      timelines.forEach((timeline) => {
+        if (timeline.scrollTrigger) {
+          timeline.scrollTrigger.kill();
+        }
+        timeline.kill();
+      });
+    };
+  }, []);
 
   return (
     <>
